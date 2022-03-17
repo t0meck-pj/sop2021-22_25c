@@ -1,0 +1,268 @@
+Laboratorium 1 (05.03.22)
+
+Na ćwiczeniach instalowaliśmy system operacyjny (debiana), czyli wirtualną maszynę. Używaliśmy do tego programu VirtualBox. 
+
+VirtualBox- to program do wirtualizacji systemów operacyjnych. Pozwala na uruchamianie wirtualnych komputerów, gdzie można instalować i uruchamiać inne systemy operacyjne np. Linuxa na Windows.
+Wirtuale maszyny można łatwo przenosić pomiędzy różnymi hostami, kopiując ich obraz dysków. 
+
+Jak takowego debiana zainstalować na swoim komputerze? 
+
+Jak już mamy zainstalowanego VisrtualBoxa, musimy pobrać system operacyjny ( w naszym przypadku jest to Debian), więc wchodzimy na strone "www.debian.org"" i klikamy pobieranie.
+Jak już sciągneliśmy Debiana odpalamy VirtualBoxa, i klikamy Globalne ustawienia. 
+
+Otwiera się okienko z 8 zakładkami:
+-Ogólne ( Wybieramy tam folder, w którym będą miesciły się nasze wirtualne maszyny);
+-Wejście ( Tam ustawiamy skróty klawiszowe potrzebne do sterowania systemem);
+-Aktualizacja (Ustawienia dotyczące aktualizacji);
+-Jezyk ( Ustawiamy język );
+-Sieć ( Podłączamy karty sieciowe);
+-Rozszerzenia (Wybieramy roszerzenia do systemu );
+-Proxy (Ustawienia i konfiguracja hostów);
+
+Ustawiamy w zakładce Ogólne, domyśliny folder maszyn wirtualnych. Kikamy w w ścierzkę domyślną potem "Inny" i wybieramy folder docelowy.
+Poniżej widnieje opcja, biblioteka uwierzytelniania dla VRDP ( VirtualBox Remote Desktop Protocol). 
+Umożliwia ona zdalne wyświetlanie danych wyjściowych okna maszyny wirtualnej na dowolnych innym komputzerze i sterowanie maszyną wirtualną stamtąd, tak jakby była uruchomiona na maszynie zdanlnej.
+Tutaj zostawiamy jak jest, czyli nic nie zmieniamy.
+
+Następnie, klikamy niebieską ikonę "Nowa", wyskakuje nam okienko, w którym wyskakują następujące opcję: 
+-Name: (Wybieramy nazwę naszej maszynki);
+-Machinę Folder: ( Folder, w którym nasza maszyna ma być zainstalowana, ale ustawialiśmy już to wcześniej w globalnych ustawieniach.);
+-Typ: ( System na jakim będzie postawiona nasza maszyna, w naszym przypadku jest to Linux );
+-Wersja: (Wersja maszyny w naszym przypadku Debian(64-bit);
+
+Klikamy dalej, wyskakuję drugie okienko, w którym wybieramy rozmiar pamięci RAM jaki chcemy wykorzystać w naszej maszynie.
+1023 MB wystarczy w zupełności, ale ja profilaktycznie wybieram dwukrotność tego, czyli 2048 MB.
+
+Klikamy dalej, wyskakuję trzecie okienko zatytułowane "Dysk twardy".Mamy do wyboru 3 opcję:
+-Nie dodawaj wirtualnego dysku twardego;
+-Stwórz wirtualny dysk twardy (Tworzymy wirtualny dysk twardy, ustawiając jego parametry od początku, i tą opcję wybieramy);
+-Użyj istniejącego pliku wirtualnego dysku twardego (Wybieramy tą opcję chcemy skorzystać z utworzonego już dysku wirtualnego (plik VDI));
+
+Wybierając drugą opcję, klikamy utwórzy.Wyskoczyło nam czwarte okienko z trzema ocjami do wyboru:
+
+-VDI(VirtualBox disk Image) - Standardowe natywne rozwiązanie VirtualBoxa (najlepsze działanie na naszej maszynie);
+-VHD(Virtual Hard Disk) - Rozwiązanie firmy Microsoft przeznaczony na maszyny HyperV;
+-VMDK(Virtual Machine Disk) - Rozwiązanie Firmy VMware przeznaczone na maszymy VMware Workstation Player;
+
+Wybieramy pierwszą opcję, wciskamy dalej i wyskakuje nam okienko piąte, w którym mamy 2 opcję:
+
+-Dynamicznie przydzielany (Ustawiamy maksymalną pojemność do jakiej dysk będzie mógł się rozszerzyć w miare potrzeb);
+-Stały rozmiar (Rozmiar dysku jest ustalony z góry);
+
+Wybieramy opcję pierwszą, wciskamy dalej.Wyskakuję nam okienko "Lokalizacja i rozmiar.
+
+-W lokalizacji ustawiamy gdzie nasz dysk ma przechowywać dane;
+-Na suwaczku ustawiamy pojemność twardego dysku ( w naszym przyapdku jest to 8GB, zostawiamy bo to jest tylko maszynka testowa);
+
+Wsiskamy utwórz, Stworzyliśmy maszynkę , która jest wyłączona. Możemy ją otpalić na 3 różne sposoby:
+
+-Zwykły start ( maszyna po porstu się uruchomi);
+-Bezałogowy start ( Maszyna odpala się w tle, ale okienko nie wyskakuję, użyteczne kiedy na maszynie jest postawiony serwer, który tylko musimy włączyć);
+-Oddzielny start( Maszyna odpala się w w tle i oknie,natomiast po zamknięci okna maszyna dalej działa;
+
+Ale zanim uruchomimy maszynę, wchodzimy w żółtą ikonke z napisem "Ustawienia".Wyskakuję okienko z następującymi zakładkami:
+
+-Ogólne;
+-System ( w kolejności bootwania odznaczymy floppy);
+-Ekran;
+-Pamięć ( w tej zakładcę klikamy "dodaj napęd optyczny".Klikamy dodaj i wybieramy nasz system, który pobraliśmy);
+-Dźwięk ( odznaczymy "endable Audio Output");
+-Sieć;
+-Porty szeregowe;
+-USB;
+-Udostępniane foldery;
+-Interfejs użytkownika;
+
+Zatwierdzamy nasze ustawienia i odpalamy naszą maszynę.
+
+Po dopaleniu wyskakuję nam okienko, zawierające informacje na temat przechwytywania naszego kursora.
+Po zaakceptowaniu jeżeli chcemy poruszać myszką na naszym komputerze musimy nacisnąc prawy CTRL.
+
+Klikamy CTRL + R (resetowanie maszyny), następnie ENTER potwierdzający komunikat i musimy szybko po tym kliknąc F12(Boot Menu). Wybieramy opcję numer jeden (Bootowanie naszego wirtualnego dysku).
+
+Wyskoczyło nam menu "Debian GNU/Linux installer menu (BIOS mode)" z następującymi opcjami do wyboru:
+
+-Graphical install (Instalacja graficzna, czyli okienkowa);
+-Install(zwykła instalacja, którą wybieramy);
+-Advanced options:
+	-Back.. (Klikamy to kiedy chcemy cofnąć do porzedniej strony, można też to zrobić BACKSPACE albo ESC, Chociaż nie zawsze bo w róznych przypadkach możemy po prostu wyłączyć maszynę);
+	-Graphical expert install (Graficzna instalacja ekspercka);
+	-Graphical rescue mode (Graficzny tryp odzyskiwania);
+	-Graphical automated install (Graficzna instalacja automatyczna);
+	-Expert install (Ekspercka instalacja testowa);
+	-Rescue mode (Tryp odzyskiwania tekstowy);
+	-Automated install (Automatyczna instalacja tekstowa);
+	-Speech-enable advanced option (Zaawansowane ustawienia syntezatora mowy);
+		-Expert speech install (kspercka instalacja tekstowa z syntezatorem);
+		-Rescue speech mode (Tryb odzyskiwania tekstowy z syntezatorem);
+		-Rescue speech install (Instalacja trybu odzyskiwania tekstowego z syntezatorem);
+-Accessible dark contrast installer menu (Instalacja menu w ciemny kontrascie);
+-Help (Wyświetlenie menu pommocy do instalatora);
+-Install with speecj synthesis (Instalacja z syntezatorem mowy);
+
+Wybieramy opcję install,pojawią nam się następujące okienka:
+
+-Wybór języka systemu (Wybieramy Angielski);
+-Wybieramy lokalizacjęw jakiej się znajdujemy, będzie to informacja potrzebna do łączenia się z serwerami (other/Europe/Poland);
+-Wybieramy tryp kodowania znaków (United States - en_US.UTF-8);
+-Wybieramy mape klawiszy (American English);
+(Wybieramy wszystko w języku Angielskim, ponieważ jest on językiem uniwersalnym. Wybór tego języka bardzo ułatwia pracę)
+
+System przeinstalował dane odnośnie języka i wyświetliło się następne okienko:
+
+-Ustawienie nazwy hosta (pod tą nazwą nasz komputer będzie winiał w sieci);
+-Ustawiamy nazwę naszej domeny;
+-Ustawiamy hasło do uprawnień ROOT (Czyli najwyższe uprawnienia administracyjnę naszego systemu);
+-Potwierdzenie hasła;
+-Ustawiamy imię i nazwisko użytkownika systemu;
+-Ustawienia loginu konta;
+-Ustawienie hasła konta;
+-Potwierdzenia hasła;
+
+System przeinstalował dane odnośnie nazw i haseł i wyświetliło się następujące okienko:
+
+-Guided - use emtire disk ( Przypisanie jednej partycji na całym dysku);
+-Guided - use entire disk and set up LVM (Przypisanie jendej parcyji i ustawienie LVM);
+(LVm - Logical Bolume Menager, Jest to elastyczny mechanizm do zarządzanie przestrzenią dyskową);
+-Guided - use entire disk and set up encrypted LVM (Przypisanie jendej parcyji i ustawienie szyfrowanego LVM);
+-Manual (Ręczne partycjonowanie dysków)- Wybieramy tą opcję;
+
+Wyskoczyło okienko z pięcioma opcjami do wyboru:
+
+-Guided partitioning (Partycjonowanie dysków z "Przewodnikiem");
+-Configure iSCSI volumes - Konfiguracja woluminów ISCII (Indian Script Code For Information Interchange, to schemat kodowania reprezentujący różne systemy pisania w Indiach.);
+-SCSI3 (0,0,0) (sda) - 8.6 GB ATA VBOX HARDSIK (Są to nasze wszystkie partycję dysków;
+-Undo changes to partitions (Cofanie zmian);
+-Finish  partitioning and write changes to disk (Kończenie i zapisywanie partycjonowania na dysku);
+
+Wybieramy opcje trzecią, wyskakuję okienko z pytaniem czy chcemy stworzyć nową partycję na naszym urządzeniu (Wybieramy YES).
+ 		
+Wyskakuję nam podobnę okienko, poszerzone o cztery opcję:
+
+-Configure Sofware Raid (konfiguracja RAID,czyli nadmiarowa macierz niezależnych dysków, jest to sposób na wykorzystanie w systemie komputerowym kilku dysków twardych, dzięki któremu dyski te współpracują ze sobą.);
+-Configure the Logical Volume Manager (Konfiguracja menadżera woluminów logicznych);
+-Configure encrypted manager (Konfiguracja menadżera Szyfrowania);
+-pri/log 8.6 GB FREE SPACE (Wybieramy tą opcję);
+
+Wyskakuje okienko z trzema opcjami:
+
+-Create a new partition ( Tworzenie nowej partycji) -Wybieramy tą opcję;
+-Automatically partition the free space ( Automatyczne tworzenie partycji na wolnym miejscu dysku);
+-Show Cylinder/Head/Sector information (Pokazuje informacje na temat naszego dysku);
+
+Wyskakuję okienko z rozmiarem partycji dysku ( Wyskakuję nam 8.6 GB musimy wybrać mniejszy rozmiar, żeby wystarczyło miejsca na pamięć logiczną).
+
+Następnie wyskakuję nam okienko odnośnie typu partycji(Logiczna czy podstawowa).
+( Partycja podstawowa to partycja rozruchowa zawierająca system operacyjny komputera, natomiast partycja logiczna to partycja, której nie można uruchomić.)
+
+Wybieramy opcje "Pirmary",a następnie opcję "Beginning" (czyli ustawiamy tą partycję na początku.)
+
+Wyskakuję nam okieno zatytułowane "Ustawienia partycji" i 9 następujących opcji:
+
+-Use as: (Używaj jako domyślnie system plików ext4,rosrzerzony system plików);
+-Mount point: (punkt montowania, katalogi jako część główneego systemu plików.);
+-Mount options: (opcję montowania);
+-Label (etykieta, właściwosć, w którym jest sformatowana partycja lub cały dysk);
+-Reserved blocks - (Zarezerwowane bloki,niewielka część dysku jest rezerwowana dla uprzywilejowanego procesu.);
+-Typical usage - (typowe zastosowanie);
+-Bootable flag - (flaga startowa, wskazanie gdzię znajduję się program ładujący);
+-Delete the partition (Usunięcie partycji);
+-Done setting up the partition (Wybieramy tą opcję.);
+
+Utworzyliśmy partycję podstawową.Musimy stworzyć teraz partycję logiczną.Robi się to prawie tak samo jak poprzednią.
+
+-Wybieramy znowu FREE SPACE;
+-Create a nwe partition;
+-Ustawiamy rozmiar partycji;
+-Ustawiamy Logical (ponieważ będzie to partycja logiczna);
+
+Wyskakuję nam okienko, klikamy "Use as:", w którym wyskakują nam następujące opcję:
+
+-Ext4 journaling file system (Następca ext3. Obecnie najpopularniejszy system plików dla systemów Linuxa.);
+-Ext3 journaling file system (System plików oparty na ext2. Domyśdlny dla większości systemów Linux);
+-Ext2 file system (drugi rozszerzony system plików dla systemu Linux. Rozpoznanie uszkoczeń systemu następuje podczas startu.); 
+-btrfs journaling file system (system plików copy-to-copy w stylu logowania. Zamiast zapisywać od razu w bloku są one najpierw tworzone w nowej lokalizacji, a następnie łączy się je.);
+-JFS journaling file system (64bitowy system plików z księgowaniem opracowany przez IBM. Jest wykorzystywany w systemach AIX);  
+-XFS journaling file system (64bitowy system plików z księgowaniem przeznaczony głównie do systemu IRIX. Pozwala na obsługę dużych dysków twardych);
+-FAT16 file system (System plików posługujący się 16-bitowym adresowaniem. Pierwsze komputery działąjące na systemie DOS miały architekturę 16 bitową);
+-FAT32 file system (System plików użyty pierwszy raz w windows 95);
+-swap area - obszar wymiany (Jest to tzw. fałszywa pamięć ram. która znajduje się na dysku.)
+-physical volume for encryption (Fizyczny wolumin do szyfrowania);
+-physical volume for RAID (Fizyczny wolumin dla Raida);
+-physical volume for LVM  (Fizyczny wolumin dla LVM);
+-do not use the partition (Nie używaj partycji);
+ 
+Wybieramy opcję "swap area",następnie zapisujemy wszsytkie zmiany.
+
+Instalator ładuje dane odnośnie partycji,następnie wyskakuję nam okienko z informacją dotyczącą skanowania innych nośników(Wciskamy nie);
+
+Wyskakuję okienko, instalator pyta skąd chcemy pobierać lustrzaną kobię debiana. Wybieramy (Poland);
+a następnie serwer, z którego chcemy pobrać, czyli(ftp.task.gda.pl);
+wyskakują ustawienia serwera proxy(Nie wpisujemy nic);
+po przełądowaniu systemu wyskakuje okienko odnośnie ankiety (wiadomo opcja "nie" :) );
+
+w następnym okienku (Task sear), wyskakują nam opcje dotyczące oprogramowania, które dodatkowo chcemy zainstalować.
+
+-GNOME (Graficzne środowisko użytkownika oparte na systemie X Window System.);
+-Xfce (Środowisko graficzne dla systemów uniksowych, początkowo wzorowane na CDE.);
+-Gnome Flashback (To wolne środowisko graficzne typu open source dla systemów operacyjnych Linux.);
+-KDE Plasma (Środowisko graficzne zrealizowane jako wolne oprogramowanie dla systemów operacyjnych Unix i GNU/Linux.););
+-Cinnamon (Czyli powłoka graficzna dla środowiska GNOME.);
+-MATE (Środowisko które powstało po krytyce na środowisko Gnome. Jego zaletami jest to, że działa w trybie 2D oraz posiada mniejsze sprzętowe wymagania.);
+-LXDE (Lightweight X11 Desktop Environment, Środowisko dla systemów operacyjnych Linux.);
+-LXQt (Środowisko połączone z dwóch projektów.(LXDE-QT i Razor-qt));
+-web server (Oprogramowanie umożliwiające nam postawienie serwera internetowego na naszej wirtualnej maszynie.);
+-SSH server (Instalacja protokołu komunikacyjnego służącego w Sieciach TCP/IP. Służy między innymi do zdalnego łączenia się terminalowego z komputerami.);
+-standard system utilities (Instalacja standardowych narzędzi systemowych.);
+
+
+Po wybraniu naszego obrogramowania wyskakuje nam okienko z pytaniem.Czy chcemy na głównej partycji zainstalować GRUB boot loader.
+(GRUB boot loader -Program rozruchowy służy do uruchamiania różnych systemów operacyjnych,
+ np. Linux, FreeBSD, Windows, DOS i potrafi odczytać wiele rodzajów systemów plików, np. ext2, ext3, ext4, MINIX, FAT, NTFS, FFS, ReiserFS, XFS i JFS.)
+Klikamy tak, następnie program pyta nas na jakim dysku Grub ma być zainstalowany.
+
+
+Finalnie wyskakuje nam okno z informacją o zakończonej instalacji, maszyna jest gotowa do użytkowania. 
+
+
+Dodatkowe inforamje: 
+
+Zalecana struktura partycji w naszym systemie:
+
+/home - tutaj znajdują sie profile użytkowników;
+/var - tutaj znajdują sie logi;
+/boot - folder odpowiedzialny za start systemu; 
+/swap - pamięć wirtualna;
+/user - dane użytkownika;
+
+Dysk dzieli się na partycję ponieważ to ułatwiwia naprawianie ewentualnych usterek. Mianowicie jeżli jest problem z dyskiem nie tracimy wszystkich danych. 
+
+Docker - maszyna wirtualna ns pojedyńczy proces.
+
+
+Krótkie streszczenie tego coc możemy znaleść na stronie (https://www.debian.org/distrib/)
+
+Są tam różne sposoby pozyskania anszego systemu Debian:
+
+1. Możemy po prostu pobrać plik iso na dwa sposoby:
+	-Mały plik obrazu: może być pobrany szybko i powinien być nagrany na dysku wymiennym. 
+	 Aby z niego skorzystać potrzebujesz maszyny z połączeniem internetowym.
+	-Większy kompletny plik obrazu : zawiera więcej pakietów, ułatwiając instalację na maszynie bez połączenia internetowego.
+
+2. Możemy kupić zestaw płyt Cd lub dvd od jednego z dystrybutorów płyt z debianem, mamy wtedy fizyczną kopie systemu.
+	
+	Oto podstawowe zalety zestawu płyt:
+	 -Instalacja z płyt jest łatwiejsza.
+	 -Można zainstalować z nich system na maszynach nie podłączonych do internetu.
+	 -Można zainstalować Debiana na dowolnej liczbie maszyn bez potrzeby pobierania pakietów z internetu.
+	 -Płyta CD może przydać się do ratowania systemu w razie jego uszkodzenia.
+3.Kupienie komputera z preinstalowanym Debian. 
+	he?... 
+4.Można użyć obrazu Debiana dla chmury.
+	Oficjalny obraz do użycia w chmurze, zbudowany przez zespół ds. chmury, może być użyty z:
+	 -Dostawcą OpenStack w formacie qcow2 lub raw.
+	 -Amazon EC2, zarówno jako obraz maszyny oraz przez AWS Marketplace.
+	 -Microsoft Azure, Azure Marketplace.
+5.Debian live.
+ 	Możesz wypróbować Debiana uruchamiając system live z płyty CD, DVD lub napędu USB, bez instalowania żadnych plików w komputerze. 
+	Jeśli się zdecydujesz, możesz uruchomić zawarty instalator. 
