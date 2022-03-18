@@ -1,0 +1,230 @@
+05.03.2022
+Opcje github:
+VDI to inaczej Infrastruktura Pulpitu Wirtualnego, w skrócie umożliwia dostęp do systemów komputerowych przedsiębiorstwa z niemal dowolnego urządzenia (np. telefonu) uprawnionym osobom za pośrednictwem bezpiecznego klienta klasycznego lub przeglądarki. Szczególnie przydaje się w przypadku pracy zdalnej.
+
+VHD format wirtualnego dysku twardego. Pliki VHD są przechowywane jak inne pliki, na fizycznym dysku twardym. Aby ułatwić zarządzanie nimi, stworzono kilka typów pliku VHD, które są obsługiwane przez Microsoft Virtual PC oraz Microsoft Virtual Server:
+Stały obraz dysku (ang.: Fixed hard disk image) - plik o stałej wielkości, równej wirtualnemu dyskowi twardemu,
+Dynamiczny obraz dysku (ang.: Dynamic hard disk image) - plik ma wielkość równą wielkości plików na wirtualnym dysku plus rozmiar nagłówka pliku,
+Przyrostowy obraz dysku (ang.: Differencing hard disk image) - Zawartością pliku są tylko i wyłącznie zmiany w strukturze plików dysku wirtualnego, w odniesieniu do dysku macierzystego (jest to osobny plik, działający tylko w równoczesnej obecności dysku macierzystego),
+Linkowany (ang.: Linked to a hard disk) - plik zawierający bezpośrednie odniesienie do fizycznego dysku twardego lub partycji na fizycznym dysku twardym.
+Funkcja "cofnij" (kopie migawkowe): Przyrostowe dyski wirtualne pozwalają na cofanie zmian dokonanych w systemach operacyjnych, ich strukturze plików, konfiguracji i oprogramowaniu. Zmiany dokonywane podczas pojedynczej sesji zapisywane są jako osobny plik. Po zakończeniu pracy można odrzucić wprowadzone w danej sesji zmiany lub włączyć je w obraz dysku macierzystego.
+Format VHD jest ograniczony do 2 TB.
+
+Plik VMDK to wirtualny dysk, który przechowuje zawartość VMware maszyny wirtualnej na dysku twardym. Może ona być ustawiona w stałej wielkości lub skonfigurowane rośnie z upływem czasu przy użyciu VMware Virtual Disk Manager. Pliki VDMK są stosowane przez oprogramowanie VMware, ale może być również montowany w dysku z wykorzystaniem wirtualnej WinMount. Gdy plik VDMK został zamontowany z WinMount, może zostać usunięta, kopiować i modyfikować w wirtualnym dysku. 
+
+Doker - to mała maszyna wirtualna wykonująca tylko jeden proces.
+
+RAID (ang. Redundant Array of Independent Disks – nadmiarowa macierz niezależnych dysków) – sposób wykorzystania w systemie komputerowym dwóch lub większej liczby dysków twardych, w którym dyski te współpracują pomiędzy sobą. Osiąga się w ten sposób szereg różnorodnych możliwości nieosiągalnych przy użyciu zarówno pojedynczego dysku, jak i kilku dysków podłączonych jako oddzielne. Rozwiązania typu RAID używane są w następujących celach:
+zwiększenie niezawodności (odporność na awarie);
+zwiększenie wydajności transmisji danych;
+powiększenie przestrzeni dostępnej jako jedna całość.
+Rozróżniamy RAID sprzętowy i programowy. RAID posiada swoje poziomy:
+
+0 (striping/paskowanie) Polega na połączeniu ze sobą dwóch lub więcej dysków fizycznych tak, aby były widziane jako jeden dysk logiczny. Powstała w ten sposób przestrzeń ma rozmiar taki jak N × rozmiar najmniejszego z dysków, gdzie „N” oznacza liczbę dysków. Dane są przeplecione pomiędzy dyskami. Dzięki temu uzyskuje się znaczne przyspieszenie operacji zapisu i odczytu ze względu na równoległe wykonywanie operacji na wszystkich dyskach w macierzy. Warunkiem uzyskania takiego przyspieszenia jest operowanie na blokach danych lub sekwencjach bloków danych większych niż pojedynczy blok danych macierzy RAID 0 (ang. stripe unit size).
+Korzyści:
+przestrzeń wszystkich dysków jest widziana jako całość;
+przyspieszenie zapisu i odczytu w porównaniu do pojedynczego dysku.
+Wady:
+brak odporności na awarię dysków;
+N × rozmiar najmniejszego z dysków (zwykle łączy się jednakowe dyski);
+zwiększenie awaryjności – awaria pojedynczego dysku powoduje utratę wolumenu, a szansa na awarię jednego z N dysków rośnie wraz z N.
+
+1 (mirror/lustrzany)
+Polega na replikacji pracy dwóch lub więcej dysków fizycznych. Powstała przestrzeń ma rozmiar najmniejszego nośnika. RAID 1 jest zwany również lustrzanym (ang. mirroring). Szybkość zapisu i odczytu zależy od zastosowanej strategii:
+Zapis:
+zapis sekwencyjny na kolejne dyski macierzy – czas trwania operacji równy sumie czasów trwania wszystkich operacji;
+zapis równoległy na wszystkie dyski macierzy – czas trwania równy czasowi trwania operacji na najwolniejszym dysku.
+Odczyt:
+odczyt sekwencyjny z kolejnych dysków macierzy (ang. round-robin) – przy pewnej charakterystyce odczytów możliwe osiągnięcie szybkości takiej jak w RAID 0;
+odczyt wyłącznie ze wskazanych dysków – stosowane w przypadku znacznej różnicy w szybkościach odczytu z poszczególnych dysków.
+Korzyści:
+odporność na awarię N – 1 dysków przy N-dyskowej macierzy;
+możliwe zwiększenie szybkości odczytu;
+możliwe zmniejszenie czasu dostępu.
+Wady:
+możliwa zmniejszona szybkość zapisu;
+utrata pojemności (całkowita pojemność jest taka jak pojemność najmniejszego dysku).
+
+2 Dane na dyskach są paskowane. Zapis następuje po 1 bicie na pasek, czyli każdy kolejny bit znajduje się na innym dysku. Potrzebnych jest więc minimum 8 powierzchni do obsługi danych oraz określona liczba dodatkowych dysków służących do przechowywania informacji generowanych za pomocą kodu Hamminga potrzebnych w celu korekcji błędów. Liczba dysków używanych do przechowywania tych informacji jest proporcjonalna do logarytmu liczby dysków, które są przez nie chronione. Bardzo ważną kwestią jest to, że rotacja talerzy wszystkich dysków macierzy musi być synchronizowana. Połączone dyski zachowują się jak jeden duży dysk. Dostępna pojemność to suma pojemności dysków przechowujących dane. Ten poziom RAID jest już od wielu lat uznawany za historyczny i nie jest aktualnie dostępne żadne komercyjne rozwiązanie RAID 2. Przykładem takiej macierzy były wczesne rozwiązania typu Thinking Machines CM-2.
+Korzyści:
+każdy dowolny dysk (zarówno z danymi, jak i z kodem Hamminga) może w razie uszkodzenia zostać odbudowany przez pozostałe dyski.
+Wady:
+konieczność dokładnej synchronizacji wszystkich dysków zawierających kod Hamminga (w przeciwnym wypadku dezorganizacja i całkowita nieprzydatność tych dysków);
+długotrwałe generowanie kodu Hamminga przekładające się na wolną pracę całego systemu.
+
+3 Dane składowane są na N-1 dyskach. Zapis następuje podobnie jak w RAID 2, lecz w tym przypadku po 1 bajcie na każdym kolejnym dysku. Bardzo ważną kwestią jest, aby rotacja talerzy wszystkich dysków macierzy była zsynchronizowana. Ostatni dysk dedykowany jest do przechowywania sum kontrolnych. Macierz ta działa jak striping (RAID 0), ale występuje jeszcze dodatkowy dysk, na którym zapisywane są kody parzystości obliczane przez specjalny procesor.
+Chociaż istnieją implementacje RAID 3, to nie jest to rozwiązanie powszechnie stosowane w praktyce.
+Korzyści:
+odporność na awarię 1 dysku;
+zwiększona szybkość odczytu.
+Wady:
+zmniejszona szybkość zapisu z powodu konieczności obliczenia sum kontrolnych (eliminowana poprzez zastosowanie sprzętowych kontrolerów RAID);
+w przypadku awarii dysku dostęp do danych jest spowolniony z powodu obliczeń sum kontrolnych;
+odbudowa macierzy po wymianie dysku jest operacją kosztowną obliczeniowo i powoduje spowolnienie operacji odczytu i zapisu;
+pojedynczy wydzielony dysk na sumy kontrolne zazwyczaj jest „wąskim gardłem” w wydajności całej macierzy.
+
+4 jest bardzo zbliżony do RAID 3 z tą różnicą, że dane są dzielone na bloki o wielkości np. 16, 32, 64 lub 128 kB. Takie bloki zapisywane są na dyskach podobnie do rozwiązania RAID 0. Dla każdego rzędu zapisywanych danych blok parzystości zapisywany jest na dedykowanym dysku parzystości. W odróżnieniu od RAID 2 i RAID 3, gdzie każdy transfer wymagał wykonania operacji wejścia/wyjścia na wszystkich dyskach jednocześnie, w RAID 4 pojedyncza operacja dotyczy tylko nielicznych dysków, co w rezultacie pozwala na wykonywanie operacji równolegle prowadząc do zwiększenia wydajności – szczególnie przy przesyłaniu małych bloków. Przy uszkodzeniu dysku dane mogą być odtworzone przez odpowiednie operacje matematyczne. Parametry RAID 4 są bardzo dobre dla sekwencyjnego zapisu i odczytu danych (operacje na bardzo dużych plikach). Jednorazowy zapis małej porcji danych potrzebuje modyfikacji odpowiednich bloków parzystości dla każdej operacji I/O. W efekcie za każdym razem przy zapisie danych system czekałby na modyfikacje bloków parzystości, co przy częstych operacjach zapisu bardzo spowolniłoby pracę systemu.
+
+5 Poziom piąty pracuje bardzo podobnie do poziomu czwartego z tą różnicą, iż bity parzystości nie są zapisywane na specjalnie do tego przeznaczonym dysku, lecz są rozpraszane po całej strukturze macierzy. RAID 5 umożliwia odzyskanie danych w razie awarii jednego z dysków przy wykorzystaniu danych i kodów korekcyjnych zapisanych na pozostałych dyskach (zamiast tak jak w RAID 3 na jednym specjalnie do tego przeznaczonym, co nieznacznie zmniejsza koszty i daje większą gwarancję bezpieczeństwa). RAID 5 oferuje większą prędkość odczytu niż RAID lustrzany (ang. mirroring), ale przy jego zastosowaniu nieznacznie spada prędkość zapisu. Poziom piąty jest bezpieczny dla danych – w razie awarii system automatycznie odbuduje utracone dane, zmniejszając jednak bieżącą wydajność macierzy. Spowolnienie ma charakter przejściowy, zaś jego czas zależy od obciążenia macierzy i pojemności dysku. Po zamontowaniu nowego dysku i odbudowaniu zawartości dysku wydajność macierzy wraca do normy. Macierz składa się z 3 lub więcej dysków. Przy macierzy liczącej N dysków jej pojemność wynosi N – 1 dysków. Przy łączeniu dysków o różnej pojemności otrzymuje się pojemność najmniejszego dysku razy N – 1. Sumy kontrolne danych dzielone są na N części, przy czym każda część składowana jest na innym dysku, a wyliczana jest z odpowiedniego fragmentu danych składowanych na pozostałych N-1 dyskach.
+Korzyści:
+odporność na awarię jednego dysku;
+zwiększona szybkość odczytu – porównywalna do macierzy RAID 0 złożonej z N-1 dysków.
+Wady:
+zmniejszona szybkość zapisu z powodu konieczności obliczania sum kontrolnych (eliminowana poprzez zastosowanie sprzętowego kontrolera RAID 5);
+w przypadku awarii dysku dostęp do danych jest spowolniony z powodu obliczeń danych na podstawie pozostałych danych i sum kontrolnych;
+odbudowa macierzy po wymianie dysku jest operacją kosztowną zarówno w sensie obliczeniowym, jak i I/O, co powoduje spowolnienie operacji odczytu i zapisu. Wraz ze wzrostem pojemności pojedynczego dysku staje się to coraz większym problemem, gdyż rosnący czas odbudowy grupy RAID zwiększa ryzyko utraty danych w wyniku awarii kolejnego dysku w tym czasie.
+
+6 Macierz z podwójną parzystością, realizowana np. jako 5+2, albo 13+2. Kosztowniejsza w implementacji niż RAID 5, ale dająca większą niezawodność. Awaria dwóch dowolnych dysków w tym samym czasie nie powoduje utraty danych.
+Korzyści:
+odporność na awarię maksimum 2 dysków;
+szybkość pracy większa niż szybkość pojedynczego dysku.
+
+0+1 Macierz realizowana jako RAID 1, którego elementami są macierze RAID 0. Macierz taka ma zarówno zalety macierzy RAID 0 – szybkość w operacjach zapisu i odczytu – jak i macierzy RAID 1 – zabezpieczenie danych w przypadku awarii pojedynczego dysku. Pojedyncza awaria dysku powoduje, że całość staje się w praktyce RAID 0. Potrzebne są minimum 4 dyski o tej samej pojemności.
+Korzyści:
+szybkość macierzy RAID 0;
+zyskuje się dużą dowolność w kwestii wielkości dysków fizycznych składających się na dyski logiczne. W szczególności:
+można stworzyć dwa dyski logiczne z trzech dysków. np. 1 × 500 GB i 2 × 250 GB, a potem połączyć RAID 1. W efekcie RAID 0+1 daje 500 GB przestrzeni dyskowej;
+jeżeli na macierz składają się dyski o różnych wielkościach dysków logicznych (np. pierwszy dysk logiczny składa się z 2 dysków 500 GB, a drugi dysk logiczny z 4 dysków 200 GB), to w efekcie połączenia ich RAID 1 uzyskuje się 800 GB przestrzeni dyskowej RAID 0+1;
+znacznie prostsza w implementacji niż RAID 3, 5 i 6.
+Wady:
+tworzona jest lustrzana kopia dysku logicznego – jeżeli awarii ulega jeden dysk fizyczny, cały dysk logiczny który współtworzył zostaje wyłączony;
+większy koszt przechowywania danych niż w przypadku RAID 0, 2, 3, 4, 5, 6.
+
+1+0 Nazywana także RAID 10. Macierz realizowana jako RAID 0, którego elementami są macierze RAID 1. W porównaniu do swojego poprzednika (RAID 0+1) realizuje tę samą koncepcję połączenia zalet RAID 0 (szybkość) i RAID 1 (bezpieczeństwo), lecz w odmienny sposób. Stripingowi podlegają relatywnie niewielkie bloki danych, które są zapisane na dwóch dyskach, dzięki czemu podczas wymiany uszkodzonego dysku odbudowywany jest tylko fragment całej macierzy.
+Korzyści:
+szybkość macierzy RAID 0;
+klonowanie następuje na poziomie poszczególnych dysków fizycznych, a nie logicznych. Awaria jednego dysku powoduje wyłączenie jedynie tego dysku, a nie całego dysku logicznego, jak to się dzieje w RAID 0+1;
+w szczególnym przypadku przetrwa awarię N – 1 dysków (N – liczba dysków fizycznych mirrorów) z każdego mirrora składającego się na RAID 0;
+znacznie prostsza w implementacji niż RAID 3, 5 i 6.
+Wady:
+RAID 1 powinien łączyć dyski o tej samej wielkości a najlepiej i szybkości zapisu. W przeciwnym wypadku uzyskuje się mirror o pojemności najmniejszego dysku i szybkości zapisu najwolniejszego. Znacząco potrafi to zwiększyć koszty w porównaniu do RAID 0+1;
+większy koszt przechowywania danych niż w przypadku RAID 0, 2, 3, 4, 5, 6. Współczynnik nadmiarowości wynosi tu 100% (potrzebne są 2 GB przestrzeni dyskowej na zapisanie 1 GB danych).
+
+Poza nimi istnieją niestandardowe poziomy RAID, jak 5E, 5EE, 6E i 6EE.
+
+Dzisiaj instalowaliśmy Debian na "ten komputer" -> 3-4 users
+Debian to wolne oprogramowanie (wolne w sensie, że darmowe) z rozbudowanym wsparciem i płynnymi aktualizacjami. Posiada wiele opcji instalatora. Wiele dystrybucji Linuksa, takich jak Ubuntu, Knoppix, PureOS, SteamOS czy Tails wybrało Debiana jako podstawę swojego oprogramowania. Link do pobrania dostępny jest na: 
+www.debian.org/index.pl.html
+Gdzie pobieramy Debiana, wykorzystując wielki guzik z napisem "Pobieranie"
+Gdy to zrobimy, przechodzimy do VM Virtual Box i tworzymy nową wirtualną maszynę.
+
+Gdy wpiszemy w nazwie "Debian", od razu zmieni się nam ikonka po prawej na "debianową".
+
+Następnie przydzielamy rozmiar pamięci i tworzymy wirtualny dysk twardy. Do wyboru mamy: VDI, VHD oraz VMDK. Wybieramy VHD. Pozostałe nie są nam potrzebne (pełny opis powyżej)
+
+Teraz wybieramy Typ rozmiaru dynamiczny (opcja niewykorzystana to stały). Przydzielamy pamięć i zapisujemy zmiany. 
+
+Możemy uruchomić naszą maszynę Debian za pomocą zielonej strzałki na górze po prawej stronie. Gdy ją klikniemy, ukażą nam się opcje: 
+Zwykły start
+Bezgłowy start (uruchamia się maszyna, ale nie wyświetla dodatkowe okno)
+Oddzielny start (uruchamia się w tle i oknie, ale po wyłączeniu okna będzie działać dalej)
+
+Klikamy ikonkę Ustawienia, gdzie mamy szczegółowe dane naszej maszyny, jak: ogólne, system, ekran, pamięć, dźwięk, sieć, porty szeregowe, USB, foldery i interfejs)
+Klikamy w Pamięć, by dodać nasz ściągnięty obraz Debiana.
+Klikając Dźwięk, możemy wyłączyć dźwięki :p
+Klikając System można usunąć stację dyskietek (Floppy) z kolejności bootowania.
+
+Uruchamiam maszynę i akceptuję zapytanie, czy chcę, by przechwytywała mój kursor myszy. By to odwrócić, należy wcisnąć prawy CTRL + R i maszynę zresetować. Następnie wcisnąć F12.
+
+Mamy kilka opcji instalacji w BIOS mode:
+Graphicall Install (najprostszy)
+Install
+Advanced Options
+Accesible Dark Contrast Installer Menu
+Help
+Install with speech synthesis
+
+Wybieramy Install. 
+Język instalacji -> angielski
+Kraj -> other -> Europe -> Poland
+Tryb kodowania znaków -> United States
+Mapa klawiszy -> American English
+Wymyślam nazwę hosta
+Wpisujem nazwę domeny
+Ustawiam hasło Roota (8604) <- proszę nie czytać :P
+Powtarzam hasło
+Podaję imię użytkownika
+Potwierdzam skróconą nazwę
+Wymyślam mu hasło, użyłam śmieciowego, mojego ulubionego
+potwierdzam hasło
+Wybieram podział na partycje z:
+Guided-use entire disk - Przypisywanie 1 partycji na całym dysku
+Guided-use entire disk and set up LVM - Przypisywanie 1 partycji na całym dysku i ustawienie LVM 
+Guided-use entire disk and set up encrypted LVM - Przypisywanie 1 partycji na całym dysku i ustawienie szyfrowanego LVM
+Manual - Ręczne 
+Klikam Manual
+Pojawiają się szczegóły:
+Guided partitioning - partycjonowanie dysków z "przewodnikiem/pomocą"
+Configure ISCII volumes - Konfiguracja woluminów ISCII (ISCII - schemat kodowania reprezentujący różne systemy pisma w Indiach)
+SCSI ATA vbOX harddisk
+Undo changes to partition - Cofanie zmian partycjonowania
+Finish partitioning and write changes to disk - Kończenie partycjonowania i zapisywanie zmian na dysku
+Klikam w mój dysk (trzecia opcja)
+Muszę potwierdzić wybór, klikam "yes"
+Pojawiają się nowe opcje:
+Configure Software Raid - Konfiguracja RAID-a
+Configure the Logical Volume Manager - Konfiguracja Menedżera woluminów logicznych
+Configure encrypted manager - Konfiguracja menadżera Szyfrowania
+Wybieram Free Space z mojego dysku
+Pojawiają się:
+Create a new partition - Tworzenie nowej partycji
+Automatically partition the free space - Automatyczne tworzeniej partycji na wolnym miejscu
+Show Cylinder/Head/Selector Information - Pokazuje nam wszelkie informację na temat naszeych dysków (Cylindry, Głowice)
+Klikam w Create New Partition
+Zmniejszam rozmiar do 8 GB
+Ustawiam ją na Primary
+Ustawiam ją na Beginning
+Mogę teraz podejrzeć szczegóły partycji do ew. zmiany.
+Use as - używaj jako (domyślnie system plików ext4)
+Mount point - punkt montowania(/)
+mount options - opcje montowania(defaults-domyślne)
+Label - etykieta (none)
+Reserved blocks - Zarezerwowane bloki(5%)
+Typical usage - typowe zastosowanie (standard)
+Bootable flag - flaga startowa (off)
+Delete the partition - Usunięcie partycji
+Done setting up the partition - zatwierdzenie ustawień partycji
+Wybieram ostatnią opcję
+Klikam Free Space
+Create New Partition
+zatwierdzam rozmiar
+wybieram Logical
+Ext4 journaling file system - Następca ext3. Obecnie najpopularniejszy system plików dla systemów Linuxa.
+Ext3 journaling file system - system plików oparty na ext2.
+Ext2 file system - drugi rozszerzony system plików dla systemu Linux.
+btrfs journaling file system - system plików copy-to-copy w stylu logowania.
+JFS journaling file system - 64bitowy system plików z księgowaniem opracowany przez IBM 
+XFS journaling file system - 64bitowy system plików z księgowaniem przeznaczony głównie do systemu IRIX
+FAT16 file system - system plików posługujący się 16-bitowym adresowaniem
+FAT32 file system 
+swap area - obszar wymiany (Jest to tzw. fałszywa pamięć ram. która znajduje się na dysku.
+physical volume for encryption - fizyczny wolumin do szyfrowania
+physical volume for RAID - fizyczny wolumin dla Raida
+physical volume for LVM  - Fizyczny wolumin dla LVM
+do not use the partition - Nie używaj partycji
+Klikam swap area
+zatwierdzam
+Zatwierdzam znowu i instaluję system.
+Pyta, czy chcę przeskanować extra media. Klikam NIE.
+Wybieram kraj użytkowania: Poland
+Wybieram ftp drugi od góry (z Gdańska)
+Nic nie wpisuję odnośnie Proxy
+Wyskakuje zapytanie, czy chcę wziąć udział w ankiecie.
+Wyskakuje okno z zapytaniem, co chcemy zainstalować:
+GNOME
+Xfce - środowisko graficzne
+Gnome Flashback - j.w.
+KDE Plasma - Zawiera bogaty system bibliotek do tworzenia aplikacji w środowisku graficznym
+Cinnamon - Środowisko graficzne oparte na bibliotece GTK+3
+MATE 
+LXDE - (Lightweight X11 Desktop Environment)
+LXQt - Środowisko połączone z dwóch projektów (LXDE-QT i Razor-qt)
+web server - Oprogramowanie umożliwiające postawienie serwera internetowego na wirtualnej maszynie
+SSH server - Instalacja protokołu komunikacyjnego służącego w Sieciach TCP/IP. Służy między innymi do zdalnego łączenia się terminalowego z komputerami
+standard systemu utilities - Instalacja standardowych narzędzi systemowych
+Kontynuuję
+Instaluje się Software
+Pyta, czy zainstalować GRUB -> YES
+Wybieram dysk do instalacji i potwierdzam
+Instalacja jest kompletna
+KONIEC
