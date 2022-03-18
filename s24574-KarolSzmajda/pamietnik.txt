@@ -1,0 +1,49 @@
+2022-03-05
+
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem sie: 
+Kilku ciekawostek, podstawowych informacji dot. instalacji systemu operacyjengo Debian oraz konfiguracji maszyny wirtualnej używająć oprogramowania VirtualBox
+
+W ustawieniach globalnych wirtualnej maszyny ustalamy folder, w którym zapisywane będą konfiguracje oraz obrazy dysków twardych używanych w wirtualnej maszynie.
+
+Podczas konfiguracji wirtualnej maszyny przechodzimy przez kreator oraz uzupełniamy szereg opcji, w tym:
+- definiujemy nazwę maszyny,  
+- określamy rodzaj systemu operacyjnego, m. in. linux/windows/mac itp.
+- definiujemy dostępną ilość pamięci RAM dla wirtualnej maszyny, 
+- rodzaj dysku twardego.
+
+VDI - Standardowe rozwiązanie VirtualBox'a
+VHD - Rozwiązanie firmy Microsoft przystosowane pod maszyny HyperV
+VMDK - Rozwiązanie firmy VMware przystosowane pod maszymy VMware Workstation Player
+
+Spsób zapisu na dysku twardy:
+- Dynamiczny Rozmiar - rozmiar będzie się rozszerzał do ustalonego progu
+- Stały Rozmiar - Rozmiar dysku zostanie natychmiast zaalokowany
+
+
+Po zakończeniu konfiguracji wirtualnej maszyny mamy dostępnych kilka opcji uruchomienia:
+- Zwykły start - Maszyna startuje domyślnie
+- Bezgłowy start - Maszyna uruchamia się w tle bez okna
+- Oddzielny start - Maszyna uruchamia się w tle wraz z oknem, które można zamknąć nie ingerując w zatrzymanie maszyny
+
+Po uruchomieniu wirtualnej maszyny uruchamiamy boot menu (nie jest to zawsze konieczne) i wybieramy urządzenie na którym jest interesujące nas oprogramowanie
+
+Podczas instalacji ustawiamy:
+- Język instalacji
+- Lokalizację
+- System kodowania znaków
+- Układ klawiatury
+- Nazwę naszego hosta
+- Hasło do root'a
+- Imię i nazwisko nowego użytkownika
+- Login i hasło nowego użytkownika
+- Partcycje
+
+Po instalacji mamy możliwośc wybrania dodatkowego oprogramowania w TASK SEL. Znajdują się tam środowiska graficzne, serwery typu SSH/WWW, standardowe narzędzia systemowe.
+
+Po wybraniu mamy możliwość instalacji Boot loader'a (GRUB) na głównej partycji.
+Po wybraniu naszego oprogragmowania wyskakuje nam okno chcemy na naszej głównej partycji zainstalować GRUB boot loader
+
+System został zainstalowany.
+
+Na oficjalnej stronie debian'a można znaleźć różne rodzaje obrazów, uwzględniając architekture procesorów, ponadto są wersje portable, chmurowe lub istnieje możliwość zakupu urządzenia z zainstalowanym już systemem operacyjnym.
+
