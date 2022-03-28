@@ -201,3 +201,237 @@ i odpalić go na każdym urządzeniu . Wystarczy podłączyć pendrive i zbootow
 
 Ostatnia opcja to kupno komputera z już zainstalowanym Debianem. Minusem tego rozwiązania jest to, że płacimy za system który jest tak naprawdę darmowy.
 Plusem natomiast jest wstępna konfiguracja systemu która jest dopasowana do naszego sprzętu oraz sprzedawca może nam zaoferować pomoc techniczną.
+
+19.03.2022
+ 
+Drogi pamiętniczku
+
+Na dzisiejszych ćwiczeniach rozmawialiśmy o pisaniu skryptów i omawialiśmy czym tak właściwie jest bash
+Bash jest powłoką systemową (Łącznikiem pomiędzy komputerem(maszyną) a użytkownikiem), która
+pozwala na komunikację w trybie tekstowym. Jest powłoką napisaną typowo pod Linuxa(Na Windowsie mamy coś takiego jak PowerShell).
+Skrypty – programy napisane w językach skryptowych, przeznaczone do wykonywania w specjalnych środowiskach uruchomieniowych automatyzujących wykonywanie zadań, które alternatywnie mogą być wykonywane jedno po drugim przez użytkownika.(Wikipedia).
+W uproszczeniu skrypt jest plikiem tekstowym z instrukcją algorytmu jaki ma zostać wykonany.
+
+Omawialiśmy podstawy skryptowania w Bashu.Żeby móc pisać skrypty w tej oto powłoce należy sciągnąć jakiś interpreter(git bash, cmder),
+Następnie możemy użyć albo maszyny wirtualnej z zainstalowanym systemem spod stajni Linuxa (Debian,Ubuntu,Kali itp.) lub możemy skorzystać z serwera szkolnego "Szuflandia" którego używaliśmy na zajęciach.
+Aby połączyć się z naszym serwerem należy użyć programu klienckiego SSH (może być to PUTTY, który jest najpopularniejszy). W polu hostname or ip adress wpisujemy nasz_indeks@szuflandia.pjwstk.edu.pl
+Po połączeniu się z naszym serwerem wpisujemy hasło do konta i mamy dostęp do serwera.
+
+Następnie aby napisać nasz skrypt należy użyć jakiegoś edytora tekstu w terminalu (Nano który jest dużo prostszy w obsłudze, lub vim który jest bardziej zaawansowany, przez co daje nam
+dużo większe możliwości podczas pisania naszego skryptu(m.in. może on kolorować naszą składnię))
+
+W pierwszej lini (tzw. shebang (#!/bin/bash)) definiujemy z jakiego interpretera nasz skrypt ma korzystać.
+Jeśli napiszemy skrypt w bashu a nie zdefiniujemy shebanga, to nic się nie stanie, ponieważ skrypt domyślnie odpala się w interpreterze bash
+Jeśli natomiast napiszemy skrypt w innym języku (java, c++, c, python) to nasz interpreter nie uruchomi skryptu i będzie trzeba zdefinować shebang-a
+
+Piszemy  pierwszy skrypt (Piszemy go narazie w nano, ponieważ nie umiemy jeszcze korzystać z Vim-a):
+
+
+#!/bin/bash
+
+# Skrypt wykorzystuje zaawansowane funkcje  - po znaku # możemy pisać komentarze (interpreter tego nie widzi)
+# systemu do tego, aby narysować króliczka:
+echo -e "    \e[m(\\_/)"
+echo -e "   (=\e[33m'\e[31m.\e[33m'\e[0m=)"
+Na końcu każdego skrypu musimy wcisnąć ENTER, ponieważ nasz interpreter nie przeczyta ostatniej linii.
+
+Po wciśnięciu F2 nasz edytor zapyta czy chcemy zapisać bufor, wciskamy tak i nadajemy nazwe swojego pliku (kroliczek.sh - na końcu musi byc .sh dzięki czemu nasz interpreter będzie wiedział
+że zapisany plik jest skryptem a nie zwykłym plikiem tekstowym).
+  
+Teraz uruchamiamy nasz skrypt.
+Aby to zrobić musimy wpisać "./kroliczek.sh".
+W konsoli zamiast królika wyskakuję błąd o braku dostępu.Jest to spowodowane tym, że nie nadaliśmy skryptowi bitu wykonywalności.
+Aby go nadać używamy komendy chmod ./kroliczek.sh 
+Możemy natomiast do odpalenia naszego skryptu użyć innego sposobu.Jest możliwość odpalenia skryptu bez nadawania upranień robi się to w następujący sposób: bash kroliczek.sh.
+Teraz nasz skrypt wydrukuje nam w konsoli naszego królika.
+  
+    (\_/)
+   (='.'=)
+
+*Różnica między prawami, a uprawnieniamy*
+W Linuxie możemy nadawać tylko uprawnienia, natomiast w Windowsie mamy zarówno prawa, jak i uprawnienia.
+
+Mówiliśmy również zmiennych powłokach.
+Zmienna powłoka służy do przechowywania wartości.Działa to na podobnej zasadzie jak w przypadku programowania. 
+Jest zmienna którą musimy nazwać, określić jej typ (Mamy zarówno zmienne lokalne, jak i zmienne globalne).
+Tak samo jak w językach programowania, aby przypisać jakąś wartość do zmiennej musimy ją nazwać używając znaku "równa się"(=)
+Nie musimy natomiast deklarować typu naszej zmiennej, ponieważ system robi to automatycznie.
+
+ZM=moja_zmienna
+
+Mamy 3 sposoby na nazwanie naszej zmiennej:
+
+-Wpisujemy poprostu nazwę nasszej zmiennej tak jak powyżej(NIE MOŻNA UŻYWAĆ SPACJI);
+-w cudzysłowiach "" (jeśli będziemy mieli jakieś znaki specjalne interpreter przeczyta to jako wartości);
+-w apostrofach '' (możemy napisać co nam się podoba. Interpreter przeczyta to po prostu jako napis);
+
+*Nie używa się source'owania w uruchamianiu skryptu, ponieważ może to nadpisać naszą funkcje. Używa się go do doładowania funkcji.*
+Aby usunąć naszą funkcję używamy komendy "unset", czyli unset <nazwa_zmiennej>.
+Żeby wyświetlić naszą zmienną używamy następującej komendy: 
+echo $ZM,(konsola wyświetli nam to co przypisaliśmy do "ZM", czyli napis "moja_zmienna").
+Dolara przed zmienną podajemy wtedy kiedy interesuje nas jej wartość.
+
+-unset ZM - Komenda usunie nam "całość" naszej zmiennej 
+-echo $ZM - Komenda wyświetli wartość naszej zmiennej 
+
+Dziedziczenie:
+
+Jak już pisaliśmy zmienne mogą być zarówno lokalne (dostępne tylko w 1 powłoce) lub globalne (dostępne z poziomu każdej powłoki).
+Przy przypisaniu wartości danej zmiennej (np. zm=3) ustawiamy wartość tej zmiennej  globalnie. Jeśli chcemy natomiast przypisać jej wartość lokalnie możemy to zrobić w dwa poniższe sposoby: 
+
+-Tworzymy zmienną a następnie za pomocą komendy export przypisujemy ją do powłoki jakiej chcemy :
+ZM=3
+export ZM
+-Tworzymy zmienną i od razu przypisujemy ją do powłoki jakiej chcemy:
+export ZM=3
+
+*Poruszanie się po powłokach jest możliwe za pomocą dwóch komend:
+bash - skaczemy na kolejną powłoke
+exit - cofamy się na poprzednią
+
+do usuwania exportowanych wartości istnieją dwa sposoby:
+-export -n zm - (na powłoce, na której powstała nasza zmienna komenda ta powoduje usunięcie wartości na wszystkich powłokach oprócz aktualnej).
+-unset zm - komenda ta usuwa zmienną we wszystkich powłokach oraz aktualnej (jeśli usuniemy ją na innej powłoce to nie usunie się ona na pozostałych)
+
+Odczytywanie zmiennych odbywa się na dwa sposoby:
+-$Zmienna
+-${Zmienna} - Przydaje się przy kontatenacja (Łączeniu napisów)
+
+Do zmiennej można przypisać wywołanie komendy np:
+
+-ZM=$(echo witaj) - Starszy sposób (wolniejszy, natomiast jego plusem jest to że działa na wszystkich wersjach); 
+-ZM='echo witaj' -  Nowy sposób (Szybszy z krótszą składnia, natomiast nie działa na wszystkich wersjach);
+
+Reasumując obie te komendy robią to samo (przypisują do wartości zmiennej jakąs komende)
+potem po wpisaniu echo $ZM konsola wypisze nam nasz napis w dwóch przypadkach.
+
+Bash oferuje nam również operację na ciągach znaków, za pomocą (( )), możemy  dokonywać prostych obliczeń np:
+                 _______________
+                |-echo $((2+2)) |
+                |wyświetla 4    |
+                |-X=5 		  |
+                |echo $((2*X))  |
+                |wyświetla 10   |
+                |_______________|
+
+Operację na ciągach znaków (PREZENTACJA):
+
+${#TEKST} - długość ciągu znaków ( po przypisaniu tekstu do wartości TEKST);
+${TEKST:p} - podciąg rozpoczynający się od znaku o indeksie p. (zamiast p wstawiamy liczbe od której nasz ciąg ma się zacząc jeżeli mamy słowo taboret i nasz p to będzie 3 słowo wyświetlane będzie brzmiało boret.);
+${TEKST:p:l} - podciąg rozpoczynający się od znaku o indeksie p, a długości l ( jężeli w słowie taboret p wynosi 3 a l 2 to słowo wyświetlane brzmi bor.);
+${TEKST/w/z} - zamienia tekst pasujący do "w" na tekst "z" (nie rozumiem)
+
+Wyrażenie regularne – W uproszczeniu są to po prostu wzorce, które opisuą określony tekst do wyszukiwania. Zwykłe wyrażenia regularne 
+nazywamy regex od skrótu regular expression. Są używane do wyszukiwania określonych ciągów znaków w tekstach.
+Technicznie regexy są zbiorem zasad, które ciąg znaków powinien spełnić. Jeśli ciąg pasuje do regexu to mówimy że pasuje 
+do wyrażenia regularnego.
+Przykładami programów które korzystają z regexów są grep i less
+
+Sed - to narzędzie uniksowe, które analizuje i przekształca tekst, używając prostego, kompaktowego języka programowania.
+
+
+\[…\] - w miejsce … wchodzi lista znaków które mogą wystąpić na danym miejscu
+() - zbiór opcji
+^ - początek ciągu znaków (jeśli nie występuje wewnątrz nawiasów kwadratowych)
+[^] - wewnątrz nawiasów kwadratowych to negacja tego co w nawiasie
+$ - koniec ciągu znaków
+* - wzorzec tuż przed tym znakiem ma się powtarzać dowolną liczbę razy (od 0 do nieskończoności)
++ - wzorzec tuż przed tym znakiem ma się powtarzać co najmniej raz
+. - dowolny jeden znak
+…-… - zakres znaków np. [a-z]
+\ - znak modyfikacji (escape character)
+
+Zmienne przydatne do pisania skryptów:
+														
+ $@ - Wypisuje co się pojawi po echo 
+ $* - nic nie pokazuje
+ $0 - wypisuje ścieżkę do skryptu
+ $1,$2 - wypisuje kolejne zmienne (ich ilość zalezy od ilości zmiennych w programie
+ $# - wypisuje ilość zmiennych
+ $? - wypisuje "exit status"-stan wyjścia
+ $$ - wypisuje ID procesu
+ $! - wypisuje ID ostatniego procesu działającego w tle
+
+
+														ĆWICZENIA
+
+ Ćwiczenie 1		_______________________________________________________________________			
+	 		
+ #!/bin/bash				
+ echo "Witamy w terminalu"	
+
+Ćwiczenie 2			_______________________________________________________________________	
+
+X=tekst
+echo $X
+bash
+echo $X
+
+Co się stało?
+Otworzył się nam nowy bash/nowa powłoka po chwili ładowania.
+
+X=Tekst dłuższy
+echo $X
+
+Aby naprawić błąd musimy naszą zmienną zapisać w ""
+X="Tekst dłuższy"
+echo $X
+Teraz zadziała 
+
+Ćwiczenie 3			_______________________________________________________________________
+
+-PATH 	- Pokazuje ścieżki do komend- umożliwia dodanie skryptu do ścieżki z dowolnego miejsca export PATH(nazwa)=<ścieżka> 
+-RANDOM 	- Generator losowych liczb
+-PWD 		- Zmienna do używania w skryptach pokazuje ściezke w skrypcie
+-PS1		- Wyświetla wartości konsoli
+-USER 	- Wyświetlanie naszego loginu
+-HOSTNAME 	- Wyświetlanie nazwe naszego hosta
+-OSTYPE 	- Wyświetla wersje naszego systemu operacyjnego
+
+
+Ćwiczenie 4__________________________________________________________
+
+zmienn1a=$(ls -la) 
+echo $zmienna1 
+
+Nie dostaniemy wyniku ls-la
+Wywołanie naszej zmiennej da nam natycmiastowo komendę ls -la(wyświetlenie zawartości ścieżki z ukrytymi plikami) oraz z informacjami na temat dostępów 
+Nie wypsiuje informacji w liniach tylko jednym ciągiem
+
+zmienna2=$(ls -l) 
+echo $zmienna2
+
+jak wyżej opisane
+
+
+ Ćwiczenie 5a_______________________________________________________________
+
+A=Ala
+echo $A ma kota, a kot ma ${A}ę
+Wypisuje Ala ma kota, kot ma Alaę
+
+
+ Ćwiczenie 5b_______________________________________________________________
+
+ #!/bin/bash
+
+ zmienna=$1
+ x=${#arg}
+ echo "Pierwszy znak z argumentu:" ${arg:0:1}
+ echo "Ostatni znak z argumentu:" ${arg:$((x-1)):1}
+ echo -e "\e[32mSOP\e[0m"
+
+
+ Ćwiczenie 6_______________________________________________________________
+
+ #!/bin/bash
+ echo "$1  ma kota, a kot ma" $1 | sed s/a$/ę/g | sed 's/\([^ę]\)$/\1a/g'
+
+Praca Domowa
+
+#!/bin/bash
+x=$(cat $1)
+z=$(echo $x | sed 's/\Jakub\>/\\e[31mJakub\\e[0m/g')
+echo -e "$z"
+
+
