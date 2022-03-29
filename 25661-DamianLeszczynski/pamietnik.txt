@@ -266,3 +266,185 @@ Są tam różne sposoby pozyskania anszego systemu Debian:
 5.Debian live.
  	Możesz wypróbować Debiana uruchamiając system live z płyty CD, DVD lub napędu USB, bez instalowania żadnych plików w komputerze. 
 	Jeśli się zdecydujesz, możesz uruchomić zawarty instalator. 
+
+
+
+Laboratorium 2
+
+Na dzisiejszych ćwiczeniach rozmawialiśmy o pisaniu skryptów i wyjaśniliśmy sobie czym, tak właściwie jest bash.
+
+Bash, to nic innego jak powłoka systemowa (Swojego rodzaju łącznik między komputerem jako maszyną, a użytkownikiem), 
+pozwalająca na komunikację w trybie tekstowym. Jest to powłoka napisana typowo pod Linuxa, powłoka na Windowsa to np. PowerShell.
+
+Skrypty – programy napisane w językach skryptowych, przeznaczone do wykonywania w specjalnych środowiskach uruchomieniowych automatyzujących wykonywanie zadań.(Wikipedia).
+		W totalnym uproszczeniu skrypt to plik tekstowy,który jest instrukcją/programem/algorytmem.
+
+Omawialiśmy podstawy skryptowania, na powłoce Linuksa w Bashu.Żeby z takowej skorzystać trzeba sciągnąć jakiś interpreter, może to być: git bash, cmder,	
+(możemy sciągnąć jakąs maszynkę z Linuskem taką jak debian albo ubuntu). My natomiast korzystaliśmy z servera uczelnianego "Szuflandii".
+Żeby dostać się do serwera, trzeba pobrać PuTTY (bezpłatny program będący klientem usług TELNET, SSH i rlogin), w którym ustawiamy hostname lub ip (sXXXXX@szuflandia.pjwstk.edu.pl).
+Jak się połączymy wpisujemy hasło do konta i mamy dostęp do serwera. 
+
+Zaczynająć od początku jak napisać swój pierwszy skrypt.Musimy najpierw odpalić jakiś edytor tekstu w terminalu(np nano, albo vim).Nano jest dość prymitywnym edytorem,
+natomiast Vim jest nieco bardziej zaawansowany co za tym idzie trzeba nauczyć się z niego korzystać,ale jest też bardziej pomocny np. koloruję składnie i jest po prostu wygodniejszy.
+
+Pierwsza linia kodu to tak zwany shebang (#!/bin/bash), jest to linijka, która mówi w jakim interpreterze skryp ma się odpalić, jeżeli skryp będzie napisany w bashu i nie wstawimy shebanga
+to nic się złego nie stanie, ponieważ skrypt domyślnie odpali się w bashu, ale jak skryp będzie napisany np w javie, albo w pythonie, to interpreter, nie zrozumie co do niego mówimy. 
+
+Piszemy swój pierwszy skrypt ( odpalamy nano, ponieważ jeszcze nie umiem korzystać z vima):
+
+
+
+#!/bin/bash
+
+# Skrypt wykorzystuje zaawansowane funkcje       <-- Każdy skrypt może zawierać komentarz (zaczyna się od # interpreter tego nie czyta)
+# systemu do tego, aby narysować króliczka:
+echo -e "    \e[m(\\_/)"
+echo -e "   (=\e[33m'\e[31m.\e[33m'\e[0m=)"
+										 <--Na końcu, każdego skrypu trzeba zapobiegawczo wcisnąć ENTER, ponieważ interpreter nie przeczyta pstatniej linii. 
+
+Wciskamy F2 nano zapyta nas czy chcemy zapisać bufor, wciskamy tak i nadajemy nazwe swojego pliku (kroliczek.sh - na końcu musi byc .sh wtedy interpreter będzie traktował to jako skrypt, 
+a nie zwykły plik tekstowy).
+   
+Czas uruchomić nasz skrypt.Robimy to w następujący sposób ./kroliczek.sh, ale w konsoli zamiast króliczka wyskakuję błąd o braku dostępu.Stało się tak ,ponieważ nie nadaliśmy skryptowi bitu wykonywalności.
+Robimy to za pomocą komędy chmod ...,ale jest jeszcze inny sposób.Jest możliwość odpalenia skryptu bez nadawania upranień robi się to w następujący sposób: bash kroliczek.sh.
+Skrypt drukuje nam króliczka. 
+   
+    (\_/)
+   (='.'=)
+
+*Różnica między prawami, a uprawnieniamy. W Linuksie nadaję się tylko uprawnienia, w Windowsie natomiast istnieją oba te przypadki. 
+
+Oprócz, tego jak napisać skrypt od podstaw, mówiliśmy też o zmiennych powłokach. 
+Zmienna powłoka, służą do przechowywania wartości.Działa to na podobnej zasadzie jak w przypadku programowania. jest zmienna musimy ją nazwać określić typ są zmienne lokalne i globalne i tak dalej.
+Tutaj tak samo jak w programowaniu,żeby przypisać jakąś wartość do zmiennej trzeba ją nazwać użyć znaku (=), ale nie trzeba deklarować typu zmiennej, ponieważ system zrobi to automatycznie.
+
+ZM=moja_zmienna 
+
+Jeżeli chodzi o nazywanie zmiennej mamy trzy sposoby, żeby to zrobić:
+
+-Poprostu wpisanie nazwy tak jak wyżej z tym, że nie można wstawić spacji; 
+-w " " nawiasach z tym, że jak będziemy mieli jakieś znaki specjalne interpreter przeczyta to jako wartości;
+-w ' ' nawiasach pojedyńczych, możemy napisać co nam się podoba. Interpreter przeczyta to po prostu jako napis;
+
+*Nie używa się source'owania w uruchamianiu skryptu, ponieważ nadpisuje funckja (artefakt,efekt uboczny)Source, używa się do doładowania funkcji.
+
+Wiemy jak stworzyć funkcję, natomiast, żeby się jej pozbyć czyli po porstu ją usunąc używamy komendy "unset", czyli unset <nazwa_zmiennej>.
+
+Żeby wyświetlić naszą zmienną używamy następującej komendy: echo $ZM, wtedy konsola wyświetli nam to co przypisaliśmy do "ZM", czyli w naszym przypadku jest to napis "moja_zmienna".
+Dolar $ przed zmienną podajęmy kiedy interesuje nas sama wartość (odnosimy się do jej wartości).
+
+np:
+-unset ZM usuwamy "całość" zmiennej  
+-echo $ZM wyświetlamy "środek" zmiennej
+
+Dziedziczenie: 
+
+Jak już wspomniałem zmienne mogą znajdować się tylko w danej powłocę (zmienne lokalne) lub mogą znajdować się na wszystkich powłokach (zmienne globalne).
+Jak przypisujemy daną wartość czyli np zm=3 to ustalamy wartość 3 dla zm na danej powłoce natomiast, żeby zrobić to lokalnie robimy to na dwa sposoby:
+
+-Tworzym zmienną następnie używamy komendy export i przypisujemy ją do każdej powłoki np:
+	
+	ZM=3 
+	export ZM 
+
+-Tworzymy zmienną odrazu przypisując ją do każdej powłoki:
+
+	export ZM=3 
+
+*Poruszanie się po powłokach jest możliwe za pomocą dwóch komend bash i exit, bash skaczemy na kolejną powłoke, exit cofamy się na poprzednią.
+ 
+do usuwania exportowanych wartości istnieją dwa sposoby: 
+
+-export -n zm <-- na powłoce, na której powstała zmienna wpisanie tej komendy usuwa tą wartość na wszystkich powłokach oprócz aktualnej.
+-unset zm <-- wpisane na powłoce powstałej usuwa zmienną na wszystkich powłokach oraz na aktualnej, z tym że jak usuniemy na innej powłocę niż na powłoce "matce"
+			to zmienna usuwa się tylko na tej powłoce na której ją usunuliśmy a nie na pozostałych( XD ). 
+
+Odczytywanie zmiennych odbywa się na dwa sposoby:
+
+-$Zmienna
+-${Zmienna} <-- Przydatne przy kontaminancji "Łączeniu napisów"
+
+
+Zmienne przydatne do skryptu:
+
+-$? <----- Kod zakończonenia ostatniego procesu, jeżeli wszystko przebiegło bez błędów echo $? wyświetli nam 0;
+-$$ <----- Pokazuje nam numer procesu; 
+-$! <----- Numer ostatniego uruchomionego procesu;
+-$0 <----- Ściężka i sposób uruchomienia skryptu, po odpaleniu kroliczek.sh wpisując echo $0 wyświetla bash; 
+-$1,$2,<-- kolejne argumenty skryptu 												(skopiowane z prazentacji)
+-$1,$2,<-- kolejne argumenty skryptu												(skopiowane z prazentacji)
+-$# <----- ilość argumentów przekazanych do skryptu									(skopiowane z prazentacji)
+-$*,$@<--- wszystkie argumenty skryptu. Ale obie zmienne różnią się trochę. Kiedy?		(skopiowane z prazentacji)
+
+Do zmiennej można przypisać wywołanie komendy np:
+
+-ZM=$(echo witaj) <-- sposób starszy trochę wolniejszy, ale działa na wszystkich wersjach;  
+-ZM='echo witaj' ,<-- sposób nowszy krótsza składnia, ale może nie działać na wszystkich oprogramowaniach;
+
+Wniosek jest taki, że obie te komendy robią to samo czyli przypisują do wartości zmiennej jakąs komende 
+potem po wpisaniu echo $ZM konsola wypluje nam napis witaj w oby dwóch przypadkach. 
+
+Kilka przykładowych zmiennych(dodając echo $...):
+
+-PATH <----- Zemianna zawierająca liczbe scieżek do katalogu; 
+-RANDOM <--- Generator losowych liczb, nie najlepszy, ale jest;
+-PWD <------ Wyświetla aktualną scieżkę, w której się znajdujemy;
+-USER <----- Wyświetla nasz login;
+-HOSTNAME <- Wyświetla nazwę hosta;
+-OSTYPE <--- Wyświetla nazwę systemu operacyjnego; 
+
+Bash oferuje nam również operację na ciągach znaków, za pomocą (( )), możemy  dokonywać prostych obliczeń np:
+
+-echo $((2+2))
+	wyświetla 4 
+-X=5
+ echo $((2*X))
+	wyświetla 10 
+
+Operację na ciągach znaków (skopiowane z prezezentacji): 
+
+${#TEKST} - długość ciągu znaków ( po przypisaniu tekstu do wartości TEKST); 
+${TEKST:p} - podciąg rozpoczynający się od znaku o indeksie p. (zamiast p wstawiamy liczbe od której nasz ciąg ma się zacząc jeżeli mamy słowo taboret i nasz p to będzie 3 słowo wyświetlane będzie brzmiało boret.);
+${TEKST:p:l} - podciąg rozpoczynający się od znaku o indeksie p, a długości l ( jężeli w słowie taboret p wynosi 3 a l 2 to słowo wyświetlane brzmi bor.);
+${TEKST/w/z} - zamienia tekst pasujący do "w" na tekst "z" (nie rozumiem) 
+
+---------------------------------------------------------------------------------------
+| Ćwiczenie 5a
+|
+| #!/bin/bash
+|
+|
+| echo "$1  ma kota, a kot ma" $1 | sed s/a$/ę/g | sed 's/\([^ę]\)$/\1a/g'
+|
+| Ćwiczenie 5b
+|
+| #!/bin/bash
+|
+| zmienna=$1
+| x=${#zmienna}
+| echo "Pierwszy argument danego tekstu to:" ${zmienna:0:1}
+| echo "Ostatni argument danego tekstu to:" ${zmienna:$((x-1)):1}
+| echo -e "\e[32mSOP\e[0m"
+|
+---------------------------------------------------------------------------------------
+
+Wyrażenie regularne – wzorzec opisujący łańcuch symboli. Teoria wyrażeń regularnych jest związana z teorią języków regularnych.
+				   Wyrażenia regularne mogą określać zbiór pasujących łańcuchów, jak również wyszczególniać istotne części łańcucha.
+
+W informatyce teoretycznej wyrażenia regularne są ciągami znaków pozwalającymi opisywać języki regularne.
+ W praktyce znalazły bardzo szerokie zastosowanie, pozwalają bowiem w łatwy sposób opisywać wzorce tekstu, 
+natomiast istniejące algorytmy w efektywny sposób określają, czy podany ciąg znaków pasuje do wzorca lub wyszukują w tekście wystąpienia wzorca. (Wikipedia)
+
+Sed - to narzędzie uniksowe, które analizuje i przekształca tekst, używając prostego, kompaktowego języka programowania.
+
+
+\[…\] <- w miejsce … wchodzi lista znaków które mogą wystąpić na danym miejscu
+() <---- zbiór opcji
+^ <----- początek ciągu znaków (jeśli nie występuje wewnątrz nawiasów kwadratowych)
+[^] <--- wewnątrz nawiasów kwadratowych to negacja tego co w nawiasie
+$ <----- koniec ciągu znaków
+* <----- wzorzec tuż przed tym znakiem ma się powtarzać dowolną liczbę razy (od 0 do nieskończoności)
++ <----- wzorzec tuż przed tym znakiem ma się powtarzać co najmniej raz
+. <----- dowolny jeden znak
+…-… <--- zakres znaków np. [a-z]
+\ <----- znak modyfikacji (escape character)       (Kopia z prezentacji) 
