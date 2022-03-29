@@ -1,0 +1,19 @@
+Praca Domowa 
+
+
+#!/bin/bash
+
+##Skrypt pobiera dane z argumentu jak go wywołujemy,czyli jeżeli w konsoli wpiszemy ./<nazwa_skryput> <nazwa_pliku_tekstowego>
+## Ten plik tekstowy zostaje załadowany do naszego skryptu jako argument i ładuje go jako zmienna x.
+
+x=$(cat $1)    
+
+## W drugiej linijce skryptu, piszemy komende echo, żeby tekst z pliku tekstowego, zapisał się do zmiennej,
+## oraz używamy komendy sed i jej składni do filtrowania mojego imienia oraz zamienienie go na inny kolor.
+
+z=$(echo $x | sed 's/\<Damian\>/\\e[31mDamian\\e[0m/g')
+
+## Następnie używamy komendy echo -e, żeby skrypt wyświetlił nam tekst ze zmienionym kolorem w terminalu. 
+
+echo -e "$z"
+
