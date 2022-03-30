@@ -1,4 +1,7 @@
-												Instalacja Debiana na maszynie wirtualnej VirtualBox
+5.03.2022
+
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem  się instalować Debiana na maszynie wirtualnej VirtualBox . Poniżej opisuje ci instrukcje 
+na temat całej instalacji tego systemu.
 
 Wpierw w Globalnych Ustawieniach ustawiamy lokalizację folderu gdzie mają się znajdować nasze maszyny
 Klikamy niebieską ikonkę Nowa
@@ -20,6 +23,7 @@ Następnie mamy dwie możliwości przypisania pamięci
 
 -Dynamiczny Rozmiar - Ustawiamy rozmiar do którego maksymalnie będzie się mógł zwiększać nasz wirtualny dysk (Wybieramy tą opcję)
 -Stały Rozmiar - Wielkość zostanie natychmiast zarezerwowana dla naszego wirtualnego dysku (nie trzeba później prealokować)
+Stały rozmiar jest zalecany w przypadku maszyn do celów produkcyjnych, kiedy zależy nam na jak największej wydajności
 
 Zapisujemy ustawienia i możemu już uruchomić naszą maszynę.
 Po najechaniu na strzałkę obok przycisku Uruchom mamy 3 opcję
@@ -30,9 +34,12 @@ Po najechaniu na strzałkę obok przycisku Uruchom mamy 3 opcję
 
 Wchodzimy w Ustawienia naszej maszyny 
 
-W zakładce Pamięć klikamy "Dodaj napęd optyczny". Klikamy dodaj i wybieramy nasz pobrany system ze strony debian.org aby go potem zbootować
-W zakładce Dźwięk wyłaczamy wyjście Aurdio (odznaczamy Enable Audio Output)
-W zakładce System w "Kolejność Bootowania" Odznaczamy Floopy.
+W zakładce Pamięć klikamy "Dodaj napęd optyczny". Klikamy dodaj i wybieramy nasz pobrany obraz nośnika ze strony debian.org aby go potem zbootować
+W zakładce Dźwięk wyłaczamy wyjście Aurdio (odznaczamy Enable Audio Output, ponieważ dźwięk nie będzie nam potrzebny w procesie instalacji systemu)
+W zakładce System w "Kolejność Bootowania" Odznaczamy Floopy( ponieważ nie będziemy używać napędu dyskietek).
+
+Odznaczanie/Usuwanie urządzeń jest zalecane w przypadku kiedy nie mamy urządzenia (jak naprzykład stacja dyskietek) i wiemy że napewno nie będziemy z 
+tego korzystać w przyszłości 
 
 Po odpaleniu maszyny i kliknięciu myszką wyskakuje okno czy chcemy aby maszyna przechwyciła naszą myszkę (Po zaakceptowaniu jeśli chcemy poruszać myszką po systemie naszego fizycznego komputera należy nacisnąć prawy CTRL)
 Klikamy Right CTRL + R(Resetowanie maszyny) a następnie F12(Boot Menu). Wybieramy bootowanie naszego wirtualnego dysku (Opcja 1)
@@ -41,12 +48,30 @@ Po zbootowaniu naszego Pliku Iso Mamy 5 opcji. Jeśli chcemy wrócić do poprzed
 
 - Graphical install - dla 6 latków (instalacja poprzez interfejs graficzny)
 - Install - instalacja tekstowa (TO WYBIERAMY)
+
+Wybieramy instlalację tekstową z kilku powodów:
+
+1. Prawdziwy inżynier instaluje tekstowo aby mieć większe możliwości instalacji
+2. Tak jak wcześniej wspomniane instalacja graficzna jest dla osób poniżej 6 roku życia
+3. Instalacja tekstowa działa szybciuej, ponieważ nie zawiera grafiki lecz sam tekst
+
 - Advanced Option - Zaawansowane ustawienia 
 	- Graphical expert install - Graficzna ekspercka instalacja
 	- Graphical rescue mod - Graficzny tryb odzyskiwania 
 	- Graphical automated install - Graficzna zautomatyzowana instalacja
 	- Expert install - Ekspercka instalacja tekstowa
+
+Instalacja ekspercka różni się od zwykłej tym, że mamy w niej więcej możliwości skonfigurowania naszego systemu
+Należy ją stosować w wypadku kiedy wiemy co poustawiać i zależy nam na szerszej konfiguracji. Nie powinniśmy się
+nią bawić kiedy nie jesteśmy pewni tego co robimy
+
 	- Rescue mode - Tryb odzyskiwania tekstowy
+
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/4/html/system_administration_guide/s1-rescuemode-boot
+Rescue mod zapewnia nam uruchomienie małego środowiska Linux z napędu CD lub innej metody rozruchu poza dyskiem twardym
+Tryb ten jest używany do odzyskania plików z naszego systemu, kiedy nie jesteśmy w stanie go uruchomić
+Jest on używany do powyższego przykładu (Gdy chcemy odzyskać pliki z niedziałającego systemu)
+
 	- Automated install -	Zautomatyzowana instalacja tekstowa
 	- Speech-enable advanced option - Zaawansowane ustawienia syntezatora mowy
 		-Expert speech install - ekspercka instalacja tekstowa z syntezatorem
@@ -57,9 +82,16 @@ Po zbootowaniu naszego Pliku Iso Mamy 5 opcji. Jeśli chcemy wrócić do poprzed
 - Install with speech synthesis - instalacja z syntezatorem mowy.
 
 Następnie wybieramy język instalacji (Angielski)
+
+Wybieramy ten język, ponieważ w przypadku wybrania języka polskiego (w którym występują litery ą,ę,ć, itp.) Gdy jakiś program 
+nie będzie posiadał tłumaczenia na dany język, mogą się nam pojawiać "⬜︎", a jak wiadomo język angielski jest powszechnie używany w IT 
+
 Wybieramy naszą lokalizację (Other/Europe/Poland)
 Wybieramy tryb kodowania znaków (z racji wybrania angielskiego wybieramy United States)
 Wybieramy mape klawiszy których będziemy używać (American English)
+
+Wybieramy ten układ z racji wybrania przez nas języka angielskiego (nie będziemy używać żadnych liter, poza tymi z alfabetu angielskiego)
+
 ---Okno instalacji---
 Ustawiamy nazwę naszego komputera/hosta pod jaką będziemy widziani w sieci
 Ustawiamy nazwę naszej domeny
@@ -134,8 +166,14 @@ Następnie zapisujemy zmiany naszego partycjonowania
 
 Wyskakuje okno na temat menadżera pakietów czy zchcemy przskanować inne nośniki instalacyjne(klikamy nie)
 Wybieramy skąd chcemy pobrać (z serwerów jakiego kraju) lustrzaną kopię Debiana. Wybieramy Poland a następnie serwer FTP z którego chcemy pobrać (ftp.task.gda.pl)
-Ustawiamy serwer proxy (w naszym przypadku nic nie wpisujemy)
+Wybieramy ten, ponieważ znajdujemy się w Gdańsku (W przypadku instalacji z innego miejsca, należy wybrać inny serwer, aby prędkość pobierania była zadowalająca)
+Ustawiamy serwer proxy (w naszym przypadku nic nie wpisujemy) 
+Ponieważ jesteśmy połączeni do routera końcowego bez żadnego pośredniczącego (którym jest właśnie serwer proxy)
+Działa on na zasadzie wysyłania przez użytkownika żądania wykonania operacji do serwera , a serwer w naszym imieniu wysyła żądanie do końcowego serwera 
 Wyskakuje okno czy chcemy wziąć udział w ankiecie użytkowania pakietów(klikamy nie)
+Serwer ten daje nam większą anonimowość w sieci (możliwość zmiany IP) co daje nam również możliwość przeglądania witryn/zasobów niedostępnych na terenie naszego kraju
+Dodatkowo daje nam możliwośc blokowania niektórych adresów internetowych, co jest przydatne w szkołach/miejscach pracy, aby uczniowie/pracownicy nie korzystali z facebooka
+
 
 ---Skanowanie---
 
@@ -148,10 +186,66 @@ Następnie wyskakuje tzw "TASK SEL". Wybieramy w nim jakie oprogramowanie chcemy
 -Cinnamon - Środowisko graficzne oparte na bibliotece GTK+3
 -MATE - Środowisko które powstało po krytyce na środowisko Gnome. Jego zaletami jest to, że działa w trybie 2D oraz posiada mniejsze sprzętowe wymagania
 -LXDE - (Lightweight X11 Desktop Environment) - Środowisko dla systemów operacyjnych Linux
--LXQt - Środowisko połączone z dwóch projektów (LXDE-QT i Razor-qt)
+-LXQt - Środowisko graficzne połączone z dwóch projektów (LXDE-QT i Razor-qt)
 -web server - Oprogramowanie umożliwiające nam postawienie serwera internetowego na naszej wirtualnej maszynie
 -SSH server - Instalacja protokołu komunikacyjnego służącego w Sieciach TCP/IP. Służy między innymi do zdalnego łączenia się terminalowego z komputerami
--standard systemu utilities - Instalacja standardowych narzędzi systemowych
+-standard systemu utilities - Instalacja standardowych narzędzi systemowych(poniżej lista programów/pakietów które ta opcja zawiera)
+
+https://csmojo.com/posts/what-debian-standard-system-utilities-include.html
+•	apt-listchanges
+•	lsof
+•	zlokalizuj
+•	w3m
+•	w
+•	libswitch-perl
+•	xz-utils
+•	telnet
+•	dc
+•	bsd-mailx
+•	plik
+•	exim4-config
+•	m4
+•	pne
+•	dnsutils
+•	exim4
+•	Python2.7
+•	opensh-klient
+•	uzdolnienie
+•	bash-ukończenie
+•	pyton
+•	gospodarz
+•	informacje o instalacji
+•	bzip2
+•	Zgłoś błąd
+•	lokale-krb5
+•	bind9-host
+•	czas
+•	informacje
+•	liblockfile-bin
+•	kto jest
+•	aptitude-wspólny
+•	skrawek
+•	ncurses-term
+•	błazen
+•	obsługa mimu
+•	exim4-demon-światło
+•	ftp
+•	nfs-wspólny
+•	python-zgłoś błąd
+•	rpcbind
+•	texinfo
+•	Python-minimal
+•	procmail
+•	libclass-isa-perl
+•	python-apt
+•	Wsparcie Pythona
+•	exim4-base
+•	debian-faq
+•	dokumentacja-debian
+
+
+
+System bez środowiska graficznego będzie zdatny do użytku bez tej grupy pakietów, ponieważ możemy je później na spokojnie zainstalować za pomocą komendy apt install
 
 Po wybraniu naszego oprogragmowania wyskakuje nam okno chcemy na naszej głównej partycji zainstalować GRUB boot loader
 Jest to program rozruchowy rozwijany w ramach projektu GNU(mającego na celu stworzenie wolnego i kompletnego systemu uniksopodobnego)(KLIKAMY TAK)
@@ -162,6 +256,38 @@ Następnie wybieramy na jakim dysku chcemy zainstalować naszego GRUB-a
 Następnie wyskakuje nam okno o zakończeniu instalacji. Klikamy Continue, maszyna się resetuje i cieszymy się naszym zainstalowanym systemem
 
 ----------------------------------------------------------------------------------------------------------------------------------------------
+
+Bootloader(program rozruchowy) służy do uruchamiania różnych systemów operacyjnych.
+Jest on niezbędny do działania naszego systemu, aby ten się załadował
+Nie możemy go nie zainstalować, ponieważ wtedy nasz system się nie załaduje
+Powinniśmy zainstalować GRUB-a :
+Jeśli mamy 1 system to na tej samej partycji;
+Jeśli mamy 2 systemy to wydzielić partycję boot i tam go zainstalować
+W przypadku ustawienia flagi bootującej nasz GRUB będzie wiedział którą partycję ma bootować (jeśli mamy 1 system i 1 partycję, to nie ma potrzeby ustawiania flagi)
+
+Alternatywy dla GRUB-a to:	(https://progsoft.net/pl/software/grub)
+
+•	rEFInd
+•	GRUB4DOS and WINGRUB
+•	Grub2Win
+•	coreboot
+•	Visual BCD Editor
+•	Libreboot
+•	Chameleon Bootloader
+•	rEFIt
+•	BootIt Bare Metal
+•	burg
+•	DualBootPRO
+•	Extended Operating System Loader
+•	gummiboot
+•	bootcfg
+•	Gag
+•	OSL2000 Boot Manager
+•	Chimera
+•	Linux Loader
+•	Partita 2000
+•	Yaboot
+•	petitboot
 
 Zalecaną strukturą partycji w naszym systemie jest:
 
@@ -201,6 +327,8 @@ i odpalić go na każdym urządzeniu . Wystarczy podłączyć pendrive i zbootow
 
 Ostatnia opcja to kupno komputera z już zainstalowanym Debianem. Minusem tego rozwiązania jest to, że płacimy za system który jest tak naprawdę darmowy.
 Plusem natomiast jest wstępna konfiguracja systemu która jest dopasowana do naszego sprzętu oraz sprzedawca może nam zaoferować pomoc techniczną.
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 19.03.2022
  
@@ -433,5 +561,3 @@ Praca Domowa
 x=$(cat $1)
 z=$(echo $x | sed 's/\Jakub\>/\\e[31mJakub\\e[0m/g')
 echo -e "$z"
-
-
