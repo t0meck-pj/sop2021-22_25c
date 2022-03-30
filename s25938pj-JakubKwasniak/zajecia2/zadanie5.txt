@@ -1,0 +1,16 @@
+Ćwiczenie 5a_______________________________________________________________
+
+A=Ala
+echo $A ma kota, a kot ma ${A}ę
+Wypisuje Ala ma kota, kot ma Alaę
+
+
+ Ćwiczenie 5b_______________________________________________________________
+
+ #!/bin/bash
+
+ zmienna=$1
+ x=${#arg}
+ echo "Pierwszy znak z argumentu:" ${arg:0:1}
+ echo "Ostatni znak z argumentu:" ${arg:$((x-1)):1}
+ echo -e "\e[32mSOP\e[0m"

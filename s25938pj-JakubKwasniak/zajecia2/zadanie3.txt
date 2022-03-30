@@ -1,0 +1,7 @@
+-PATH 	- Pokazuje ścieżki do komend- umożliwia dodanie skryptu do ścieżki z dowolnego miejsca export PATH(nazwa)=<ścieżka> 
+-RANDOM 	- Generator losowych liczb
+-PWD 		- Zmienna do używania w skryptach pokazuje ściezke w skrypcie
+-PS1		- Wyświetla wartości konsoli
+-USER 	- Wyświetlanie naszego loginu
+-HOSTNAME 	- Wyświetlanie nazwe naszego hosta
+-OSTYPE 	- Wyświetla wersje naszego systemu operacyjnego

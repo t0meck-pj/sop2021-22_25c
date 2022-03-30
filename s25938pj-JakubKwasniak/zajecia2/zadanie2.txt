@@ -1,0 +1,15 @@
+X=tekst
+echo $X
+bash
+echo $X
+
+Co się stało?
+Otworzył się nam nowy bash/nowa powłoka po chwili ładowania.
+
+X=Tekst dłuższy
+echo $X
+
+Aby naprawić błąd musimy naszą zmienną zapisać w ""
+X="Tekst dłuższy"
+echo $X
+Teraz zadziała 
