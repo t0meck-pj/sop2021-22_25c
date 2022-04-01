@@ -1,0 +1,31 @@
+*Ćwiczenie 2*
+
+Otworzona została nowa powłoka bash'a (podpowłoka?), w której lokalna zmienna środowiskowa nie pojawiła się.
+
+***
+
+Jeśli chodzi o przykład z "Tekst dłuższy" to problemem jest w pierwotnej wersji słowo "dłuższy", które napisane po spacji jest traktowane jako osobna, nierozpoznana komenda. Z tego powodu komenda zwraca błąd i zmienna w ogóle nie zostaje przyporządkowana. Wzięcie całego string'a w cudzysłów, jak i apostrofy jest w stanie naprawić sytuację.
+
+***
+
+Cudzysłów ("") tym różni się od apostrofu (''), że znajdujące się we wnętrzu tego pierwszego znaki specjalne będą przekazywane jako komenda, a nie jako płaski tekst. A więc np. echo "$var" spowoduje, że w outpucie komendy pojawi się wartość zmiennej var, a echo "\tTekst" wydrukuje tekst po znaku tabulacji. W przypadku apostrofów tekst znajdujący się w jego wnętrzu jest traktowany jako plain text, a więc w powyższych przypadkach wydrukowane zostanie odpowiednio $var i \tTekst.
+
+***
+
+W przypadku zmiennych '$*' i '$@', obie użyte bez cudzysłowu traktują cały argument pobrany z inputu komendy jako pojedynczy string. Nie uwzględniają samych użytych cudzysłowów, ale pomijają spacje i parsują oddzielone nimi wyrazy jako osobne argumenty.
+
+Z kolei użycie '"$*"' (we wszystkich przykładach apostrofy zostawiam jedynie dla podkreślenia) spowoduje przekazanie do argumentu całego stringu, ponownie z pominięciem cudzysłowów, ale już nie spacji.
+
+Użycie '"$@"' powoduje potraktowanie części zmiennych początkowych objętych cudzysłowem jako osobnego argumentu, a w przypadku reszty string'a z inputem każdy wyraz jest traktowany z osobna. Tym samym sposób przekazania argumentów przez ten wariant zmiennej jest analogiczny do tego, jak sam skrypt będzie rozpoznawał kolejne zmienne.
+
+Podsumowując:
+Dla funkcji używającej jako argumentu wejściowego stringa:
+"Hello World" Foo Bar
+
+Wynik będzie dla:
+$@, $* : {'Hello', 'World', 'Foo', 'Bar'};
+"$*"   : {'Hello World Foo Bar'};
+"$@"   : {'Hello World', 'Foo', 'Bar'};
+
+ 
+

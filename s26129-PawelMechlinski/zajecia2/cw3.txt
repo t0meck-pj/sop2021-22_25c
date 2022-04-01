@@ -1,0 +1,72 @@
+*Ćwiczenie 3*
+
+PATH - To zmienna środowiskowa. Domyślnie, przetrzymuje ona następujące lokalizacje:
+/usr/bin
+/usr/sbin
+/usr/local/bin
+/usr/local/sbin
+/bin
+/sbin
+/snap/bin (jeśli Snap jest zainstalowany)
+
+Bash wykorzystuje PATH to konsultowania lokalizacji plików binarnych (np. komendy 'echo'). 
+
+Wartość PATH jest zbudowana w taki sposób, że każda następna lokalizacja jest oddzielona znakiem dwukropka ":". 
+
+Możliwe jest, żeby wykorzystać zmienną PATH do dodania nowej lokalizacji z dostępnymi komendami, np. stworzonymi własnoręcznie. Można to zrobić edytując plik '.bashrc'. Nie spowoduje to bezpośredniego nadpisania PATH, jednak nowa lokalizacja będzie dodawana za każdym uruchomieniem powłoki bash dla tego użytkownika tak długo jak sam blik bashrc nie ulegnie zmianie.
+
+Ciekawostka: PATH jest tylko jedną z wielu zmiennych środowiskowych powłoki bash, a wszystkie można obejrzeć z zastosowaniem komendy 'env'.
+
+RANDOM - To zmienna wykorzystywana do generowania losowych liczb typu integer.
+
+Wygenerowany integer jest 16-bitowy, a jego zakres możliwych wynosi od 0 do 32767.
+
+Ciekawostka: Aby zwiększyć losowość wygenerowanej liczby, można przekazać do zmiennej początkowy seed, np.
+Datę:
+RANDOM-$(date +%s)
+ID procesu powłoki:
+RANDOM=$$
+
+Ciekawostka 2: Random można również wykorzystać do generowania (pseudo)losowej liczby w danym zakresie:
+echo $(($RANDOM%11))  -> Generuje liczbę w zakresie od 0 do 10.
+
+A jeśli chcemy zakres dolny i górny wykorzystujemy następujący format:
+RANGE=$((Y-X+1))
+R=$(($(($RANDOM%$RANGE))+X))
+
+gdzie Y to górny limit, a X to dolny limit.
+
+PWD - Zmienna ta jest podobna zarówno w nazwie, jak i w zastosowaniu do komendy 'pwd', która normalnie wyświetla obecną lokalizację na drzewie katalogów. Którą lepiej stosować w skryptach?
+$PWD nie zadziała, jeśli zmienna nie jest ustalona, jednak prawie zawsze jest.
+Z kolei $(pwd) może nie zadziałać, jeśli konstrukcja $() nie jest wspierana przez daną powłokę, co z reguły będzie miało miejsce częściej. Dodatkowo, konstrukcja $() będzie uruchamiać nowy subproces (nową powłokę), co dodatkowo powoduje pogorszenie wydajności, podczas gdy PWD będąc zmienną powłoki jej wartość jest odzyskiwana niemal natychmiast. Istnieją pewne niuanse w zastosowaniu obu (jak choćby możliwość używania pwd z flagą '-P'), jednak generalnie można przyjąć, że w większości przypadków lepiej jest używać w skryptach $PWD.
+
+PS1 - To zmienna, która przechowuje string zachęty (? Prompt ?). Domyślna struktura to:
+\u@\h \W\\$
+Co oznacza tyle, co nazwa użytkownika (\u), znak małpy, nazwa hosta (\h) i lokalizacja robocza (\W), wraz ze znakiem '$', czyli tradycyjnie właściwym znakiem zachęty. Wartości domyślne są do zmiany w znanym już nam pliku /etc/bashrc.
+
+Ciekawostka:
+Istnieją także zmienne o numeracji PS{2..4}, oznaczające kolejno:
+(2) Wartość drugorzędnego ciągu zachęty.
+(3) Wartość tego parametru jest używana jako zachęta dla komendy 'select'.
+(4) Wartość tego parametru jest rozwijana podobnie jak PS1, a jego wartość jest drukowana przed każdą komendą, którą bash wyświetla w execution trace. Pierwszy znak może być powielany wielokrotnie dla podkreślenia wielopoziomowej niebezpośredniości. Domyślnym jest '+'.
+(Anegdotka: Miałem okazję spotkać się z tym znakiem w pracy, czyszcząc duże pliki logów. Dla wygody stosowałem komendę ze znakiem apersand, dzięki czemu mogłem dalej pracować, podczas gdy pliki byłyusuwane. Po chwili w tej powłoce wyświetlały mi się informacje o usuniętych plikach poprzedzone '[+]')
+
+USER - Zmienna przechowuje nazwę użytkownika powłoki. W tym przypadku można powiedzieć, że 'echo $USER' będzie działać tak samo jak 'whoami' lub 'id -u -n' lub 'logname'.
+
+USER nie jest najbardziej niezawodną metodą sprawdzania nazwy użytkownika. 'logname' będzie ignorował fakt przełączenia na konto root'a, co w przypadku pracy administracyjnej może okazać się przydatne. Z kolei na niektórych starszych systemach większość powyższych opcji może nie działać. Jeden użytkownik zapropnował alternatywną wersję wydobywania username, która działa zarówno na systemach Linux, jak i Solaris 9:
+ps -o user= -p $$ | awk '{print $1}'
+
+Jednak ta opcja również w przypadku pracy na koncie root'a wyświetli wynik root (jednak przyda się wtedy, gdy nie działa id z parametrami, whoami lub zmienna $USER).
+
+HOSTNAME - zawiera jako wartość nazwę hosta. Alternatywami dla tej zmiennej jest odczytywanie bezpośrednio z pliku, do którego ona łączy, mianowicie:
+cat /proc/sys/kernel/hostname
+lub użycie komendy 'hostname'.
+
+OSTYPE - zawiera jako wartość typ systemu operacyjnego. W moim przypadku jest to 'linux-gnu'.
+
+Ciekawostka: Tym razem plik /proc/sys/kernel/ostype daje inny wynik: 'Linux'.
+
+Przykładem zastosowania tej komendy może być, gdy np. chcemy szybko sprawdzić, jakie typy systemów i w jakiej ilości mamy podłączone w swoim Data Center, oczywiście zakładając, że są te maszyny podpięte do serwera SSH.
+
+
+

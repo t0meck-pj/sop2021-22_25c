@@ -1,0 +1,7 @@
+Dla wyłącznie prosto się odmieniających imion męskich jest to możliwe w czystym bash'u. Gdyby chcieć to zrobić dla zarówno imion męskich, jak i żeńskich należałoby np. zastosować regex lub konstrukcję warunkową if na zasadzie jak w poniższym pseudokodzie:
+
+1. Pobierz imię z inputu.
+2. Jeśli ostatnia litera imienia to "a", zamień ją na "ę".
+3. W przeciwnym wypadku dodaj na końcu "a".
+
+
