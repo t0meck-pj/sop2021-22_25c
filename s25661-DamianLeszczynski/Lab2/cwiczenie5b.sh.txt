@@ -1,0 +1,8 @@
+#!/bin/bash                                                                                                                                                                                                                                   
+
+ zmienna=$1     #$1 pobiera nam wartość z terminalu zaraz po wywołaniu naszego skryptu może to być napis lub plik tekstowy                                                                                                                    
+ x=${#zmienna}  #Przypisujemy pod zmienna x nasz zmienną pomoże nam to w uzyskaniu ostatniej litery tekstu                                                                                                                                    
+ echo "Pierwszy argument danego tekstu to:" ${zmienna:0:1} #Korzystając z prezetnacji łatwo wyodrębnić pierwszą litere                                                                                                                        
+ echo "Ostatni argument danego tekstu to:" ${zmienna:$((x-1)):1} #Tutaj trzeba było trochę pomyśleć, ale wpadłem na pomysł, że można w ten spób wykorzystać zmienną żeby uzyskać ten rezultat                                                 
+ echo -e "\e[32m$1\e[0m"        #Nie wiem czy dobrze zrozumiałem tą część polecenia                                                                                                                                                           
+

@@ -1,0 +1,25 @@
+#!/bin/bash                                                                                                                                                                                                                                   
+
+#Napisz skrypt, ktory bedzie pobieral argument z linii komend i wypisywal informacje o tym, czy jest to imie, kod pocztowy,czy tez enail.                                                                                                     
+#Przy okacji przygotowane wyrwazenia regularne.                                                                                                                                                                                               
+
+
+x=${#1}         #Ładuje ilosc liter argumentu, bedzie mi to potrzebne do wyrazenia regularnego z Polskim imieniem, poniewaz warunek nie dzialal mi bez podania ilosci znakow wiec poradzilem sobie w ten sposob                               
+
+if [[ "$1" =~ ^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$ ]]; then        #Wyrazenie regularne sprawdzajace, czy podane slowo jest emailem zakres A-Z a-z 0-9 wlaczam w to jeszcze znakitypu procent itp                                
+        echo "\"$1\" jest email-em"                                             #wykrywam czy jest @ potem znowwu zakrez liczb i liter, potem psrawdzam czy jest kropka i znowu zakrez a-z i dlugosc wyrazu od                                
+                                                                                #2 do 4 poniewaz np. pl,com itp                                                                                                                               
+
+elif [[ "$1" =~ ^[0-9]{2}+-[0-9]{3}$ ]]; then                                   #Wyrazenie sprawdzajace czy to kod pocztowy, bardzo latwe sprawdzamy czy sa same cyfry ilosci 2 potem - i cyfry ilosci 3                                      
+        echo "\"$1\" jest kodem pocztowy"
+
+elif [[ "$1" =~ ^[A-ZŻŹĆĄŚĘŁÓ]{1}+[a-zżźćąśęłó]{1,"$x"}$ ]]; then               #Polskie imie tu troche pokombinowalem wlasnie ze z zmienna z poczatku skryptu ale dziala, uwzglednilem wielka litere                                         
+                                                                                #oraz Polskie znaki.                                                                                                                                          
+        echo "\"$1\" jest Polskim imieniem"
+else
+        echo To musi byc jakies slowo, albo ciag przypadkowych liter badz cyfr
+fi
+
+#Rezultat jezeli do argumenty wywolania skryptu wpiszemy email,kod pocztowy,Polskie imie, to skrypt napisze co to jest.Jezeli napiszemy cos innego wyswietli sie komunikat  o tresci blad                                                     
+
+

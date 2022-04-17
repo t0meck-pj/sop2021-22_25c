@@ -1,0 +1,20 @@
+#!bin/bash                                                                                                                                                                                                                                    
+
+#Napisz skrypt, który:                                                                                                                                                                                                                        
+#Sprawdzi, czy jego nazwa konczy się .sh                                                                                                                                                                                                      
+#Jeśli nie, to niech zmieni swoją nazwe poprzez dopisanie tego rozszerzenia.                                                                                                                                                                  
+#Sprawdzanie mozna zrobic na kilka sposobow, polecam przetesteowac 3 typowe                                                                                                                                                                   
+#uzyc wbudowanego w bashu mechanizmu do wyciaganie czesci napisow ${%},${%%},${\                                                                                                                                                              
+#},${##}                                                                                                                                                                                                                                      
+
+nazwaPliku=$0   #Pobieramy nazwe pliku do zmiennej, można też to zrobić za pomocą basename, ale zauważyłem, że użycie $0 działa tak samo, przynajmniej tak mi się wydaje, a to jest po prostu szybszy zapis                                   
+rozszerzenie="${nazwaPliku##*.}"   #Tworzymy zmienna rozszerzenie, używając ##.*, opcja ktora obcina wszystko co jest przed kropką, dlatego zostaje nam tylko rozszerzenie                                                                    
+
+if [ "${rozszerzenie}" != "sh"  ]; then         #warunek, ktory zadziala w momencie kiedy rozszerzenie jest inne niz sh                                                                                                                       
+        echo Rozszerzenie sh nie zostalo znalezione. Nastapila zmiana rozszerzenia      #Jeżeli warunek sie spelni to wyswietla nastepujacy napis <--                                                                                         
+        mv $0 ${0}.sh                                                                   #i za pomocą komendy mv zamieni nam nazwe pliku na nazwepliku z tym, ze dopisze nam rozszerzenie sh na koncu                                          
+else
+        echo Plik posiada roszerzenie sh                #Jeżeli pierwszy warunek sie sie spelni, w ten czas skrypt wyswietla napis <--                                                                                                        
+fi
+
+#Rezultat, jeżeli dany plik ma rozszerzenie sh,to nic sie nie zmieni. Natomiast jezeli plik ma inne rozszerzenie to wtedy na koniec nazwy pliku zostanie dopisane .sh     

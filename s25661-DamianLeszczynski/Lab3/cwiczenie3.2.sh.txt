@@ -1,0 +1,30 @@
+#!/bin/bash                                                                                                                                                                                                                                   
+
+#Przygotuj funckje obliczajaca rekurencyjnie ciag Fibonacciego.Niech wynik zwraca za pomoca return.Czy sa jakies ograniczenia?                                                                                                                
+
+#Jest jedno ogranicznie, mianowicie nie da sie zrobic tak zeby funkcja zwracala wynik, funckje w bashu w przeciwienstwie do funkcji w jezykach programowania, nie pozwalaja na zwrocenie                                                      
+#wartosci do obiektu wywolujacego. Zatem Gdy funkcja bash sie konczy, jej  wartosc zwracana jest jej stanem np: 0 oznacza poprawne wykonanie funkcji w sensie powodzenie/sukces                                                               
+
+function fib {
+        x=0     #ustalamy wartosc dla x i y, potem w miare zapetlania sie fukcji wartosci zmiennych beda sie powiekszac                                                                                                                       
+        y=1
+
+        if [[ $n == 1 || $n == 0 ]]; then       #warunek jezeli n rowna sie 1 albo 0 wyswietlamy n                                                                                                                                            
+        echo "$n"
+        elif [ $n > 2 ]; then                   #Serduszko funkcji jezeli n jest wieksze niz 2, wtedy wykonje sie petla for przybisujac jej wartosc 2 na start i iteracje o 1                                                                 
+                for (( i=2; i <= $n; i++ ))     # petla zatrzyma sie jezeli osiagnie wartos cpowtorzen rowna n                                                                                                                                
+                do
+                z=$[y+x]                        #Zgodnie ze wzorem:czyli F0=0,F1=1,F2=0+1,F3=1+1=2,F4=2+1,f5=3+2 i tak dalej                                                                                                                  
+                x=$y                            #Do zmiennej z przybisujemy sume y i x a potem do zmiennych x przypisuje y a y przypisuje sume y i z                                                                                          
+                y=$z                            #petla sie zapetla n razy wykonujac to samo dajac wynik ciagu fib                                                                                                                             
+                done
+                fi
+        echo "$n wyraz ciagu Fibonacciego wynosi $z"    #Informacja o tym jaka liczbe podalismy i jaki jest n-ty wyraz ciagu fib                                                                                                              
+}
+
+echo Podaj liczbe n liczby ciagu Fibonacciego   #Pobieramy od uzytkownika n-ta liczbe ciagu za pomoca komedy read, dodajac parametr -s wynik w terminalu bedzie ladniejszy poniewaz liczba                                                    
+read -s n                                       #nie bedzie powtarzala sie w terminalu nie potrzebnie.Nastepnie wywolujemy funkcje fib                                                                                                        
+fib
+
+
+

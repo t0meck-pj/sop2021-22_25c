@@ -1,0 +1,12 @@
+#!/bin/bash                                                                                                                                                                                                                                   
+#Napisz skrypt, który sprawdzi, czy podano więcej niż jeden parametr.                                                                                                                                                                         
+#Jeśli tak,to niech wyświetli pierwszy parametr. Jeśli nie,to niech wyświetli komunikat, że nie podano parametrów                                                                                                                             
+
+if [ $# != 0 ]; then    #Użycie prostego warunku jeżeli parametrów NIE jest 0 to warunek się spełnia                                                                                                                                          
+        echo $1         #i wyświetla pierwszy parametr                                                                                                                                                                                        
+else
+        echo "Nie podano parametrow" #Jeżeli warunek się nie spełni wyświetla komunikat                                                                                                                                                       
+fi
+
+#Rezultat: Jeżeli jest jeden parametr lub więcej, to w terminalu wyświetla pierwszy                                                                                                                                                           
+#Jeżeli parametrów nie ma, wyświetla się komunikat                         

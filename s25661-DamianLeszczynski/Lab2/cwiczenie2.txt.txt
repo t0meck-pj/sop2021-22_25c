@@ -1,0 +1,115 @@
+Ćwiczenie 2 
+
+---------------------------------------
+Zobacz taką serię poleceń:
+
+X=tekst
+echo $X
+bash
+echo $X
+
+Co się stało? Czy potrafisz wyjaśnić?
+---------------------------------------
+
+Pewnie, przypisaliśmy w zmiennej 'x' wartość, a właściwie napis "tekst".Następnie za pomocą komendy echo wypisaliśmy wartość tej zmiennej i w terminalu pojawił się napis "tekst".
+Następnie za pomocą komendy bash zmienilismy bierzącą powłokę na inną, i tam po wywołaniu komendy echo $X, nie wyświetliło nam żadnej wartości. Stało się tak ponieważ przypisaliśmy zmienną
+lokalną, która widnieje tylko na powłocę na, której została przypisana.
+
+******************************************************************************************************************************************************************
+***														KILKA ISTOTNYCH INFORMACJII														***
+***																																	***	
+*** Bash, to nic innego jak powłoka systemowa (Swojego rodzaju łącznik między komputerem jako maszyną, a użytkownikiem), 								***
+*** pozwalająca na komunikację w trybie tekstowym. Jest to powłoka napisana typowo pod Linuxa, powłoka na Windowsa to np. PowerShell.						***
+*** Zmienne powłoki, służą do przechowywania wartości.Działa to na podobnej zasadzie jak w przypadku programowania.										***
+*** jest zmienna musimy ją nazwać określić typ są zmienne lokalne i globalne i tak dalej.															***
+*** Tutaj tak samo jak w programowaniu,żeby przypisać jakąś wartość do zmiennej trzeba ją nazwać użyć znaku (=), ale nie trzeba deklarować typu zmiennej,		***
+*** ponieważ system zrobi to automatycznie.	Wiemy jak stworzyć zmienną, natomiast, żeby się jej pozbyć czyli po porstu ją usunąc używamy komendy "unset",		***
+*** czyli unset <nazwa_zmiennej>.	Żeby wyświetlić zmienną używamy następującej komendy: echo $ZM, wtedy konsola wyświetli nam to co przypisaliśmy do "ZM",	***
+*** czyli w naszym przypadku jest to napis "moja_zmienna".																					***
+*** Dolar $ przed zmienną podajęmy kiedy interesuje nas sama wartość (odnosimy się do jej wartości).													***
+***																																	***
+***	   np:																															***
+***		-unset ZM usuwamy "całość" zmiennej  																								***
+***		-echo $ZM wyświetlamy "środek" zmiennej																							***
+***																																	***
+***		Dziedziczenie: 																												***
+***																																	***
+*** Jak już wspomniałem zmienne mogą znajdować się tylko w danej powłocę (zmienne lokalne) lub mogą znajdować się na wszystkich powłokach (zmienne globalne).	***
+*** Jak przypisujemy daną wartość czyli np zm=3 to ustalamy wartość 3 dla zm na danej powłoce natomiast, żeby zrobić to lokalnie robimy to na dwa sposoby:	***
+***																																	***
+***	-Tworzym zmienną następnie używamy komendy export i przypisujemy ją do każdej powłoki np:														***
+***																																	***
+***		ZM=3 																														***
+***		export ZM 																													***
+***																																	***
+***	-Tworzymy zmienną odrazu przypisując ją do każdej powłoki:																				***
+***																																	***
+***		export ZM=3 																													***
+***																																	***
+***	*Poruszanie się po powłokach jest możliwe za pomocą dwóch komend bash i exit, bash skaczemy na kolejną powłoke, exit cofamy się na poprzednią.			***
+*** 																																	***
+***	do usuwania exportowanych wartości istnieją dwa sposoby: 																					***
+***																																	***
+***	-export -n zm <-- na powłoce, na której powstała zmienna wpisanie tej komendy usuwa tą wartość na wszystkich powłokach oprócz aktualnej.				***
+***	-unset zm <-- wpisane na powłoce powstałej usuwa zmienną na wszystkich powłokach oraz na aktualnej,												***
+***				 z tym że jak usuniemy na innej powłocę niż na powłoce "matce"																	***
+***				to zmienna usuwa się tylko na tej powłoce na której ją usuneliśmy,a nie na pozostałych. 											***
+***																																	***
+***	Odczytywanie zmiennych odbywa się na dwa sposoby:																						***
+***																																	***
+***	-$Zmienna																															***
+***	-${Zmienna} <-- Przydatne przy kontaminancji "Łączeniu napisów"																			***
+***																																	***
+***																																	***
+******************************************************************************************************************************************************************
+
+-------------------------------------------------------------------------------------------
+Zobacz:
+
+X=Tekst dłuższy
+echo $X
+
+Co jest nie tak? jak to naprawić? Zobacz czy pomoże zastosowanie cudzysłowów i apostrofów.
+-------------------------------------------------------------------------------------------
+
+Po przypisaniu wartości ze spacją po środku w terminalu wyskakuje błąd, dzieje się tak ponieważ spacja w terminal spację traktuje jak przerwe a treść po niej jako następną komende.
+po wypisaniu wartość 'x' za pomocą komendy echo nie wyskakuję nam nic, ponieważ zmienna nie przypisała tam żadnej wartości.Da się to naprawić w za pocą cudzysłowia. 
+x="Tekst dłuższy". (O zastosowaniu nawiasów, niżej)
+
+---------------------------------
+Zobacz:
+
+X="Tekst 1"
+Y="tekst:$X"
+echo "$Y"
+Y='tekst:$X'
+echo "$Y"
+Y=tekst:$X
+echo "$Y"
+
+Jaka jest różnica między " a ' ?
+---------------------------------
+
+Jeżeli chodzi o nadawanie wartości zmiennej mamy trzy sposoby, żeby to zrobić:
+
+-Poprostu wpisanie nazwy tak jak wyżej z tym, że nie można wstawić spacji; 
+-w " " nawiasach z tym, że jak będziemy mieli jakieś znaki specjalne interpreter przeczyta to jako wartości;
+-w ' ' nawiasach pojedyńczych, możemy napisać co nam się podoba. Interpreter przeczyta to po prostu jako napis;
+
+-----------------------------------------------
+A=Ala
+echo $A ma kota, a kot ma ${A}ę
+
+Tak, tu coś będzie nie tak, zaraz to naprawimy.
+-----------------------------------------------
+
+Naprawimy, naprawimy... Alę, ale w innym zadaniu :)
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+#!/bin/bash                                                                                                                                                                                                                                   
+
+#Napisz skrypt, ktory bedzie wypisywal wszystkie argumenty wywolania skryptu                                                                                                                                                                  
+#(pamietaj o tym, ze argument moze w sobie zawierac jakies spacje)napisane w cudzyslowiach                                                                                                                                                    
+
+for i in "$@"; do echo $i;done  #Myśle, że nic trudnego do tlumaczenia nie ma prosta petla , ktora wypisuje nam po koleji parametry wywolania skryptu                                                                                         
+                                #za pomoca $@ czyli listy parametrow bez separatorow, uzycie cudzyslowia powoduje wypisanie parametrow raze za spacjami                                                                                       
+
+#Reuzltat jest taki, ze skrypt drukuje nam po kolei argumenty wywolania                                 

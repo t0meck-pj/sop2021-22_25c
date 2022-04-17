@@ -1,0 +1,19 @@
+#!/bin/bash                                                                                                                                                                                                                                   
+
+#Napisz skrypt, ktory wczyta liste plikow do wypisania z wiersza polecen, a nastepnie wypisze ich zawartosc raz w kolejnosci od konca i od konca do poczatku                                                                                  
+
+wyliczanka=$(ls -p | grep -v /)         #Do zmiennej wyliczanka, ladujemy liste plikow wylaczajac katalogi                                                                                                                                    
+x=$(ls -p | grep -cv /)                 #Do zmiennej x, ktora przyda mi sie w petli laduje liczbe plikow bez katalogo                                                                                                                         
+tab=($wyliczanka)                       #Do tablicy laduje wszystkie pliki, zeby w drugiej petli moc je odwrocic nie uzywajac tac i cat bo ja ambitny jestem haha                                                                             
+
+for wyliczanka in *                     #Pierwsza petla banal dla wszystkich elementow ze zmiennej wyliczanka wszystkich dlatego dalem *, po koleji drukuja sie nazwy plikow                                                                  
+do
+        echo $wyliczanka
+done
+
+        echo '-=-A-TERA-ZMIANA-=-'
+
+for (( i=($x-1); i >= 0;i--)); do echo ${tab[i]}; done          #Druga petla jako i podstawia zmienna x-1, poniewaz indeksami tablicy operuje sie od zera, nastepnie od wartosci i                                                            
+                                                                #czyli ilosci plikow jakie dostarczylem do skryptu drukuja sie kolejno wyrazy do indeksu rownego 0                                                                            
+
+#Rezultat: Skrytp pobiera liste plikow bierzacego katalogu i drukuje je najpierwsz po koleji a potem na odwrot    

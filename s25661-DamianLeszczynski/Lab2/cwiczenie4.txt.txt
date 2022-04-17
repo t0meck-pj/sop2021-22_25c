@@ -1,0 +1,26 @@
+Ćwiczenie 4
+
+-------------------------------------------------------------------------------------
+Wykonaj komendę ls -l w podpowłoce i przypisz ją do zmiennej X.
+
+Wyświetl zawartość tej zmiennej.
+
+Spraw, aby nie było różnicy (co najwyżej kolorki) między zwykłym wykonaniem komendy:
+
+ls -l
+
+a wypisaniem zawartości zmiennej X. Nie będzie dobrego rezultatu gdy zrobimy tak:
+
+echo $X
+
+Zastanów się dlaczego.
+-------------------------------------------------------------------------------------
+
+Wykonująć komendę ls -l dostaniemy listę katalogów/plików wraz z uprawnieniami, 
+natomiast po przypisaniu zawartości do zmiennej za pomocą x=$(ls -l) i wykonaniu komendy echo $x
+dostaniemy ten sam wynik, ale w lini ciągłej bez podziału na wierszę, lecz po prostu jako długi tekst.
+
+Jest sposób, aby wyświetliło się to tak samo, jak przy użyciu komedny, ale bez koloru.
+
+Przypisując wartość w następujący sposób x='ls -l' i wywołując ją nie jako echo czyli, napis ale jako po prostu bezpośrednie wywołanie wartości
+wpisując $x w terminalu. Dostaniemy oczekiwany wynik. 
