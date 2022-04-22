@@ -1,0 +1,18 @@
+X=tekst //Przypisanie do zmiennej X wartości tekst
+echo $X //Wyswietlenie zmiennej X
+bash //Otworzenie nowej powłowki
+echo $X //Zmienna X nie została wyexportowana z powłoki rodzica, przez co zmienna nie istnieje i nie wyświetli się "Tekst" jak to było wyżej.
+
+X=Tekst dłuższy //Tekst zawierający białe znaki powinien być zapisany w cudzyslowiach
+echo $X
+
+
+
+X="Tekst 1"
+Y="tekst:$X"
+echo "$Y"
+Y='tekst:$X'
+echo "$Y"
+Y=tekst:$X
+echo "$Y"
+//Znak " pozwala na używanie zmiennych, znak ' - nie.
