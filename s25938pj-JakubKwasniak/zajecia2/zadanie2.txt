@@ -9,7 +9,7 @@ Otworzył się nam nowy bash/nowa powłoka po chwili ładowania.
 X=Tekst dłuższy
 echo $X
 
-Aby naprawić błąd musimy naszą zmienną zapisać w ""
+Aby naprawić błąd musimy naszą zmienną zapisać w "", w '', lub zapisać jako jedno słowo 
 X="Tekst dłuższy"
 echo $X
 Teraz zadziała 
