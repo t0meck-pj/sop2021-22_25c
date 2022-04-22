@@ -1,12 +1,17 @@
 Wpierw w Globalnych Ustawieniach ustawiamy lokalizację folderu gdzie mają się znajdować nasze maszyny
 Klikamy niebieską ikonkę Nowa
 Wypisujemy nazwe naszego systemu (Powinien się automatycznie ustawić Typ)
-Wybieramy rozmiar pamięci RAM jaki chcemy wykorzystywać w naszej maszynie
+Wybieramy rozmiar pamięci RAM jaki chcemy wykorzystywać w naszej maszynie. Do odpalenia podstawowej dystrybucji linuxa wystarczy 1024mb, natomiast podczas poważnej pracy będzie to zdecydowanie za małego
+Na stronie debiana możemy znaleźć że minimalne wymagania w przypadku braku pulpitu to 128mb a zalecane to 512mb
+natomiast w przypadku komputera stacjonarnego z graficznym interfejsem minimalna ilość ramu to 256mb a zalecana to 1gb
+My z racji że chcemy aby nasza maszyna była wydajna wybieramy 4096mb
 Mamy 3 możliwości w zakładce "Dysk Twardy"
 
--Nie dodawaj wirtualnego dysku twardego - 
--Stwórz wirtualny dysk twardy - Przechodzimy przez dalszą konfigurację gdzie konfigurujemy parametry wirtualnego dysku (KLIKAMY W TĄ OPCJE)
--Użyj istniejącego pliku wirtualnego dysku twardego - Możemy skorzystać gdy mieliśmy już utworzoną maszynę i chcemy skorzystać ze starego wirtualnego dysku(plik vdi)
+-Nie dodawaj wirtualnego dysku twardego - stworzymy wtedy maszynę bez dysku która się nie odpali (wybieramy gdy nie chcemy tworzyc wirtualnego dysku oraz nie mamy go również jeszcze pobranego.
+ Jest to opcja przydatna w przypadku gdy mamy maszynę portable i system zainstalowany na przenośnym dysku (podłączamy dysk kiedy tego potrzebujemy))
+-Stwórz wirtualny dysk twardy - Przechodzimy przez dalszą konfigurację gdzie konfigurujemy parametry wirtualnego dysku(wybieramy gdy nie mamy pobranego pliku z wirtualnym dyskiem)
+(KLIKAMY W TĄ OPCJE, ponieważ nie mamy pliku vdi a jedynie plik iso z instalką systemu który chcemy zainstalować na naszej maszynie)
+-Użyj istniejącego pliku wirtualnego dysku twardego - (używamy gdy mamy na komputerze pobrany plik z wirtualnym dyskiem o formacie vdi i chcemy go użyć)
 
 Po wybraniu drugiej opcji mamy kolejne 3 opcję z różnymi typami plików 
 
@@ -16,11 +21,12 @@ VMDK - Rozwiązanie Firmy VMware przeznaczone na maszymy VMware Workstation Play
 
 Następnie mamy dwie możliwości przypisania pamięci
 
--Dynamiczny Rozmiar - Ustawiamy rozmiar do którego maksymalnie będzie się mógł zwiększać nasz wirtualny dysk (Wybieramy tą opcję)
+-Dynamiczny Rozmiar - Ustawiamy rozmiar do którego maksymalnie będzie się mógł zwiększać nasz wirtualny dysk (Wybieramy tą opcję, z racji iż na początku nasz dysk będzie zajmował mało miejsca na fizycznym dysku
+i nie zajmie miejsca na nieużywane sektory dysku. Minusem tego rozwiązania natomiast jest zużywanie mocy obliczeniowej podczas rozszerzania dysku (czego nie ma w przypadku stałego rozmiaru))
 -Stały Rozmiar - Wielkość zostanie natychmiast zarezerwowana dla naszego wirtualnego dysku (nie trzeba później prealokować)
 Stały rozmiar jest zalecany w przypadku maszyn do celów produkcyjnych, kiedy zależy nam na jak największej wydajności
 
-Zapisujemy ustawienia i możemu już uruchomić naszą maszynę.
+Zapisujemy ustawienia , natomiast musimy jeszcze zmienić parę rzeczy w konfiguracji naszej maszyny, więc jeszcze jej nie odpalamy.
 Po najechaniu na strzałkę obok przycisku Uruchom mamy 3 opcję
 
 -Zwykły start - Maszyna startuje domyślnie (w tle + okno a po zamknięciu okna zamyka się również cała maszyna)
@@ -30,11 +36,14 @@ Po najechaniu na strzałkę obok przycisku Uruchom mamy 3 opcję
 Wchodzimy w Ustawienia naszej maszyny 
 
 W zakładce Pamięć klikamy "Dodaj napęd optyczny". Klikamy dodaj i wybieramy nasz pobrany obraz nośnika ze strony debian.org aby go potem zbootować
-W zakładce Dźwięk wyłaczamy wyjście Aurdio (odznaczamy Enable Audio Output, ponieważ dźwięk nie będzie nam potrzebny w procesie instalacji systemu)
+W zakładce Dźwięk wyłaczamy wyjście Aurdio (odznaczamy Enable Audio Output, ponieważ dźwięk nie będzie nam potrzebny w procesie instalacji systemu,
+natomiast jeżeli będziemy chcieli instalować system z syntezatorem głosu, lub będziemy po instalacji oglądać jakieś rzeczy na youtube, lub słuchać muzyki, to będziemy musieli po instalacji
+uruchomić tą opcję)
 W zakładce System w "Kolejność Bootowania" Odznaczamy Floopy( ponieważ nie będziemy używać napędu dyskietek).
 
 Odznaczanie/Usuwanie urządzeń jest zalecane w przypadku kiedy nie mamy urządzenia (jak naprzykład stacja dyskietek) i wiemy że napewno nie będziemy z 
-tego korzystać w przyszłości 
+
+tego korzystać w przyszłości. Jest to zalecane, ponieważ oszczędzamy wtedy moc obliczeniową naszej maszyny, która nie będzie wykorzystywana na nieużywane funkcje
 
 Po odpaleniu maszyny i kliknięciu myszką wyskakuje okno czy chcemy aby maszyna przechwyciła naszą myszkę (Po zaakceptowaniu jeśli chcemy poruszać myszką po systemie naszego fizycznego komputera należy nacisnąć prawy CTRL)
 Klikamy Right CTRL + R(Resetowanie maszyny) a następnie F12(Boot Menu). Wybieramy bootowanie naszego wirtualnego dysku (Opcja 1)
@@ -96,52 +105,90 @@ Wpisujemy login nowego użytkownika
 Ustawiamy hasło nowego użytkownika
 ---Okno instalacji---
 Wyskakuje okno partycjonowania dysków
-- Guided-use entire disk - Przypisywanie 1 partycji na całym dysku
-- Guided-use entire disk and set up LVM - Przypisywanie 1 partycji na całym dysku i ustawienie LVM 
+- Guided-use entire disk - Przypisywanie 1 partycji na całym dysku (wybieramy, gdzy zależy nam na czasie i nie chcemy się bawić w ręczne partycjonowanie. Opcja ta usunie wszystkie wcześniej
+utworzone partycje oraz pliki(jest to więc przydatne w przypadku formatowania komputera i stawiania świeżego systemu))
+- Guided-use entire disk and set up LVM - Przypisywanie 1 partycji na całym dysku i ustawienie LVM (jest to przydatne, gdy potrzebujemy wielu partycji na wielu dyskach oraz daje nam możliwość
+połaczenie partycji z kilku dysków w jeden wirualny dysk. Dodatkowo w przypadku wybrania tej opcji musimy wybrać czy chemy aby nasze woluminy były zaczyfrowane za pomocą luks(specyfikacja 
+szyfrowania dysky twardego przeznaczona dla linux), oraz w przypadku wybrania szyfrowania należy podać hasło, które będziemy wprowadzać przy uruchomieniu systemu)
 	(LVM-softwareowa implementacja RAIDA( WIĘCEJ INFORMACJI O RAIDZIE NA SAMYM DOLE))
 - Guided-use entire disk and set up encrypted LVM - Przypisywanie 1 partycji na całym dysku i ustawienie szyfrowanego LVM
--Manual - Ręczne partycjonowanie dysków (wybieramy tą opcje)
-
+-Manual - Ręczne partycjonowanie dysków (wybieramy tą opcje, ponieważ mamy wtedy większe pole do popisu jeżeli chodzi o partycjonowanie dysków
+Korzyściami tej opcji jest m.in. możliwość zachowania plików instalacji systemu osobno, możliwość wydzielenia oddzielnej partycji na kopię zapasową, pomaga chronić nasze pliki przed 
+złośliwym oprogramowaniem oraz daje możliwość łatwego zarządzania. Dodatkowo jest to przydatne w przypadku instalacji 2 lub więcej systemów, gdzie na każdy system wydzielamy osobną partycję)
+Wadami tej opcji jest natomiast m.in fałszywe poczucie bezpieczeństwa (w razie awarii nadal tracimy dane ze wszystkich partycji), nie poprawia to naszej wydajności, w przypadku dużej aktualizacji
+systemu może dojść do sytuacji, gdzie na partycji systemowej nie będziemy mieli miejsca, a inna będzie miała tego miejsca sporo, oraz jest to nieprzydatne dla przeciętnego użytkownika, który
+nie posiada dużej ilości plików oraz chęci ich zarządzania, oraz nie posiada innych systemów operacyjnych poza jednym
 Następnie wyskakuje 5 opcji 
 
 -Guided partitioning - partycjonowanie dysków z "przewodnikiem/pomocą"
--Configure ISCII volumes - Konfiguracja woluminów ISCII (ISCII - schemat kodowania reprezentujący różne systemy pisma w Indiach)
+-Configure ISCII volumes - Konfiguracja woluminów ISCSI (ISCSI - Technika umożliwiająca wykonywanie operacji wejścia-wyjścia na dysku twardym odległej maszyny za pomocą protokołu TCP/IP. 
+Źródło: https://pl.wikipedia.org/wiki/ISCSI)
 -Następnie wyskakują nam nasze wszystkie partycje dysków(KLIKAMY W NASZ DYSK)
 -Undo changes to partition - Cofanie zmian partycjonowania
 -Finish partitioning and write changes to disk - Kończenie partycjonowania i zapisywanie zmian na dysku
 
 Wyskakuje okno czy chcemy stworzyć nową pustą partycję na naszym urządzeniu (KLIKAMY YES)
+Zapytanie wyskakuje ponieważ jest to zabezpieczenie. W razie iż gdybyśmy mieli już zapisane jakieś dane to przepadły by one. Z racji iż mamy pusty dysk klikamy tak
+Nie przejdziemy przez dalszy proces, ponieważ mamy pusty nieskonfigurowany dysk bez żadnego systemu (jedyne wyjście to podłączenie skonfigurowanego pliku vdi w ustawieniach maszyny).
+Opcja powoduje pojawienie się kolejnych opcji konfiguracji naszego dysku
 
 Wyskakują poza wcześniejszymi opjcami 3 nowe
--Configure Software Raid - Konfiguracja RAID-a
--Configure the Logical Volume Manager - Konfiguracja Menedżera woluminów logicznych
--Configure encrypted manager - Konfiguracja menadżera Szyfrowania
-Wybieramy zakładkę z wolnym miejscem na naszej partycji
+-Configure Software Raid - Konfiguracja RAID-u (wybieramy gdy mamy więcej niż 1 dysk i chcemy utowrzyć macierz RAID która da nam możliwość zwiększenia prędkości lub bezpieczeństwo w razie awarii jednego z dysków)
+różnica między RAID i LVM polega na tym, że LVM nie zapewnia żadnych opcji redundancji ani parzystości, które zapewnia macierz RAID (Żródło: https://computingforgeeks.com/raid-vs-lvm-vs-zfs-comparison/)
+-Configure the Logical Volume Manager - Konfiguracja Menedżera woluminów logicznych (wyżej wspomniany LVM, wybieramy gdy mamy kilka dysków i chcemy je połączyć w jeden wirtualny)
+-Configure encrypted manager - Konfiguracja menadżera Szyfrowania (Wybieramy gdy chcemy aby nasze pliki były zaszyfrowane za pomocą AES lub Twofish)
+Wybieramy zakładkę z wolnym miejscem na naszej partycji, ponieważ w naszym przypadku nie będziemy konfigurować żadnej z powyższych opcji
 
-Wyskakują 3 opjce
+Wyskakują 3 opcje
 
--Create a new partition - Tworzenie nowej partycji(WYBIERAMY TĄ OPCJE)
--Automatically partition the free space - Automatyczne tworzeniej partycji na wolnym miejscu
-- Show Cylinder/Head/Selector Information - Pokazuje nam wszelkie informację na temat naszeych dysków (Cylindry, Głowice)
+-Create a new partition - Tworzenie nowej partycji(WYBIERAMY TĄ OPCJE, ponieważ chcemy skonfigurować naszą partycję zgodnie z naszymi potrzebami)
+-Automatically partition the free space - Automatyczne tworzeniej partycji na wolnym miejscu (Jest ona pomocna w przypadku gdy mamy już utworzone nasze partycję, natomiast zostało
+nam wolne miejsce na dysku, a w przypadku nieprzypisania go do żadnej partycji miejsce pójdzie na zmarnowanie)
+-Show Cylinder/Head/Selector Information - Pokazuje nam wszelkie informację na temat naszych dysków (Cylindry, Głowice)
 
 Ustawiamy partycję podstawową o pojemności o 8GB Mniejszą od tej pamięci jaka nam wyskakuje (Aby mieć miejsce potem na logiczną), ustawiamy ją na początku (Beginning)
+Wybieramy podstawową dlatego, iż do uruchomienia systemu musimy posiadać conajmniej jedną partycję podstawową (maksymalnie można mieć 4)
+Wartość 8GB wzięła się stąd, iż drugą partycję (logiczną) ustawimy na swap area (tzw. fałszywa pamięć ram) która jest wolniejsza niż rzeczywista pamięć RAM. 
+Zalecane jest ustawienie partycji swap area o takiej samej pojemności jak nasz RAM. a z racji iż RAM ustawiliśmy na 8GB to swap area również ustawiamy na 8GB
+Partycji logicznych możemy mieć nieograniczona ilość na naszym dysku
 
-Potem mamy pokazane wszystkie ustawienia naszej partycji (Możemy zmienić opcję jak możemy używać dysku(Zmienimy przy drugije partycji))
+Potem mamy pokazane wszystkie ustawienia naszej partycji (Możemy zmienić opcję jak możemy używać dysku(Zmienimy przy drugiej partycji))
 
--Use as - używaj jako (domyślnie system plików ext4)
--Mount point - punkt montowania(/)
+-Use as - używaj jako (domyślnie system plików ext4. Wybieramy go dlatego iż aktualnie jest najbardziej solidny i stabilny. Według informacji na internecie
+w przyszłości dystrybucje linuxa będą stopniowo przesuwać się w kierunku BtrFS)
+-Mount point - punkt montowania(/) 
+Dzięki temu system będzie się nam uruchamiał z głównego katalogu z racji iż mamy jeden system zainstalowany (jeżeli mielibyśmy 2 systemy 
+należałoby ustawić punkt montowania na /boot)
 -mount options - opcje montowania(defaults-domyślne)
 -Label - etykieta (none)
 -Reserved blocks - Zarezerwowane bloki(5%)
 -Typical usage - typowe zastosowanie (standard)
 -Bootable flag - flaga startowa (off)
+1.Jest to 1 - bajtowa wartość w nierozszerzonym rekordzie partycji w głównym rekordzie rozruchowym . 
+Pojawia się na początku rekordu partycji jako wartość 0x80. Wartość 0x00 wskazuje, że partycja nie ma ustawionej flagi rozruchu.
+Każda inna wartość jest nieprawidłowa. (Źródło: https://en.wikipedia.org/wiki/Boot_flag)
+2.Wybieramy że nie, ponieważ jest to przestarzała metoda a MBR poosiada moduł ładujący który ładuje się do własnej partycji lub przeskakuje do innych dysków.
+3.Flaga powinna być ustawiona gdy chcemy wskazać rekord partycji MBR
+4.Ustawia się ją aby załadować ten program znajdujący się na partycji MBR
+5.Może być ona ustawiona tylko na jednej partycji, ponieważ w przeciwnym wypadku mamy gwarantowany konflikt (komputer nie będzie wiedział którą partycję ma zbootować)
+6.Ograniczeniem jest to, że możemy miec ustawioną jedną flagę., ponieważ w przeciwnym przypadku tak jak powyżej będziemy mieli konflikt
+
 -Delete the partition - Usunięcie partycji
 -Done setting up the partition - zatwierdzenie ustawień partycji (Klikamy to)
 
 Mamy już utworzoną pierwszą partycję podstawową . Klikamy znowu w zakładkę free space/create a new partition/przypisujemy 8GB i ustawiamy partycję tym razem na logiczną
+ustawiamy teraz logiczną, ponieważ będziemy mieli w przyszłości możliwość rozszerzania partycji rozszerzonej o kolejne logiczne partycje (co nie jest dostępne przy podstawowej)
+Partycja podstawowa jest przeznaczona do przechowywania plików systemu, innych danych oraz jest niezbędna do uruchomienia systemu
+Partycja logiczna jest natomiast przeznaczona jedynie do przechowywania danych, ponieważ nie obsługują one systemu operacyjnego
+Partycja Logiczna od podstawowej różni się tym, że w przypadku starych programów MBR mogł on się uruchomić tylko z poziomu partycji podstawowej. Oraz możemy na dysku 
+mieć 4 partycję podstawowe i ani jednej logicznej, lub 3 partycje podstawowe i jedną partycję rozszerzoną, którą możemy podzielić na dowolną liczbę partycji logicznych
+
 Wszystkie ustawienia są takie same, natomiast wchodzimy teraz w zakładkę "Use As" i mamy:
 
 Ext4 journaling file system - Następca ext3. Obecnie najpopularniejszy system plików dla systemów Linuxa.
+jest on dużo wydajniejszy oraz posiada kompatybliność wsteczną względem ext3. Możemy m.in wyłączyć w nim funkcję księgowania, co poprawi wydajność,
+Limit systemu plików został zwiększony z 16TB do 1EB  (1EB = 1024PB, 1PB = 1024TB), limit plików z 2TB do 16TB, limit podkatalogów został rozszerzony z 32,768 do nieograniczonego,
+Ext4 w przeciwieństwo do ext3 obsługuje defreagmentacje oraz obsługuje pełne indeksowanie katalogów
 Ext3 journaling file system - system plików oparty na ext2. Domyśdlny dla większości systemów Linux (na jądrze od 2.4 do 2.6)
 Ext2 file system - drugi rozszerzony system plików dla systemu Linux. Rozpoznanie uszkoczeń systemu następuje podczas startu. 
 btrfs journaling file system - system plików copy-to-copy w stylu logowania. Zamiast zapisywać od razu w bloku są one najpierw tworzone w nowej lokalizacji, a następnie łączy się je.
@@ -149,7 +196,12 @@ JFS journaling file system - 64bitowy system plików z księgowaniem opracowany 
 XFS journaling file system - 64bitowy system plików z księgowaniem przeznaczony głównie do systemu IRIX. Pozwala na obsługę dużych dysków twardych
 FAT16 file system - system plików posługujący się 16-bitowym adresowaniem. Pierwsze komputery działąjące na systemie DOS miały architekturę 16 bitową
 FAT32 file system - System plików użyty pierwszy raz w windows 95
-swap area - obszar wymiany (Jest to tzw. fałszywa pamięć ram. która znajduje się na dysku. Dobrze jest mieć tyle miejsca do wymiany co faktyczna pamięć ram(Przechowuje tam wszystkie dane))(TEGO UŻYWAMY)
+
+swap area - obszar wymiany (Jest to tzw. fałszywa pamięć ram. która znajduje się na dysku.(Przechowuje tam wszystkie dane))(TEGO UŻYWAMY, 
+ponieważ będzie nam to potrzebne w razie późniejszej hibernacji systemu, lub ewentualnie gdy jakiś program będzie nam zabierał więcej RAM-u 
+niż mamy go przypisanego(dane z pamięci RAM zapisują się tu, więc należy ustawić rozmiar
+swap area na taki sam ile mamy RAM-u)
+
 physical volume for encryption - fizyczny wolumin do szyfrowania
 physical volume for RAID - fizyczny wolumin dla Raida
 physical volume for LVM  - Fizyczny wolumin dla LVM
@@ -166,6 +218,9 @@ Ustawiamy serwer proxy (w naszym przypadku nic nie wpisujemy)
 Ponieważ jesteśmy połączeni do routera końcowego bez żadnego pośredniczącego (którym jest właśnie serwer proxy)
 Działa on na zasadzie wysyłania przez użytkownika żądania wykonania operacji do serwera , a serwer w naszym imieniu wysyła żądanie do końcowego serwera 
 Wyskakuje okno czy chcemy wziąć udział w ankiecie użytkowania pakietów(klikamy nie)
+Ankieta służy do przesyłania anonimowych informacji na temat używanych przez nas pakietach/programach. 
+Powinniśmy wziąć w nim udział, gdy chcemy dostać płytę instalacyjną z pakietami 
+Nie bierzemy aktualnie udziału w konkursie, ponieważ w razie potrzeby jakiegoś progamu/pakietu możemy go w kazdej chwili zainstalować
 Serwer ten daje nam większą anonimowość w sieci (możliwość zmiany IP) co daje nam również możliwość przeglądania witryn/zasobów niedostępnych na terenie naszego kraju
 Dodatkowo daje nam możliwośc blokowania niektórych adresów internetowych, co jest przydatne w szkołach/miejscach pracy, aby uczniowie/pracownicy nie korzystali z facebooka
 
@@ -175,16 +230,65 @@ Dodatkowo daje nam możliwośc blokowania niektórych adresów internetowych, co
 Następnie wyskakuje tzw "TASK SEL". Wybieramy w nim jakie oprogramowanie chcemy dodatkowo zainstalować. Opcje jakie wyskakują to :
 
 -GNOME
+	Posiada on nowoczesny interfejs oraz jest prosty w użyciu. Mamy możliwość rozszerzenia jego funkcjonalności poprzez rozszerzenia Shell Extensions oraz mamy 
+	możliwość łatwego dostosowania jego wyglądu. Posiada on również duże zużycie mocy obliczeniowej oraz zarządzanie powyżej wymienionymi rozszerzeniami nie jest zbyt intuicyjne. 
+	Minimalne wymagania:
+	Moc procesora 800 MHz (1 GHz dla optymalnej wydajności)
+	512 MB pamięci RAM (1 GB dla optymalnej wydajności)
+	Minimum 2 GB miejsca na dysku (więcej, jeśli chcesz zainstalować więcej aplikacji)
+
 -Xfce - środowisko graficzne dla systemów uniksowych
+	Środowisko XFCE w przeciwieństwie do GNOME posiada małe zużycie mocy obliczeniowej, jest wydajne nawet w przypadku starszych sprzętów oraz jest łatwy w obsłudze.
+	Jeżeli chodzi o wygląd to sprawia wrażenie starego interfejsu oraz mamy bardzo ograniczone możliwości jeśli chodzi o ewentualne rozszerzenia
+	Wymagania:
+	Procesor: 1.0 Ghz+ (musi obsługiwać PAE)
+	RAM: 512MB+ dla komputerów stacjonarnych/LiveCD.
+	Miejsce na dysku twardym: 7,5 GB.
 -Gnome Flashback - Kolejne środowisko graficzne dla użytkowników którzy nie lubią unity.
+
 -KDE Plasma - Środowisko graficzne dla systemów operacyjnych Linux. Zawiera bogaty system bibliotek do tworzenia aplikacji w środowisku graficznym
+	Posiada on nowoczesny interfejs, jest najbardziej zaawansowanym oraz wydajnym interfejsem graficznym, posiada duże możliwości personalizacji wyglądu,
+	oraz nadaję się również dla słabszych komputerów. Jeżeli chodzi o wydajność i zużycie mocy obliczeniowej jest ono na średnim poziomie. Dodatkowo
+	niektóre aplikacje są zbyt zaawansowane dla początkujących użytkowników, więc jest to interfejs przeznaczony dla osób które już zjadły zęby na systemach Linux
+	Minimalne wymagania:
+	64-bitowy komputer (Intel lub AMD)
+	2 GB pamięci RAM.
+	10 GB miejsca na dysku.
 -Cinnamon - Środowisko graficzne oparte na bibliotece GTK+3
+	Kolejny dobrze wygladający oraz dopracowany interfejs. Jest on łatwy w użytkowaniu szczególnie dla użytkowników windows, ponieważ są one pod kątem
+	wyglądu zbliżone do siebie. Niestety zużywa on dużo mocy obliczeniowej oraz jest bardzo niestabilny przez nienaprawione jeszcze błędy
+	Wymagania:
+	1GB RAM (zalecane 2GB dla wygodnego użytkowania).
+	eww15 GB miejsca na dysku (zalecane 20 GB).
+	Rozdzielczość ekranu na poziomie 1024x768
 -MATE - Środowisko które powstało po krytyce na środowisko Gnome. Jego zaletami jest to, że działa w trybie 2D oraz posiada mniejsze sprzętowe wymagania
+	Jest on intuicyjny oraz łatwy w obsłudze, posiada dużo możliwości personalizacji, pójdzie na słabszym komputerze oraz ma średnie zużycie mocy obliczeniowej
+	Niestety jeśli chodzi o wygląd wydaję się on przestarzały
+	Minimalne wymagania:
+	Procesor: Core 2 duo/amd64
+	RAM: 1GB
+	Pamięć - 8GB
 -LXDE - (Lightweight X11 Desktop Environment) - Środowisko dla systemów operacyjnych Linux
+	Jest on bardzo wydajny oraz wspiera wszelkie dystrybucje linuxa (kosztem obcięcią wyglądu)
+	Wymagania:
+	600 MHz mocy procesora (więcej dla optymalnej wydajności)
+	512 MB pamięci RAM.
+	8 GB miejsca na dysku.
 -LXQt - Środowisko graficzne połączone z dwóch projektów (LXDE-QT i Razor-qt)
+	Jest on tak samo wydajny jak wyżej wymieniony LXDE oraz posiada jeszcze mniejsze wymagania sprzętowe. Dostepny na większości dystrybucji Linuxa
+	Wymagania:
+	256 Mb RAM (zalecane 512 Mb dla zainstalowanego systemu, 384 Mb - dla trybu Live).
+	Dysk twardy 6 GB.
+	Procesor Pentium4/Celeron.
+
+Możemy zainstalować kilka interfejsów graficznych i przełączać się między nimi, natomiast istnieje bardzo duże ryzyko wystąpienia niezgodności które będą trudne
+do naprawienia dla zwykłego użytkownika (zastępują sobie nawzajem ustawienia)
+Instalacja środowiska graficznego nie jest wymagana. Możemy użyć zamiast tego menedżera okien (którym jest naprzykład FluxBox). Instalacja następuje poprzez menedżer pakietów
+Możemy również nie instalować żadnej z dwóch powyższych opcji. Będziemy mieli wtedy mogli używać jedynie naszego komputera poprzez konsolę
 -web server - Oprogramowanie umożliwiające nam postawienie serwera internetowego na naszej wirtualnej maszynie
 -SSH server - Instalacja protokołu komunikacyjnego służącego w Sieciach TCP/IP. Służy między innymi do zdalnego łączenia się terminalowego z komputerami
 -standard systemu utilities - Instalacja standardowych narzędzi systemowych(poniżej lista programów/pakietów które ta opcja zawiera)
+
 
 https://csmojo.com/posts/what-debian-standard-system-utilities-include.html
 •	apt-listchanges
