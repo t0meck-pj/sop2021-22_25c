@@ -4,10 +4,10 @@ Wypisujemy nazwe naszego systemu (Powinien się automatycznie ustawić Typ)
 Wybieramy rozmiar pamięci RAM jaki chcemy wykorzystywać w naszej maszynie. Do odpalenia podstawowej dystrybucji linuxa wystarczy 1024mb, natomiast podczas poważnej pracy będzie to zdecydowanie za małego
 Na stronie debiana możemy znaleźć że minimalne wymagania w przypadku braku pulpitu to 128mb a zalecane to 512mb
 natomiast w przypadku komputera stacjonarnego z graficznym interfejsem minimalna ilość ramu to 256mb a zalecana to 1gb
-My z racji że chcemy aby nasza maszyna była wydajna wybieramy 4096mb
+My z racji że chcemy aby nasza maszyna była wydajna wybieramy 8192mb
 Mamy 3 możliwości w zakładce "Dysk Twardy"
 
--Nie dodawaj wirtualnego dysku twardego - stworzymy wtedy maszynę bez dysku która się nie odpali (wybieramy gdy nie chcemy tworzyc wirtualnego dysku oraz nie mamy go również jeszcze pobranego.
+-Nie dodawaj wirtualnego dysku twardego - stworzymy wtedy maszynę bez dysku która się nie odpali (wybieramy gdy mamy specjalną kartę sieciową i nasz komputer łączy się z serwerem i pobiera z niego system operacyjny.
  Jest to opcja przydatna w przypadku gdy mamy maszynę portable i system zainstalowany na przenośnym dysku (podłączamy dysk kiedy tego potrzebujemy))
 -Stwórz wirtualny dysk twardy - Przechodzimy przez dalszą konfigurację gdzie konfigurujemy parametry wirtualnego dysku(wybieramy gdy nie mamy pobranego pliku z wirtualnym dyskiem)
 (KLIKAMY W TĄ OPCJE, ponieważ nie mamy pliku vdi a jedynie plik iso z instalką systemu który chcemy zainstalować na naszej maszynie)
@@ -105,10 +105,12 @@ Wpisujemy login nowego użytkownika
 Ustawiamy hasło nowego użytkownika
 ---Okno instalacji---
 Wyskakuje okno partycjonowania dysków
-- Guided-use entire disk - Przypisywanie 1 partycji na całym dysku (wybieramy, gdzy zależy nam na czasie i nie chcemy się bawić w ręczne partycjonowanie. Opcja ta usunie wszystkie wcześniej
-utworzone partycje oraz pliki(jest to więc przydatne w przypadku formatowania komputera i stawiania świeżego systemu))
-- Guided-use entire disk and set up LVM - Przypisywanie 1 partycji na całym dysku i ustawienie LVM (jest to przydatne, gdy potrzebujemy wielu partycji na wielu dyskach oraz daje nam możliwość
-połaczenie partycji z kilku dysków w jeden wirualny dysk. Dodatkowo w przypadku wybrania tej opcji musimy wybrać czy chemy aby nasze woluminy były zaczyfrowane za pomocą luks(specyfikacja 
+- Guided-use entire disk - Automatyczne przypisywanie partycji na dysku . Po wybraniu opcji mamy 3 możliwości:
+*Zapisanie wszystkiego na jednej partycji (rekomendowane dla nowych użytkowników)
+*Wydzielenie partycji /home
+*Wydzielenie partycji /home /var oraz /tmp
+- Guided-use entire disk and set up LVM - To samo co powyżej, natomiast z ustawieniem LVM (opcja umożliwiająca nam połączyć kilka dysków w 1 wirtualny dysk)
+ Dodatkowo w przypadku wybrania tej opcji musimy wybrać czy chemy aby nasze woluminy były zaczyfrowane za pomocą luks(specyfikacja 
 szyfrowania dysky twardego przeznaczona dla linux), oraz w przypadku wybrania szyfrowania należy podać hasło, które będziemy wprowadzać przy uruchomieniu systemu)
 	(LVM-softwareowa implementacja RAIDA( WIĘCEJ INFORMACJI O RAIDZIE NA SAMYM DOLE))
 - Guided-use entire disk and set up encrypted LVM - Przypisywanie 1 partycji na całym dysku i ustawienie szyfrowanego LVM
@@ -145,6 +147,7 @@ Wyskakują 3 opcje
 -Automatically partition the free space - Automatyczne tworzeniej partycji na wolnym miejscu (Jest ona pomocna w przypadku gdy mamy już utworzone nasze partycję, natomiast zostało
 nam wolne miejsce na dysku, a w przypadku nieprzypisania go do żadnej partycji miejsce pójdzie na zmarnowanie)
 -Show Cylinder/Head/Selector Information - Pokazuje nam wszelkie informację na temat naszych dysków (Cylindry, Głowice)
+jeżeli mamy informację na temat głowic i dzięki tej informacji możemy zoptymalizować operacje na dysku (możemy tak podzielić partycję aby nasza konfiguracja działała wydajniej)
 
 Ustawiamy partycję podstawową o pojemności o 8GB Mniejszą od tej pamięci jaka nam wyskakuje (Aby mieć miejsce potem na logiczną), ustawiamy ją na początku (Beginning)
 Wybieramy podstawową dlatego, iż do uruchomienia systemu musimy posiadać conajmniej jedną partycję podstawową (maksymalnie można mieć 4)
@@ -171,7 +174,7 @@ Każda inna wartość jest nieprawidłowa. (Źródło: https://en.wikipedia.org/
 3.Flaga powinna być ustawiona gdy chcemy wskazać rekord partycji MBR
 4.Ustawia się ją aby załadować ten program znajdujący się na partycji MBR
 5.Może być ona ustawiona tylko na jednej partycji, ponieważ w przeciwnym wypadku mamy gwarantowany konflikt (komputer nie będzie wiedział którą partycję ma zbootować)
-6.Ograniczeniem jest to, że możemy miec ustawioną jedną flagę., ponieważ w przeciwnym przypadku tak jak powyżej będziemy mieli konflikt
+6.Ograniczeniem jest to, że możemy miec ustawioną flagę jedynie na partycji podstawowej.
 
 -Delete the partition - Usunięcie partycji
 -Done setting up the partition - zatwierdzenie ustawień partycji (Klikamy to)
@@ -189,12 +192,27 @@ Ext4 journaling file system - Następca ext3. Obecnie najpopularniejszy system p
 jest on dużo wydajniejszy oraz posiada kompatybliność wsteczną względem ext3. Możemy m.in wyłączyć w nim funkcję księgowania, co poprawi wydajność,
 Limit systemu plików został zwiększony z 16TB do 1EB  (1EB = 1024PB, 1PB = 1024TB), limit plików z 2TB do 16TB, limit podkatalogów został rozszerzony z 32,768 do nieograniczonego,
 Ext4 w przeciwieństwo do ext3 obsługuje defreagmentacje oraz obsługuje pełne indeksowanie katalogów
-Ext3 journaling file system - system plików oparty na ext2. Domyśdlny dla większości systemów Linux (na jądrze od 2.4 do 2.6)
-Ext2 file system - drugi rozszerzony system plików dla systemu Linux. Rozpoznanie uszkoczeń systemu następuje podczas startu. 
+
+Ext3 journaling file system - system plików oparty na ext2. Domyśdlny dla większości systemów Linux (na jądrze od 2.4 do 2.6).
+Główną zmianą jaka zaszła w Ext3 to wprowadzenie księgowania plików (pliki nie są od razu zapisywane na dysku, lecz w kronice, 
+dzięki czemu jest mniejsze prawdopobobieństwo na utratę danych). Jest on bardzo prosty w implementacji, obciąża w małym stopniu
+procesor oraz jest kompatibylny z ext2. Do jego wad można zaliczyć ograniczoną wielkość partycji (32TB), zmiana wielkości partycji
+nie jest taka prosta, ponieważ należy wpierw ją odmontować oraz zamienić na ext2 (w innym przypadku stracimy dane)
+
+Ext2 file system - drugi rozszerzony system plików dla systemu Linux. Rozpoznanie uszkodzeń systemu następuje podczas startu. 
+Maksymalna wielkość partycji w tym systemie plików to około 4TB, pliki mogą mięć rozmiar maksymalnie 2TB oraz mogą mieć
+maksymalnie 255 znaków wielkości. Dodatkowo zawiera mechanizm zapobiegający znacznej fragmentacji danych, co było częstym 
+zjawiskiem w poprzednich wersjach. Kolejną zaletą sa tzw. wolne pola w strukturach danych. To dzięki nim możliwa jest
+konwersja "w locie" do systemu ext3 (wykorzystuje część z nich do przechowania swoich danych).
+
 btrfs journaling file system - system plików copy-to-copy w stylu logowania. Zamiast zapisywać od razu w bloku są one najpierw tworzone w nowej lokalizacji, a następnie łączy się je.
+
 JFS journaling file system - 64bitowy system plików z księgowaniem opracowany przez IBM. Jest wykorzystywany w systemach AIX  
+
 XFS journaling file system - 64bitowy system plików z księgowaniem przeznaczony głównie do systemu IRIX. Pozwala na obsługę dużych dysków twardych
+
 FAT16 file system - system plików posługujący się 16-bitowym adresowaniem. Pierwsze komputery działąjące na systemie DOS miały architekturę 16 bitową
+
 FAT32 file system - System plików użyty pierwszy raz w windows 95
 
 swap area - obszar wymiany (Jest to tzw. fałszywa pamięć ram. która znajduje się na dysku.(Przechowuje tam wszystkie dane))(TEGO UŻYWAMY, 
@@ -218,9 +236,8 @@ Ustawiamy serwer proxy (w naszym przypadku nic nie wpisujemy)
 Ponieważ jesteśmy połączeni do routera końcowego bez żadnego pośredniczącego (którym jest właśnie serwer proxy)
 Działa on na zasadzie wysyłania przez użytkownika żądania wykonania operacji do serwera , a serwer w naszym imieniu wysyła żądanie do końcowego serwera 
 Wyskakuje okno czy chcemy wziąć udział w ankiecie użytkowania pakietów(klikamy nie)
-Ankieta służy do przesyłania anonimowych informacji na temat używanych przez nas pakietach/programach. 
-Powinniśmy wziąć w nim udział, gdy chcemy dostać płytę instalacyjną z pakietami 
-Nie bierzemy aktualnie udziału w konkursie, ponieważ w razie potrzeby jakiegoś progamu/pakietu możemy go w kazdej chwili zainstalować
+Ankieta ma za zadanie wytypować listę pakietów, które zostaną wrzucone na obraz płyt instalacyjnych.
+Nie bierzemy aktualnie udziału w konkursie, ponieważ instalujemy nasz system testowo, więc branie udziału w ankiecie nie ma sensu i idostarczałoby błędne dane statystyczne.
 Serwer ten daje nam większą anonimowość w sieci (możliwość zmiany IP) co daje nam również możliwość przeglądania witryn/zasobów niedostępnych na terenie naszego kraju
 Dodatkowo daje nam możliwośc blokowania niektórych adresów internetowych, co jest przydatne w szkołach/miejscach pracy, aby uczniowie/pracownicy nie korzystali z facebooka
 
@@ -231,7 +248,7 @@ Następnie wyskakuje tzw "TASK SEL". Wybieramy w nim jakie oprogramowanie chcemy
 
 -GNOME
 	Posiada on nowoczesny interfejs oraz jest prosty w użyciu. Mamy możliwość rozszerzenia jego funkcjonalności poprzez rozszerzenia Shell Extensions oraz mamy 
-	możliwość łatwego dostosowania jego wyglądu. Posiada on również duże zużycie mocy obliczeniowej oraz zarządzanie powyżej wymienionymi rozszerzeniami nie jest zbyt intuicyjne. 
+	możliwość łatwego dostosowania jego wyglądu. Posiada on stosunkowo małe zużycie mocy obliczeniowej oraz zarządzanie powyżej wymienionymi rozszerzeniami nie jest zbyt intuicyjne. 
 	Minimalne wymagania:
 	Moc procesora 800 MHz (1 GHz dla optymalnej wydajności)
 	512 MB pamięci RAM (1 GB dla optymalnej wydajności)
@@ -262,7 +279,7 @@ Następnie wyskakuje tzw "TASK SEL". Wybieramy w nim jakie oprogramowanie chcemy
 	eww15 GB miejsca na dysku (zalecane 20 GB).
 	Rozdzielczość ekranu na poziomie 1024x768
 -MATE - Środowisko które powstało po krytyce na środowisko Gnome. Jego zaletami jest to, że działa w trybie 2D oraz posiada mniejsze sprzętowe wymagania
-	Jest on intuicyjny oraz łatwy w obsłudze, posiada dużo możliwości personalizacji, pójdzie na słabszym komputerze oraz ma średnie zużycie mocy obliczeniowej
+	Jest on intuicyjny oraz łatwy w obsłudze, posiada dużo możliwości personalizacji, pójdzie na słabszym komputerze oraz ma małe zużycie mocy obliczeniowej (minimalnie większe od GNOME)
 	Niestety jeśli chodzi o wygląd wydaję się on przestarzały
 	Minimalne wymagania:
 	Procesor: Core 2 duo/amd64

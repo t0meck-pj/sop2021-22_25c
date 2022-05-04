@@ -1,7 +1,10 @@
 -PATH 	- Pokazuje ścieżki do komend- umożliwia dodanie skryptu do ścieżki z dowolnego miejsca export PATH(nazwa)=<ścieżka> 
 -RANDOM 	- Generator losowych liczb
 -PWD 		- Zmienna do używania w skryptach pokazuje ściezke w skrypcie
+wywołanie $(pwd) otwiera nową powłokę
+Wywołanie zmiennej $PWD jest wydajniejsze, ponieważ nie otwieramy nowej powłoki
+Dodatkowo zalecane jest używanie $PWD, ponieważ nie zawsze powłoka obsługuje $(pwd) co zdarza się dość często, $PWD daje nam zawsze "bardziej aktualne informacje", $(pwd) nie działa gdy bieżący katalog kończy się znakiem nowej linii
 -PS1		- Zmienna która definiuje wygląd i styl wiersza poleceń
--USER 	- Wyświetlanie naszego loginu
--HOSTNAME 	- Wyświetlanie nazwe naszego hosta
--OSTYPE 	- Wyświetla wersje naszego systemu operacyjnego
+-USER 	- Wyświetlanie naszego loginu - Przydatne gdy piszemy skrypt który ma wyświetlać jakieś informacje na temat użytkowników 
+-HOSTNAME 	- Wyświetlanie nazwe naszego hosta - Przydatne gdy chcemy napisać skrypt, w którym będziemy modyfikować aliasy naszej domeny, pobierać adresy IP w naszej sieci lub wyliczać wszystkie skonfigurowane adresy na interfejsach sieciowych
+-OSTYPE 	- Wyświetla wersje naszego systemu operacyjnego - Przydatne gdy piszemy skrypt pod konkretny system operacyjny

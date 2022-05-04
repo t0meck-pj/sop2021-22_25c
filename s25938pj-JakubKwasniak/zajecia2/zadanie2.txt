@@ -4,8 +4,10 @@ bash
 echo $X
 
 Co się stało?
-Otworzył się nam nowy bash/nowa powłoka po chwili ładowania.
-
+Przypisaliśmy do zmiennej x wartość tekst, wyświetliliśmy ją komendą echo, 
+oraz następnie komendą bash otworzyliśmy nową powłokę , po czym nie mogliśmy już wywołać naszej zmiennej x,
+ ponieważ jest to zmienna lokalna która jest dostępna tylko i wyłącznie w 1 powłoce (w przeciwieństwie do globalnej)
+ 
 X=Tekst dłuższy
 echo $X
 
