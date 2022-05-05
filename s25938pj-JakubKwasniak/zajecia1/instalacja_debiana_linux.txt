@@ -205,15 +205,44 @@ maksymalnie 255 znaków wielkości. Dodatkowo zawiera mechanizm zapobiegający z
 zjawiskiem w poprzednich wersjach. Kolejną zaletą sa tzw. wolne pola w strukturach danych. To dzięki nim możliwa jest
 konwersja "w locie" do systemu ext3 (wykorzystuje część z nich do przechowania swoich danych).
 
-btrfs journaling file system - system plików copy-to-copy w stylu logowania. Zamiast zapisywać od razu w bloku są one najpierw tworzone w nowej lokalizacji, a następnie łączy się je.
+btrfs journaling file system - system plików copy-to-copy w stylu logowania. 
+Zamiast zapisywać od razu w bloku są one najpierw tworzone w nowej lokalizacji, a następnie łączy się je.
+Jest to nowoczesny system plików o otwartym kodzie źródłowym. Dzięki kopiowaniu i modyfikowaniu danych do innej
+lokalizacji mamy mniejsze ryzyko uszkodzenia danych w razie przerwy w dostawie prądu. Podczas modyfikacji oryginalne 
+dane są zachowywane i pozostają niezmienione. BTFRS obsługuje RAID 0, 1, oraz 10, daje nam możliwośc zmian rozmiaru 
+plików wtedy, gdy jest on w trybie online, działa on bardzo dobrze z dyskami SSD (zwiększa ich wydajność, tym samym ich żywotność)
+Jeśli chodzi o wady to wymieniony powyżej system plików ma tendencję do fragmentowania dużych plików i raz na jakiś czas wymagana będzie defragmentacja. 
 
-JFS journaling file system - 64bitowy system plików z księgowaniem opracowany przez IBM. Jest wykorzystywany w systemach AIX  
+JFS journaling file system - 64bitowy system plików z księgowaniem opracowany przez IBM. Jest wykorzystywany w systemach AIX
+Posiada on bardzo małe zużycie procesora (mniejsze niż inne systemy plików). Posiada on również mechanizm 
+księgowania, przez co jest zalecany w przypadku serwerów.
+Według informacji na portalach nie jest on praktycznie Wogóle używany przez osoby spoza firmy IBM.
 
-XFS journaling file system - 64bitowy system plików z księgowaniem przeznaczony głównie do systemu IRIX. Pozwala na obsługę dużych dysków twardych
+XFS journaling file system - 64bitowy system plików z księgowaniem przeznaczony głównie do systemu IRIX. 
+Pozwala na obsługę dużych dysków twardych. Maksymalny rozmiar patycji jest ośmiokrotnie większy od Ext4 (aż 8EB), a rozmiar
+plików wynosi maksymalnie 16TB. Posiada technologie dynamicznego alokowania i węzłów. Obsługuje również większą długość xattr
+(64K w porównaniu do 4k w ext4), posiada tzw. grupy alokacji, czyli wewnętrznie system plików jest podzielony na grupy w celu
+oddzielnego zarządzania węzłami i wolnym miejscem, co daje skalowalność i równoległośc, dzięki czemu możemy wykonywać więcej 
+operacji na tym samym systemie plików. Posiada on również wbudowane narzędzia umożliwiające tworzenie kopii zapasowej
+oraz przywracanie zawartości
 
-FAT16 file system - system plików posługujący się 16-bitowym adresowaniem. Pierwsze komputery działąjące na systemie DOS miały architekturę 16 bitową
+FAT16 file system - system plików posługujący się 16-bitowym adresowaniem. 
+Pierwsze komputery działąjące na systemie DOS miały architekturę 16 bitową
+W dzisiejszych czasach jest on używany głównie w kartach pamięci typu flash. W codziennym życiu jest on bardzo rzadko używany
+przez zwykłych użytkowników.
+Do jego zalet można zaliczyć dobrą wydajność przy woluminach mniejszych niż 256MB oraz posiadanie sporej ilości narzędzi służących
+do odzyskiwania i naprawiania uszkodzinych danych. 
+Do jego minusów można zaliczyć stałe umiejscowienie bootsectora, maksymalna wielkość woluminu
+wynosi jedynie 2GB (w Windows 2000 są to 4GB). Powoduje znaczne straty w wolnej przestrzeni marnując jej jej nawet kilkadziesiąt
+procent
 
 FAT32 file system - System plików użyty pierwszy raz w windows 95
+W następcy FAT 32 została m.in zwiększona maksymalna wielkość woluminu (z 2GB do 2TB), natomiast standardowo można stworzyć partycje
+nie większą niż 32GB, ze względu na root directory (ruchomy katalog główny) jest on bardziej odporny na awarie, w niektórych
+przypadkach programy są odpalane nawet 50% szybciej . Jeśli chodzi o minusy to w przypadku awarii nie możemy uruchomić 
+komputera za pomocą specjalnej dyskietki startowej sformatowanej np pod systemem FAT16, nie posiada również (w przeciwieństwie
+do starszego brata) mechanizmów do odzyskiwania i naprawiania danych. Oraz wbrew pozorom nie używa on 32 bitów jak mówi
+nazwa, lecz 28 
 
 swap area - obszar wymiany (Jest to tzw. fałszywa pamięć ram. która znajduje się na dysku.(Przechowuje tam wszystkie dane))(TEGO UŻYWAMY, 
 ponieważ będzie nam to potrzebne w razie późniejszej hibernacji systemu, lub ewentualnie gdy jakiś program będzie nam zabierał więcej RAM-u 
