@@ -1,0 +1,17 @@
+X=tekst
+echo $X
+bash
+echo $X
+
+Co się stało?
+Przypisaliśmy do zmiennej x wartość tekst, wyświetliliśmy ją komendą echo, 
+oraz następnie komendą bash otworzyliśmy nową powłokę , po czym nie mogliśmy już wywołać naszej zmiennej x,
+ ponieważ jest to zmienna lokalna która jest dostępna tylko i wyłącznie w 1 powłoce (w przeciwieństwie do globalnej)
+ 
+X=Tekst dłuższy
+echo $X
+
+Aby naprawić błąd musimy naszą zmienną zapisać w "", w '', lub zapisać jako jedno słowo 
+X="Tekst dłuższy"
+echo $X
+Teraz zadziała 

@@ -1,0 +1,9 @@
+Nasz skrypt pobiera dane z argumentów podczas wywoływania(wpisanie ./<nazwa_skryput> <nazwa_pliku_tekstowego> spowoduje
+ załadowanie tekstu i przypisanie go do zmiennej)
+ 
+#!/bin/bash
+echo -e "cat $1 | sed 's/\Jakub\>/\\e[31mJakub\\e[0m/g'"
+
+Powyższa linijka powoduje zapisanie zawartości pliku tekstowego do zmiennej,
+a użycie komendy sed i jej dalsza składnia spowoduje filtracje naszego imienia i zmiane jego koloru
+Powyższa komenda wyświetli nasze imie w terminalu ze zmienionym kolorem

@@ -1,0 +1,92 @@
+5.03.2022
+
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się:
+
+instalować Debiana na maszynie wirtualnej VirtualBox
+Co znaczy każdy etap instalacji i kiedy należy wybierać odpowiednią opcję
+Czym jest bootloader
+Dlaczego jest on potrzebny
+Dlaczego instalacja tekstowa jest lepsza od graficznej
+
+Przemyślenia:
+
+Wynik był taki jakiego oczekiwałem . Instalacja przebiegła pomyślnie, lecz później w domu 2 razy miałem problem z końcowym etapem instalacji.
+Wniosek tego jest taki że instalacja tekstowa daje nam możliwość szybszego zainstalowania systemu, oraz nie jest to takie trudne jak mi się kiedyś wydawało.
+Najbardziej zaskakującą rzeczą w mojej opini jest bootloader (dokładniej GRUB, którego miejsc instalacji w obrębie 1 dysku nie jestem pewien)
+Nauczyło mnie to szybko i sprawnie instalować system Debian a wiedza nabytą mogę wykorzystać do dalszej nauki na temat tego systemu i ewentualnego
+bawienia się możliwością serwerów linuxa w późniejszym czasie 
+
+
+19.03.2022
+ 
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się:
+podstaw na temat pisania skryptów w bashu, m.in:
+-czym są powłoki
+-jaka jest różnica pomiędzy zmiennymi globalnymi i lokalnymi
+-co przechowują i jaki wynik dają zmienne środowiskowe
+-do zmiennych można przypisać każdą komendę ze standardowego wyjścia na 2 sposoby
+-można poprzez skrypty wykonywać proste operacje na ciągach znaków oraz 
+proste operacje arytmetyczne.
+-czym są wyrażenia regularne(regexy) i w jakis sposób za pomocą sed-a można
+przetwarzać oraz modyfikować ciągi znaków.
+
+Przemyślenia:
+
+Po przyswojeniu podstaw w skryptach mogę stwierdzić, że poprzez skrypty
+w bashu można zrobić dużo ciekawych rzeczy oraz zautomatyzować wiele procesów.
+Pan Profesor powiedział że dobry administrator jest leniwy, bo wszystkie 
+rzeczy sobie zautomatyzuje poprzez skrypty i zgadzam się z tym w 100 procentach.
+Po 1 zajęciach z basha mogę również stwierdzić że skrypty są ciekawym tematem
+i po zgłębieniu tematu będzie pewnie jeszcze ciekawszy
+
+2.04.2022
+
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się:
+-że w skryptach można również używać instrukcji warunkowych
+-można również używać pętli aby wykonywać określone komendy daną
+ilość razy
+-można w skryptach implementować tablice jak w językach programowania
+-można pisać funkcje, aby ograniczać ilość powielonego kodu
+
+Przemyślenia:
+
+Po kolejnej dawce wiedzy uważam że poprzez skrypty w bashu można wykonywać
+jeszcze więcej ciekawych rzeczy . Moje przypuszczenie że po kolejnych zajęciach
+ze skrytów będą one jeszcze ciekawszym tematem się potwierdziły. Po 2 zajęciach
+z basha uważam, że można zautomatyzować praktycznie wszystko (jeżeli dana osoba
+posiada odpowiednio duże zaplecze wiedzy i może tak naprawdę "leżeć brzuchem do góry"
+Uważam nadal że skrypty są bardzo ciekawym tematem i można w nich zdziałać cuda
+
+23.04.2022
+
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się:
+-kilka krótkich informacji na temat programowania w języku C
+-jak kompilować napisane aplikacje na linuxie z 3 parametrami wymuszającymi "poprawny kod"
+-w jaki sposób można zaciągać dane do programu wpisując je w konsoli
+-podstawy pracy na plikach
+-na czym polegają referencje oraz wskaźniki
+-czym jest dynamiczna rezerwacja/alokacja pamięci 
+
+
+Przemyślenia:
+
+Po krótkiej refleksji uważam że język C jest dosyć skomplikowany, natomiast
+jest on również wydajny, czego dowodem może być to, że m.in windows został napisany właśnie w C.
+Jeśli chodzi o łatwość w pisaniu rozbudowanych aplikacji moim zdaniem jest dużo o wiele lepszych języków (C#, Java)
+Odnośnie samych zajęć wydaje mi się, że pisanie aplikacji z Panem Profesorem (tak jak było przy pierwszych 2 zadaniach)
+jest dużo lepszym wyjściem niż sama teoria.
+
+14.05.2022
+
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się:
+-czym jest i jakie daje zalety funkcja fork
+-czym są procesy oraz ich identyfikatory (pid oraz ppid)
+-Zalet wyżej mymienionej komendy fork (zlecanie wykonania określonych zadań procesom potomnym)
+
+Przemyślenia
+
+Na zajęciach Pan Profesor bardzo fajnie wytłumaczył na czym polega funkcja fork.
+Podejrzewam że może dać ona nam bardzo dużo możliwości, jeśli odpowiednio ją zrozumiemy. 
+Same pojęcie procesów również zostało bardzo zrozumiale wytłumaczone. 
+Więcej przemyślen na temat procesów nie mam aktualnie, ponieważ wymaga to 
+większego wgryzienia się w temat

@@ -1,0 +1,4 @@
+ #!/bin/bash
+ echo "$1  ma kota, a kot ma" $1 | sed s/a$/ę/g | sed 's/\([^ę]\)$/\1a/g'
+ Przy zmiennej $1 mamy imię żenśkie (w tym przypadku Ala), a następnie sed zamienia nam końcówkę 
+zastępując podanym łancuchem(ę) wszystkie znalezione w buforze wyrażenia(a$) oraz  wyświetla numer linii(g na końcu)

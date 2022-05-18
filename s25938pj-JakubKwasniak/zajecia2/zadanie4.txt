@@ -1,0 +1,14 @@
+zmienn1a=$(ls -la) 
+echo $zmienna1 
+
+Nie dostaniemy wyniku ls-la
+Wywołanie naszej zmiennej da nam natycmiastowo komendę ls -la(wyświetlenie zawartości ścieżki z ukrytymi plikami) oraz z informacjami na temat dostępów 
+Nie wypsiuje informacji w liniach tylko jednym ciągiem
+
+zmienna2=$(ls -l) 
+echo $zmienna2
+jak wyżej opisane
+
+Po krótkim testowaniu można zauważyć iż jeżeli przypiszemy komendę ls-l 
+do zmiennej w terminalu (np. zmienna1='ls -l') i następnie ją wywołamy 
+(NIE PRZEZ ECHO), czyli wpisująć $zmienna1 to dostajemy oczekiwany wynik.
