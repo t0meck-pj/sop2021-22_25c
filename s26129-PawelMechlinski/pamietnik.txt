@@ -1,0 +1,24 @@
+2022-02-28
+Moj kochany pamietniczku, na tych zajeciach mnie nie bylo, ale podczas robienia zadan samodzielnie w domu nauczylem sie:
+- Ze warto rozwazyc instalowanie Linuksa z poziomu komendy polecen, a nie GUI, bo dzieki temu mozna latwiej debugowac pojawiajace sie bledy.
+- Ze podane w dokumentacji ilosci zasobow nawet jesli nazywaja sie "rekomendowane" to i tak moga byc niewystarczajace do zainstalowania wszystkich narzedzi, jesli instalujemy z mysla o stacji roboczej, a nie o serwerze, gdzie np. nie uzywa sie GUI.
+
+Zajęcia dotyczyły instalacji systemu GNU/Linux i tutaj w sumie po wykonaniu jej już x razy nie jest to dla mnie jakoś bardzo nowe, ale jak widać kwestia doboru ilości zasobów jest do dalszego przyjrzenia się jej.
+
+Samo zadanie bardzo fajne, mam wrażenie, że zmusza do dokładniejszego przyjrzenia się problemowi.
+
+2022-03-14
+Dzisiaj na zajeciach nauczylem sie:
+- Niuansów wykorzystywania zmiennych powłoki, np. kiedy są, a kiedy nie są dostępne, jak je eksportować etc.
+- Parę nowych zmiennych środowiskowych, jak $*/$@, $#, $?
+- Zmiennych powłoki i ich wyokrzystania.
+- Wykonywania operacji na ciągach znaków bezpośrednio w składni wywoływania zmiennej za pomocą ${...}
+- Wykorzystywania opcji kolorowania tekstu w skryptach.
+
+I jeszcze powtórzyłem sobie regex'y, ale mam wrażenie, że przez samą dość skomplikowaną składnie będę potrzebował jeszcze trochę przećwiczyć je, żeby płynnie z nich korzystać - choć już z sed'em idzie mi chyba całkiem nieźle. 
+
+Zaskakuje mnie (pozytywnie) logika i elegancja zaprojektowania GNU/Linux, gdzie zagadnienia drzewa procesów, powłok, parametrów powłokiłączą się ze sobą w jasny sposób - przynajmniej jak już się zrozumie "co z czym się je".
+
+Na pewno chciałbym jeszcze lepiej zrozumieć jak funkcjonuje kernel i proces boot'owania systemu oraz jak przekłada się to na takie wysokopoziomowe funkcje systemu jak renderowanie grafiki czy niskopoziomowe jak budowa sterowników od drukarki czy innych urządzeń peryferyjnych.
+
+

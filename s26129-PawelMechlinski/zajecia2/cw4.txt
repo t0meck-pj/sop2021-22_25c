@@ -1,0 +1,18 @@
+*Ćwiczenie 4*
+
+Po przypisaniu:
+X=$(ls -l)
+
+i wykonaniu komendy:
+echo $X
+
+Otrzymuję co prawda ciąg znaków taki sam, jakbym wykonywał komendę "ls -l" bezpośrednio, jednak jest ona pozbawiona podziału na wiersze (znaków "\n" na końcu wierszy).
+
+Alternatywnym rozwiązaniem jest użycie przyporządkowania:
+X='ls -l'
+Po którym mogę wpisać po prostu:
+$X
+
+i otrzymam taki sam wynik, jakbym wpisywał całą komendę 'ls -l'. Jest to więc metoda zbliżona do ustalania aliasu.
+
+

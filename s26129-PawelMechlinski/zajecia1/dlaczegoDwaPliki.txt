@@ -1,0 +1,3 @@
+Dzień dobry,
+W obu plikach znajduje się ten sam tekst, ale w .docx jest wersja, którą zrobiłem zanim zajrzałem na Githuba, a że tekst jest tam formatowany i ze screenshotem na końcu to jest trochę bardziej czytelny moim zdaniem, więc ostatecznie zostawiam oba.
+Pozdrawiam

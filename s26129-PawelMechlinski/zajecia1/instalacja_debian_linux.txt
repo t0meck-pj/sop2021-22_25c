@@ -1,0 +1,73 @@
+﻿Autor: Paweł Mechliński
+Nr indeksu: 26129
+
+    1. Pobieranie
+	Ze strony debian.org pobieram standardowy obraz instalacyjny debian-11.2.0-amd64.netinst.iso. 
+
+    2. Utworzenie maszyny wirtualnej pod system operacyjny
+Następnie uruchamiam uprzednio zainstalowany Oracle VM VirtualBox. Tworzę w nim nową maszynę wirtualną o nazwie “Debian_11.2”, typie “Linux” i wersji “Debian (64-bit)”.
+
+	Sugerując się rozdziałem 3.4 dokumentacji procesu instalacyjnego, ustalam ilość pamięci RAM i pojemności dysku wirtualnego na zgodne z wartościami rekomendowanymi dla wersji desktopowej systemu, czyli odpowiednio:
+	2048 MB pamięci RAM,
+	10 GB wirtualnego dysku twardego.
+
+	Na potrzeby instalacji tworzę nowy dysk typu VirtualBox Disk Image (VDI). 
+
+	Po utworzeniu maszyny wirtualnej montuję w jej napędzie optycznym obraz dysku instalacyjnego w formacie .iso i uruchamiam maszynę.
+
+    3. Instalacja
+Wybieram standardową opcję instalacji, ponieważ nie przewiduję żadnych specjalnych potrzeb związanych z tą instancją systemu. Jako język instalacji wybieram “English” ze względu na większe możliwości uzyskania wsparcia w sytuacji problemów z procesem instalacji.
+Jako hostname wybieram standardowy “debian”, ponieważ będzie to jedyny Debian OS w mojej sieci. Jako nazwę domeny wybieram “synergetyka.com”, ponieważ mam tę domenę wykupioną. Dobieram również odpowiednio trudne i unikalne hasło root’a. Jako nazwę nowego użytkownika wybieram “Jan Kowalski”, a jako username “jkowalski”.
+Mam do wyboru jedynie amerykańskie strefy czasowe, dlatego ustawiam język na polski, region na “Europa”, a kraj na Polskę.
+
+    4. Partycjonowanie
+	Wybieram opcję “partycjonowanie z przewodnikiem - cały dysk”, ponieważ nie jest mi potrzebne ani LVM, ani szyfrowanie LVM. Następnie wybieram mój zamontowany pod VM dysk wirtualny.
+	Sugerując się punktem C.3 Recommended Partitioning Scheme w appendix’ie do dokumentacji instalacyjnej decyduję się na oddzielenie partycji /var, /tmp i /home - zamierzam posiadać więcej niż jedno konto użytkownika w systemie oraz chcę mieć osobną partycję /tmp dla zachowania większej kontroli nad jej rozmiarem.
+	Ostatecznie, schemat partycji wygląda następująco:
+./ 2.4 GB
+/var 1.1 GB
+swap 1 GB
+/tmp 280 MB
+/home 5.8 GB
+Wszystkie partycje (poza swap’em) są w systemie plików ext4.
+
+	Dodatkowo decyduję się na zaszyfrowanie woluminu /home, na którym będą trzymane pliki użytkownika - mam nadzieję, że uchroni mnie to przed atakiem typu ransomware w przypadku nieuprawnionego dostępu do mojego systemu. Na podstawie artykułu:
+https://www.elixirpublishers.com/articles/1404126275_72%20(2014)%2025218-25219.pdf
+Stwierdzam, że aes będzie wystarczającym typem szyfrowania dla moich potrzeb, łącząc wydajność z wysokim bezpieczeństwem.
+Pozostałe atrybuty pozostawiam bez zmian, a więc:
+rodzaj szyfrowania: dm-crypt
+punkt montowania: /home
+opcje montowania: defaults
+rozmiar klucza: 256
+algorytm IV: xts-plain64 (nie przewiduję problemów ze zgodnością, więc pozostawiam go bez zmian)
+klucz szyfrujący: hasło
+usuwanie danych: tak
+flaga rozruchowa: wyłączona (niezalecana na partycjach logicznych)
+
+	W tym miejscu pojawia się monit, że pozostawienie niezabezpieczonej przestrzeni wymiany zagraża bezpieczeństwu danych z szyfrowanej partycji. Wobec tego szyfruję również swap. Dane na szyfrowanych partycjach są zastępowane losowymi, dzięki czemu nieco zwiększyć bezpieczeństwo samego szyfrowania. Na koniec wybieram odpowiednio mocne hasła dla obu dysków.
+
+	W tym miejscu konieczne jest jeszcze ustawień partycji: przestrzeń wymiany dla partycji swap i /home dla dużej szyfrowanej partycji.
+
+    5. Menedżer pakietów i oprogramowanie
+	Rezygnuję ze skanowania dodatkowego nośnika instalacyjnego. Następnie wybieram polski serwer lustrzany i domyślną domenę deb.debian.org oraz brak serwera pośredniczącego. W trakcie pobierania zgadzam się na udział w konkursie pakietów, żeby wspierać środowisko open source.
+	Wybieram podstawowe składniki środowiska graficznego i środowisko -GNOME, ponieważ jestem do niego przyzwyczajony. Wybieram też też serwer SSH na wypadek gdybym chciał połączyć się zdalnie z moją maszyną. Zgadzam się na automatyczną instalację łatek.
+	I tu następuje problem, ponieważ pojawia się błąd, z powodu którego nie jestem w stanie pobrać powyższych. Po nieudanej serii prób i błędów oraz szukania odpowiedzi w internecie decyduję się pominąć ten krok, przynajmniej na razie…
+
+	Instaluję program rozruchowy GRUB na pierwszym dysku, bo nie planuję instalować na tej maszynie innych systemów operacyjnych. Wybieram do tego /dev/sda i rezygnuję z instalacji GRUB w ścieżce nośników wymiennych.
+
+
+
+    6. Pierwsze uruchomienie
+	Zostaje poproszony o rozszyfrowanie dysków. Następnie wpisuję nazwę użytkownika i hasło. Loguję się na root’a i udaje mi się ręcznie zainstalować serwer openssh z użyciem polecenia apt-get.
+	Próbuję również pobrać i zainstalować ‘task-gnome-desktop’, ale okazuje się, że w /var/cache/apt/archives/ mam zbyt mało miejsca! Nie mogę pozwolić, żeby moi użytkownicy nie mieli dostępu do graficznego interfejsu. Decyduję się w takim razie na bardziej lekkie środowisko xfce4 v4.16. Po instalacji używam komendy:
+	apt list –installed | grep xfce
+żeby sprawdzić, czy pakiety związane ze środowiskiem graficznym są obecne i zainstalowane. Próbuję zrestartować maszynę z poziomu konsoli, ale niespodzianka… powłoka nie znajduje mi ani komendy “reboot”, ani “sudo”! Z poziomu root’a upewniam sie, że mam aktualne pakiety (“apt update”), następnie używam komend:
+	apt install sudo -y
+Okazuje się natomiast, że w przypadku komendy “reboot” sytuacja jest prostsza i wynika z przejścia Debiana od wersji 10 na Systemd. Alternatywnie jednak, mogę użyć komendy 
+‘su -’, żeby dopuścić do używania starych wersji komend. Tym razem już się udało:
+
+
+
+Wnioski na przyszłość:
+    1. Sugerowane w dokumentacji wielkości poszczególnych partycji należy traktować ostrożnie. Nawet jeśli są one określone jako “rekomendowane” to mogą być dopasowane jedynie do minimalistycznej instalacji, np. bez środowiska graficznego.
+    2. Używanie komendy poleceń podczas instalacji ma swoje zalety: przede wszystkim dużo łatwiej jest w ten sposób sprawdzić logi i szybciej zdiagnozować dzięki temu napotkane problemy.
