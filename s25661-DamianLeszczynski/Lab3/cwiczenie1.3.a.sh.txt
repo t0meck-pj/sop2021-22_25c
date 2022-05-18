@@ -1,0 +1,25 @@
+#!bin/bash                                                                                                                                                                                                                                    
+
+#Napisz skrypt, który:                                                                                                                                                                                                                        
+#Sprawdzi, czy jego nazwa konczy się .sh                                                                                                                                                                                                      
+#Jeśli nie, to niech zmieni swoją nazwe poprzez dopisanie tego rozszerzenia.                                                                                                                                                                  
+#Sprawdzanie mozna zrobic na kilka sposobow, polecam przetesteowac 3 typowe                                                                                                                                                                   
+#dopasowanie do wyrazebia regularnego(to jest bardziej uniwersalny sposob)                                                                                                                                                                    
+
+nazwaPliku="$(basename $0)"     #Do zmiennej, za pomoca basename, pobieramy nazwe pliku , basename służy do wyodrebnienia ze sciezki do pliku samej nazwy                                                                                     
+zmiana=$(echo $nazwaPliku | sed 's/\.[^\.]*$/.sh/')     #Tworze druga zmienna, w ktorej bede operowal na komendzie sed pobieramy za pomoca komendy echo nazwe pliku nastepnie za pomoca sed-a                                                 
+                                                        #zmieniam wszystkie litery od kropki na .sh. Wynik zapisuje do zmiennej                                                                                                               
+if [ $(echo $nazwaPliku) != $(echo $zmiana) ]; then                                     #Tworze warunek jezeli nazwa pliku rozni sie od zmiany to wtedy wyswietlam komunikat i zmieniam nazwe na nazwe                                        
+                                                                                        #ze zmienionym rozszerzeniem                                                                                                                          
+        echo Rozszerzenie sh nie zostalo znalezione. Nastapila zmiana rozszerzenia
+        mv $0 ${zmiana}
+else
+        echo Plik posiada roszerzenie sh                                                #Jezeli plik posiadal wczesniej rozszerzenie sh wysietla sie komunikat <--                                                                            
+fi
+
+#Rezultat jest taki, ze jezeli wprowadzona nazwa pliku ma inne rozszerzenie i rozni sie od tej po zmianie w sed-dzie nazwa sie zmieni na ta po zmianie w sedzie.                                                                              
+#Natomiast jezeli plik juz ma poprawne rozszerzenie nic sie nie stanie oprocz komunikatu o poprawnosci rozszerzenia                                                                                                                           
+
+
+
+

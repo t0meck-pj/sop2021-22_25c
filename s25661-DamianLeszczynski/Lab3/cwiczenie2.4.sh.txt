@@ -1,0 +1,15 @@
+#!/bin/bash                                                                                                                                                                                                                                   
+
+#Napisz skrypt, ktory dla kazdego pliku w biezacym katalogu,ktory ma rozszerzenie.c wykona taka komende:                                                                                                                                      
+# cc (tu_nazwa_pliku) -o (tu-nazwa_pliku_bez_rozszerzenia)                                                                                                                                                                                    
+#oczywiscie zamien(tu_nazwa_pliku)na nazwe pliku, a (tu_nazwa_pliku_bez_rozszerzenia) na nazwe pliku z obcietym rozszerzeniem.                                                                                                                
+
+katalog=$(ls -p | grep -v /)    #Do zmiennej ladujemy liste bierzacego katalogu wylaczajac katalogi, zostaja same pliki                                                                                                                       
+
+for katalog in *.c      #petla for, ktora ze zemiennej katalog wyciaga wszystkie pliki z rozszerzeniem .c                                                                                                                                     
+do
+        $(cc "$katalog" -o "$katalog | sed 's/\.[^\.]*$//'")    #komenda z polecenia nazwa pliku za pomoca, zmiennej katalog.Natmiast wraz z uzyciem sed-a pozbywam sie .c, czyli rozszerzenia                                                
+
+done
+
+#Rezultat jest taki, ze petla powoduje wykonanie komendy dla plikow z danym rozszerzeniem.  

@@ -1,0 +1,15 @@
+#!/bin/bash                                                                                                                                                                                                                                   
+
+
+#Skrypt pobiera dane z argumentu, który wywołujemy, czyli jeżeli wpiszemy w konsoli ./<nazwa_skryptu> <nazwa_pliku_tekstowego>                                                                                                                
+#Ten plik zostaje załadowany do naszego skryptu jako $1                                                                                                                                                                                       
+
+z=$( sed 's/\<Damian\>/\\e[31mDamian\\e[0m/g' $1)
+
+#Do zmiennej z przypisujemy komende sed, która zmienia imie Damian na Damian tylko koloru czerwonego na końcu wstawiamy argument skryptu                                                                                                      
+
+echo -e "$z"
+
+#Wypisujemy zmienna z na ekran z parametrem -e, żeby kolor był widoczny w terminalu                                                                                                                                                           
+
+

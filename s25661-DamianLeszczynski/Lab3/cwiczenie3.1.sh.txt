@@ -1,0 +1,35 @@
+#!/bin/bash                                                                                                                                                                                                                                   
+
+#Przygotuj skrypt z funkcja, ktora bedzie wypisywala tekst pokolorowany na zadany kolor. Niech funkcja ta przyjmuje da argumenty -tekst i kolor.                                                                                              
+
+x=$1    #przypisuje pierwszy i drugi argument wywolania skryptu do zmiennych x i y, poniewaz zauwazylem, ze funcja nie dziala ze zmiennymi z argumentu.                                                                                       
+y=$2    #Moze sie myle, ale probowalem i nie dalo to nic.                                                                                                                                                                                     
+
+function kolor {                                                                #Funkcja kolor zlozona z warunkow jezeli pierwsy  argument przyjmujemy jako tekst a drugi jako kolor tego tekstu                                              
+        if [[ $y == "Red" || $y == "red" || $y == "RED" ]]; then                #Jezeli za drugi argument podamy jakis kolor to wyswietli nam sie tekst z pierwszego arguemtnu pokolorowany na kolor z drugiego                               
+                echo -e "\e[31m$x\e[0m"                                         #Jezeli podany zostanie inny kolor niz te podane w skrypcie wyswietli sie napis Blad                                                                          
+        elif [[ $y == "Black" || $y == "black" || $y == "BLACK" ]]; then        #Skrypt bierze pod uwage tylko kolory w jezyku ang i rozwarzamy rozne przypadki wpisania duza mala litera itp                                                 
+                echo -e "\e[30m$x\e[0m"
+        elif [[ $y == "Green" || $y == "green" || $y == "GREEN" ]]; then
+                echo -e "\e[32m$x\e[0m"a
+        elif [[ $y == "Brown" || $y == "brown" || $y == "BROWN" ]]; then
+                echo -e "\e[33m$x\e[0m"
+        elif [[ $y == "Blue" || $y == "blue" || $y == "BLUE" ]]; then
+                echo -e "\e[34m$x\e[0m"
+        elif [[ $y == "Magneta" || $y == "magneta" || $y == "MAGNETA" ]]; then
+                echo -e "\e[35m$x\e[0m"
+        elif [[ $y == "Cyan" || $y == "cyan" || $y == "CYAN" ]]; then
+                echo -e "\e[36m$x\e[0m"
+        elif [[ $y == "White" || $y == "white" || $y == "WHITE" ]]; then
+                echo -e "\e[37m$x\e[0m"
+        else
+                echo Blad
+        fi
+}
+
+echo Twoj tekst przed kolorowaniem:             #Echo tekst przed i tekst po oraz wywolanie funkcji                                                                                                                                           
+echo $1
+echo Twoj tekst po kolorowaniu:
+kolor
+
+#Rezultat jest taki, ze jezeli wywolamy skrypt w z dwoma argumentami <nazwa_skryptu> <tekst> <kolor> to skrypt pokoloruje nam tekst, danym kolorem.   

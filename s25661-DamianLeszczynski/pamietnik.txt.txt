@@ -1,0 +1,46 @@
+2022-03-05 (Lab1)
+
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się: jak poprawnie zainstalować Debiana, czyli wirtualny obraz systemu operacyjnego.
+
+Na ćwiczeniach wspólnie kork po kroku instalowaliśmy Debiana, wskazując na najważniejsze aspekty instalacji, opisując niektóre opcję.
+Nauczyłem się jak porpawnie partycjjonować dysk, co to jest bootloader i wiele innych istotnych rzeczy, a przedewszystkim, że instalacja systemu nie jest taka prosto jakby się wydawało.
+Wcześniej myślałem, że to tylko formalność o po tych zajęciach uświadomiłem sobie, że to jest pewnego rodzaju sztuka. Wcześniej nie wiedziałem, że można aż tak w szerokim stopniu konfigurować
+system pod określone potrzeby użytkownika. Biorąc pod uwagę mnogość materiału, uświadomiłem sobie, że wiem, że nic nie wiem ~ Sokrates. 
+A tak na serio, temat na tyle obszerny, że wiele aspektów w pogłębianiu wiedzy przede mną. Jeżeli chodzi moje przemyślenia na początku przeraził mnie fakt szczegółowego opisu całej instalacji,
+ale potem zrozumiałem jak ważne jest to w zrozumieniu całego mechanizmu. Dowiedziałem się wielu ważnych i tych mniej rzeczy, które są opisane w zadaniu.
+
+2022-03-19 (Lab2)
+
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się: podstaw skryptowania.
+
+Na dzisiejszych ćwiczeniach rozmawialiśmy o pisaniu skryptów i wyjaśniliśmy sobie czym, tak właściwie jest bash. Dowiedziałem się czym są zmienne powłoki, jak pisać proste skrypty, 
+że nie używa się source'owania w uruchamianiu skryptu, ponieważ nadpisuję funckję (artefakt,efekt uboczny)Source, używa się do doładowania funkcji. Poznałem też różnice między prawami,
+a uprawnieniamy. W Linuksie nadaję się tylko uprawnienia, w Windowsie natomiast istnieją oba te przypadki. Omawialiśmy podstawy skryptowania, na powłoce Linuksa w Bashu.
+Żeby z takowej skorzystać trzeba sciągnąć jakiś interpreter, może to być: git bash, cmder,	
+(możemy sciągnąć jakąs maszynkę z Linuskem taką jak debian albo ubuntu). My natomiast korzystaliśmy z servera uczelnianego "Szuflandii".
+Żeby dostać się do serwera, trzeba pobrać PuTTY (bezpłatny program będący klientem usług TELNET, SSH i rlogin), w którym ustawiamy hostname lub ip (sXXXXX@szuflandia.pjwstk.edu.pl).
+Jak się połączymy wpisujemy hasło do konta i mamy dostęp do serwera. Wszystko było jasne i klarowne dowiedziałem się dużo przydatnych rzeczy, natomiast jeżeli chodzi o wiedzę jaką muszę
+pogłębić to przedewszystkim składnia seda, gdyż jest ona dość skomplikowana i podczas robienia zadania domowego miałem z nią dość duży kłopot.Jeżeli chodzi o tą lekcję fajnie, że pojawiła 
+się strona z materiałami, bardzo ułatwia sprawę nauki, nie trzeba polegać tylko i wyłącznie na internecie, z którym po Debianie mam wojnę, gdyż jest tam wszystko i nic haha.
+Uważam też, że zadania/ćwiczenia były bardzo fajnie skonstruowane bo szybko pojąłem o co chodzi, nie były też zbyt trudne przez co się tak nie zniechęciłem, a wręcz zaciekawiłem.
+
+2022-04-02 (Lab3)
+
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się: jak działają If-y, petle, tablice oraz funkcje w Bash-u
+
+Na zajeciach, wspólnie robiliśmy ćwiczenie, które polegały na pisaniu różnych skryptów wykorzystująć "mechanizmy" wymienione wyżej. Kiedy zaczynałem studiować i mieliśmy dwa wykłady z UKOS-ów
+szczerze nie rozumiałem do czego się używa skryptów, bo wyglądały prawie tak samo jak pisanie programów w innych językach i zastanawiałem się do czego można ich używać. 
+Teraz wiem, że takowe skrypty mogą A bardzo ułatwić pracę B znacznie ją przyśpieszyć. Jeżeli chodzi o to czy czegoś się nauczyłem i tak i nie ponieważ mechanizmy są mi dobrze znane, przez
+programowanie, natomiast dużo się nauczyłem o specyfikacji pracy z bash-em. Jedna (chyba) rzecz jest dla mnie nie jasna mianowicie IFS, czyli Internal Field Separator, nie do końca rozumiem
+działanie tego. Jeżeli chodzi o całokształt zajęć, po pierwsze duży plus za nagrywanie znacznie to ułatwiło prace i naukę w domu i dało to ogromny komfort psyhiczny na lekcjach, ponieważ
+mogłem się skupić na słuchaniu i patrzeniu na to co się dzieje na ekranie, a nie marnować czas na pisanie. Jeżeli chodzi o zadania bardzo fajne trudne i nie trudne w niektórych przypadkach,
+natomiast dzięki nic dużo rzeczy zrozumiałem, więc jak najbardziej na plus. 
+
+
+
+
+Opis zajec
+Czego sie nauczylas/es
+Co jest dla Ciebie jeszcze nie jasne i musisz poglebic temat
+Co bylo zaskakujacego
+Twoje przemyslenia o calych zajeciach i zadaniach

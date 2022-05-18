@@ -1,0 +1,7 @@
+#!bin/bash                                                                      
+                               
+
+for i in {10..1..2}; do echo $i; done #Petla liczaca od 10 do 1 z korkiem 2
+
+
+

@@ -1,0 +1,14 @@
+#!/bin/bash                                                                                                                                                                                                                                   
+
+#Napisz skrypt wyświetlający na terminalu tekst Witamy w terminalu. Skorzystaj z komendy echo oraz informacji podanych powyżej. Pamiętaj o atrybutach i o tym jak się wywołuje programy.                                                      
+echo "Witam w terminalu"
+
+#Po pierwsze jeżeli użejmy w skrypcie hasza to interpreter będzie rozpatrywał tę linijkę jako komentarz, a nie skrypt.                                                                                                                        
+#Pierwsza linia kodu to tak zwany shebang (#!/bin/bash), jest to linijka, która mówi w jakim interpreterze skryp ma się odpalić,                                                                                                              
+# jeżeli skryp będzie napisany w bashu i nie wstawimy shebanga to nic się złego nie stanie, ponieważ skrypt domyślnie odpali się w bashu,                                                                                                     
+# ale jak skryp będzie napisany np w javie, albo w pythonie, to interpreter, nie zrozumie co do niego mówimy.                                                                                                                                 
+#Na końcu, każdego skrypu trzeba zapobiegawczo wcisnąć ENTER, ponieważ interpreter nie przeczyta pstatniej linii.                                                                                                                             
+#Wciskamy F2 nano zapyta nas czy chcemy zapisać bufor, wciskamy tak i nadajemy nazwe swojego pliku                                                                                                                                            
+#Czas uruchomić nasz skrypt.Robimy to w następujący sposób ./cwiczenie1.sh, ale w konsoli zamiast napisu wyskoczy błąd o braku dostępu.                                                                                                       
+#Dzieje się tak ,ponieważ trzeba nadać bit wykonywalności.                                                                                                                                                                                    
+#Robimy to za pomocą komędy chmod ...,ale jest jeszcze inny sposób.Jest możliwość odpalenia skryptu bez nadawania upranień robi się to w następujący sposób: bash cwiczenie1.sh.  

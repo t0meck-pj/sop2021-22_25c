@@ -1,0 +1,408 @@
+-=Instalacja debiana=-
+
+Na ćwiczeniach instalowaliśmy system operacyjny (debiana), czyli wirtualną maszynę. Używaliśmy do tego programu VirtualBox. 
+
+VirtualBox- to program do wirtualizacji systemów operacyjnych. Pozwala na uruchamianie wirtualnych komputerów, gdzie można instalować i uruchamiać inne systemy operacyjne np. Linuxa na Windows.
+Wirtuale maszyny można łatwo przenosić pomiędzy różnymi hostami, kopiując ich obraz dysków. 
+
+Jak takowego debiana zainstalować na swoim komputerze? 
+
+Jak już mamy zainstalowanego VisrtualBoxa, musimy pobrać obraz instalatora systemu operacyjnego ( w naszym przypadku jest to Debian), więc wchodzimy na strone "www.debian.org"" i klikamy pobieranie.
+Jak już sciągneliśmy Debiana odpalamy VirtualBoxa, i klikamy Globalne ustawienia. 
+
+Otwiera się okienko z 8 zakładkami:
+-Ogólne ( Wybieramy tam folder, w którym będą miesciły się nasze wirtualne maszyny);
+-Wejście ( Tam ustawiamy skróty klawiszowe potrzebne do sterowania systemem);
+-Aktualizacja (Ustawienia dotyczące aktualizacji);
+-Jezyk ( Ustawiamy język );
+-Sieć ( Podłączamy karty sieciowe);
+-Rozszerzenia (Wybieramy roszerzenia do systemu );
+-Proxy (Ustawienia i konfiguracja hostów);
+
+Ustawiamy w zakładce Ogólne, domyśliny folder maszyn wirtualnych. Kikamy w w ścierzkę domyślną potem "Inny" i wybieramy folder docelowy.
+Poniżej widnieje opcja, biblioteka uwierzytelniania dla VRDP ( VirtualBox Remote Desktop Protocol). 
+Umożliwia ona zdalne wyświetlanie danych wyjściowych okna maszyny wirtualnej na dowolnych innym komputzerze i sterowanie maszyną wirtualną stamtąd, tak jakby była uruchomiona na maszynie zdanlnej.
+Tutaj zostawiamy jak jest, czyli nic nie zmieniamy.
+
+Następnie, klikamy niebieską ikonę "Nowa", wyskakuje nam okienko, w którym wyskakują następujące opcję: 
+-Name: (Wybieramy nazwę naszej maszynki);
+-Machinę Folder: ( Folder, w którym nasza maszyna ma być zainstalowana, ale ustawialiśmy już to wcześniej w globalnych ustawieniach.);
+-Typ: ( System na jakim będzie postawiona nasza maszyna, w naszym przypadku jest to Linux );
+-Wersja: (Wersja maszyny w naszym przypadku Debian(64-bit);
+
+Klikamy dalej, wyskakuję drugie okienko, w którym wybieramy rozmiar pamięci RAM jaki chcemy wykorzystać w naszej maszynie.
+1024 MB wystarczy w zupełności, ale ja profilaktycznie wybieram dwukrotność, czyli 2048 MB.
+
+Klikamy dalej, wyskakuję trzecie okienko zatytułowane "Dysk twardy".Mamy do wyboru 3 opcję:
+-Nie dodawaj wirtualnego dysku twardego;
+-Stwórz wirtualny dysk twardy (Tworzymy wirtualny dysk twardy, ustawiając jego parametry od początku, i tę opcję wybieramy);
+-Użyj istniejącego pliku wirtualnego dysku twardego (Wybieramy tę opcję chcemy skorzystać z utworzonego już dysku wirtualnego (plik VDI));
+
+Wybierając drugą opcję, klikamy utwórzy.Wyskoczyło nam czwarte okienko z trzema ocjami do wyboru:
+
+-VDI(VirtualBox disk Image) - Standardowe natywne rozwiązanie VirtualBoxa (najlepsze działanie na naszej maszynie);
+-VHD(Virtual Hard Disk) - Rozwiązanie firmy Microsoft przeznaczony na maszyny HyperV;
+-VMDK(Virtual Machine Disk) - Rozwiązanie Firmy VMware przeznaczone na maszymy VMware Workstation Player;
+
+Wybieramy pierwszą opcję, wciskamy dalej i wyskakuje nam okienko piąte, w którym mamy 2 opcję:
+
+-Dynamicznie przydzielany (Ustawiamy maksymalną pojemność do jakiej dysk będzie mógł się rozszerzyć w miare potrzeb);
+-Stały rozmiar (Rozmiar dysku jest ustalony z góry);
+
+**********************************************************************************************************************************************************************
+***																																		***
+*** Różnica między ustawieniem dynamicznego przydzielania przestrzeni dyskowej, a stałym rozmiarem dysku.													***
+*** Po pierwsze opcja numer jeden jest bardzo wygodna, ponieważ ustawiamy maksymalną																	***
+*** pojemność do jakiej nasz dysk może się rozszerzyć i niczym nie musimy się martwić, to jest oczywiście pierwszy rzut oka, ponieważ jeżli w naszym celu jest 	***
+*** tylko i wyłącznie wydajność to ustawienie drugie jest dużo lepsze, ponieważ komputer nie zużywa zasobów to poszerzania dysku. 							***
+***																																		***
+**********************************************************************************************************************************************************************
+
+Wybieramy opcję pierwszą, wciskamy dalej.Wyskakuję nam okienko "Lokalizacja i rozmiar".
+
+-W lokalizacji ustawiamy gdzie nasz dysk ma przechowywać dane;
+-Na suwaczku ustawiamy pojemność twardego dysku ( w naszym przyapdku jest to 8GB, zostawiamy bo to jest tylko maszynka testowa);
+
+Wsiskamy utwórz, Stworzyliśmy maszynkę , która jest wyłączona. Możemy ją otpalić na 3 różne sposoby:
+
+-Zwykły start ( maszyna po porstu się uruchomi);
+-Bezałogowy start ( Maszyna odpala się w tle, ale okienko nie wyskakuję, użyteczne kiedy ta maszyna jest serwerem wirtualizacyjnym, który tylko musimy włączyć);
+-Oddzielny start( Maszyna odpala się w w tle i oknie,natomiast po zamknięciu okna maszyna dalej działa;
+
+Ale zanim uruchomimy maszynę, wchodzimy w żółtą ikonke z napisem "Ustawienia".Wyskakuję okienko z następującymi zakładkami:
+
+-Ogólne;
+-System ( w kolejności bootwania odznaczymy floppy,system może być uruchomiony z innych, niż dysk twardy, nośników pamięci.Możliwe jest międzyinnymi uruchomienie go z dyskietki
+		odznaczamy ta opcję, ponieważ nie będziemy jej używać.);
+-Ekran;
+-Pamięć ( w tej zakładcę klikamy "dodaj napęd optyczny".Klikamy dodaj i wybieramy nasz obraz dysku z instalatorem systemu, który pobraliśmy);
+-Dźwięk ( odznaczymy "endable Audio Output",ponieważ nie potrzebujemy ustawiać wyjściowego urządzenia dźwiękowego, bo z takowego nie będziemy korzystać);
+-Sieć;
+-Porty szeregowe;
+-USB;
+-Udostępniane foldery;
+-Interfejs użytkownika;
+
+Zatwierdzamy nasze ustawienia i odpalamy naszą maszynę.
+
+Po odpaleniu wyskakuję nam okienko, zawierające informacje na temat przechwytywania naszego kursora.
+Po zaakceptowaniu jeżeli chcemy poruszać myszką na naszym komputerze musimy nacisnąc tzw. klawisz HOST-a,który domyślnie ustawiony jest na prawy CTRL.
+
+Klikamy CTRL + R (resetowanie maszyny), następnie ENTER potwierdzający komunikat i musimy szybko po tym kliknąc F12(Boot Menu). Wybieramy opcję C od CD-ROM jeden (Bootowanie naszego wirtualnego dysku).
+W tym przypadku jest to spowodowane tym, że w kolejności bootowania w ustawieniach podaliśmy napęd optyczny.
+
+Wyskoczyło nam menu "Debian GNU/Linux installer menu (BIOS mode)" z następującymi opcjami do wyboru:
+
+-Graphical install (Instalacja graficzna, czyli okienkowa bardzo intuicyjna, więc każda osoba powinna sobie z nią poradzić,ale ma jedną wadę, jest okrojona z opcji);
+-Install(zwykła instalacja (którą wybieramy),ponieważ posiada trochę więcej opcji);
+-Advanced options:
+	-Back.. (Klikamy to kiedy chcemy cofnąć do porzedniej strony, można też to zrobić BACKSPACE albo ESC, Chociaż nie zawsze bo w róznych przypadkach możemy po prostu wyłączyć maszynę);
+	-Graphical expert install (Graficzna instalacja ekspercka, Tryb ekspercki daje pełną kontrolę nad instalatorem, jet dużo bardziej rozbudowana niż jej standardowa wersja,
+						   Używamy tego typu instalatora kiedy chcemy ustawić takie opcje jak, nośnik instalacyjny, priorytety debconfa. w tym trybie możemy również uruchomić powłokę);    
+	-Graphical rescue mode (Graficzny tryb odzyskiwania, pozwala uruchomić system w trybie użytkownika root wierszem poleceń.Ten tryb umożliwia dokonanie naprawy systemu,
+						na wybranej przez nas partycji do "ratowania");
+	-Graphical automated install (Graficzna instalacja automatyczna,kiedy przyjdzie potrzeba hurtowego uruchamiania dziesiątek lub setek serwerów z pomocą przycjodzi nam autmoatczyna instalacja
+							 Żeby z tej opcji skorzystać, trzeba stworzyć plik "preseed.cnf", tak zwany plik odpowiedzi,czyli plik tekstowy w którym zawrate są wszysktie odpowiedzi na pytanai instalatora.););
+	-Expert install (Ekspercka instalacja tekstowa);
+	-Rescue mode (Tryp odzyskiwania tekstowy);
+	-Automated install (Automatyczna instalacja tekstowa);
+	-Speech-enable advanced option (Zaawansowane ustawienia syntezatora mowy);												
+		-Expert speech install (kspercka instalacja tekstowa z syntezatorem);
+		-Rescue speech mode (Tryb odzyskiwania tekstowy z syntezatorem);
+		-Rescue speech install (Instalacja trybu odzyskiwania tekstowego z syntezatorem);
+-Accessible dark contrast installer menu (Instalacja menu w ciemny kontrascie);
+-Help (Wyświetlenie menu pommocy do instalatora);
+-Install with speecj synthesis (Instalacja z syntezatorem mowy);
+
+Wybieramy opcję install,pojawią nam się następujące okienka:
+
+-Wybór języka systemu (Wybieramy Angielski);
+-Wybieramy lokalizacjęw jakiej się znajdujemy, będzie to informacja potrzebna do łączenia się z serwerami (other/Europe/Poland);
+-Wybieramy tryp kodowania znaków (United States - en_US.UTF-8);
+-Wybieramy mape klawiszy (American English);
+(Wybieramy wszystko w języku Angielskim, ponieważ jest on językiem uniwersalnym. Wybór tego języka bardzo ułatwia pracę, ponieważ duża ilość osób na świecie porozumiewa się tym językiem.
+Więc dużo łatwiej w internecia (np. na forach) znaleść odpowiedź na nurtujące nas pytanie.);
+
+Instalator przeinstalował dane odnośnie języka i wyświetliło się następne okienko:
+
+-Ustawienie nazwy hosta (pod tą nazwą nasz komputer będzie widniał w sieci);
+-Ustawiamy nazwę naszej domeny;
+-Ustawiamy hasło głównego administratora systemu "root" (Czyli najwyższe uprawnienia administracyjnę naszego systemu);
+-Potwierdzenie hasła;
+-Ustawiamy imię i nazwisko użytkownika systemu;
+-Ustawienia loginu konta;
+-Ustawienie hasła konta;
+-Potwierdzenia hasła;
+
+System przeinstalował dane odnośnie nazw i haseł i wyświetliło się następujące okienko:
+
+-Guided - use entire disk ( użyj całego dysku);
+-Guided - use entire disk and set up LVM (użyj całego dysku i ustawienie LVM);
+-Guided - use entire disk and set up encrypted LVM (użyj całego dysku i ustawienie szyfrowanego LVM);
+-Manual (Ręczne partycjonowanie dysków)- Wybieramy tą opcję,ponieważ w razie awarii systemu nie tracimy wszystkich danych.Jeszcze jednym powodem jest szybsze działanie dysku za pomocą zjawiska zwanego "short-stroking".
+								   Polega ono na podzieleniu dysku tak, aby głowica miała, jak najmniej pracy podczas odczytywanai danych.Niestety to rozwiązanie ma też minusy jest bardzo czasłochłonne, 
+								   a powstałe w ten sposób partycje nie oferują zbyt dużej pamięci;
+
+*************************************************************************************************************************************************************
+***																																***
+*** LVM - (Logical Volume Menager), Jest to elastyczny mechanizm do zarządzanie przestrzenią dyskową,który też posiada ważną cechę,					***	
+*** łączenia różnych urządzeń pamięci masowej w jeden dysk wirtualny. Jest to alternatywna metoda zarządzania systemami pamięci masowej,				***
+*** niż tradycyjna metoda oparta na partycjach. LWM posiada jedną ważną funkcję, która może być wykorzystywana między innymi na serwerach www.			***
+*** LVM daje nam możliwość zarządzania przestrzenią dyskową podczas działania usługi, dzięki temu użytkownicy nie odczują skutków wyłączenia serwera.	***
+*** Przydatna funkcja w wyżej wspomnianych serwerach www, rozmaitych bazach danych i wszystkich usługach online, gdzię liczy się duża ilość danych. 		***
+*** W naszym przypadku nie wybieramy tej opcji, ponieważ tworzymy masznę do użytku testowego. Inne przydatne funkcję i możliwości LVM:					***
+*** 	-zmiana on-line rozmiaru grupy woluminów przez dodawanie lub usuwanie woluminów fizycznych;													***
+*** 	-tworzenie kopii woluminów logicznych(Backup);																						***
+*** 	-dzielenie lub łączenie grupy woluminów;																							***
+***	-zmiana on-line rozmiaru woluminów logicznych, poprzez dołączenie lub skrócenie, tzw obszarów;												***
+***	-przesuwanie on-line woluminów logicznych pomiędzy woluminami fizycznymi;																***
+***																																***
+*************************************************************************************************************************************************************
+
+
+Wyskoczyło okienko z pięcioma opcjami do wyboru:
+
+-Guided partitioning (Partycjonowanie dysków z "Przewodnikiem");
+-Configure iSCSI volumes - Konfiguracja woluminów  iSCSI;
+
+********************************************************************************************************************************************************************************************************
+***																																									***
+*** Internet Small Computer System Interface, w skrócie iSCSI,jest to internetowy protokół łączenia urządzeń do przechowywania danych przy połączeniu urządzeń magazynujących oraz sieciowych.		***
+*** Dzięki łączności iSCSI klienty, w tym komputery, serwery i maszyny wirtualne, mogą uzyskiwać dostęp do pamięci masowej serwera QNAP NAS w postaci dysków wirtualnych.						***
+*** Klienty mogą partycjonować i formatować takie dyski wirtualne w identyczny sposób, jak dyski lokalne, i używać ich do rozbudowy pamięci masowej lub jako miejsc docelowych kopii zapasowych.	***
+*** Funkcja ta może ułatwić transfer danych w sciach LAN,WAN, lub przez internet.																									***
+***																																								  	***
+********************************************************************************************************************************************************************************************************
+
+-SCSI3 (0,0,0) (sda) - 8.6 GB ATA VBOX HARDSIK (Podgląd na nasze urządzenie w notacji (kontroler,dysk,partycja,czyli (0,0,0) );
+-Undo changes to partitions (Cofanie zmian);
+-Finish  partitioning and write changes to disk (Kończenie i zapisywanie partycjonowania na dysku);
+
+Wybieramy opcje trzecią, wyskakuję okienko z pytaniem czy chcemy stworzyć nową tablice partycji na naszym urządzeniu,przede wszystkim nie da się przejść dalej bez tej opcji,ponieważ 
+wyskakuję powiadomienie o tym, że brakuje głównego systemu plików. System plików to nic innego jak sposób, w jaki komputer organizuje dane zapisywane na twardym dysku więc wybieramy opcje yes.
+ 		
+Wyskakuję nam podobnę okienko, poszerzone o cztery opcję:
+ 
+-Configure Sofware Raid (konfiguracja RAID,czyli nadmiarowa macierz niezależnych dysków, jest to sposób na wykorzystanie w systemie komputerowym kilku dysków twardych, dzięki któremu dyski te współpracują ze sobą.
+					 Ta opcja ma zastosowanie, np w rozwiązanaich serwerowch, gdzie mamy to czynienia z dużo ilością danych. Połączenie wielu dysków w jeden jest dużo wydajniejsze, niż 
+					 jeden bardzo pojemny dysk. Zaletą takie rozwiązania jest też szeroko rozumiane bezpieczeństwo danych, ponieważ w momencie awarii jednego dysku, ratują się dane na 
+					 pozostałych dyskach. Opcja daje nam jeszcze jedną możliwość "Backup", czyli możliwość uzyskania takiej konfiguracji, żeby dysk "mirrorował" dane do innej lokalizacji);
+-Configure the Logical Volume Manager (Konfiguracja menadżera woluminów logicznych);
+-Configure encrypted manager (Konfiguracja menadżera Szyfrowania);
+-pri/log 8.6 GB FREE SPACE (Ta opcja daję nam możliwość przypisania nowej partycji, "8.6GB" wskazuje na pojemność na dysku, Wybieramy tę opcję);
+
+Wyskakuje okienko z trzema opcjami:
+
+-Create a new partition ( Tworzenie nowej partycji) -Wybieramy tą opcję,ponieważ zależy nam na ręcznym partycjonowaniu dysku;
+-Automatically partition the free space ( Automatyczne tworzenie partycji na wolnym miejscu dysku);
+-Show Cylinder/Head/Sector information (Pokazuje informacje na temat naszego dysku);
+
+Wyskakuję okienko z rozmiarem partycji dysku ( Wyskakuję nam 8.6 GB musimy wybrać mniejszy rozmiar, ponieważ chcę stworzyć jeszcze dwie partycję. Partycja, którą tworze teraz będzie partycją 
+									   rozruchową w dla wiekszosci zwykych komputerów biurkowych wartość 10 GB jest wystarczającą i standardową wartością. Ta wartość maleje i wzrasta wraz 
+									   w zależności do czego będziemy używać nasz komputer, np jeżeli będziemy używać komputera tylko do pracy w powłoce tekstowej 3 GB wystarczą w zupełności.
+									   Natomiast przy pracy z zainstalowanymi klikoma sodowiskami graficznymi wartość ta może wzrosnąć do nawet do 15GB. Jako, że jest to system ćwiczeniowy, gdzie 
+										będę pracował tylko na środowkisu tekstowym ustawiam 3GB);
+
+Następnie wyskakuję nam okienko odnośnie typu partycji(Logiczna czy podstawowa).
+
+***************************************************************************************************************************************************************************************************
+*** 																																								***
+*** Na partycji podstawowej, można przechowywać zarówno dane jak i system operacyjny, i jest to jedyna partycją, którą można ustawić jako aktywną do zlokalizowania przez BIOS.				***
+*** To znaczy, że jest to partycja rozruchowa, więc komputer można uruchomić tylko z partycjii podstawowej. Dysk może zawierać maksymalnie 4 partycje podstawowe lub 3 partycję podstawowe 		***
+*** i jedną rozszerzoną,która może zawierać wiele partycji logicznych. Ogranieczenie to jest spowodowane strukturą MBR, czyli Master boot Record. Natomiast partycja logiczna to wolumin		***
+*** tworzony na partycji rozszerzonej na podstawowym dysku MBR. Jest jedno "ale", na systemach Unixowych jest możliwość zainstalowania systemu na dowolnej partycji. Aby móc używać systemu 	***
+*** plików na danej partycji jest wymagane jej zamontowanie, czyli przygotowanie do obsługi przez system operacyjny.																***
+***																																								***
+***************************************************************************************************************************************************************************************************
+
+Wybieramy opcje "Pirmary",a następnie opcję "Beginning" (czyli ustawiamy tą partycję na początku, Ważną informacją jest też, że partycja rozruchowa powinna być na początu poniważ pozytywnie wpływa to na wydajność.);
+
+Wyskakuję nam okieno zatytułowane "Ustawienia partycji" i 9 następujących opcji:
+
+-Use as: (Używaj jako domyślnie system plików ext4,rosrzerzony system plików,[o tym niżej]);
+-Mount point: (punkt montowania. Ustawiam tą opcje na początek drzewa katalogów "/", partycja zamontowana w tym punkcie stanowi główną partycję systemową);
+-Mount options: (opcję montowania);
+-Label (etykieta, właściwosć, w którym jest sformatowana partycja lub cały dysk);
+-Reserved blocks - (Zarezerwowane bloki,niewielka część dysku jest rezerwowana dla uprzywilejowanego procesu.);
+-Typical usage - (typowe zastosowanie);
+-Bootable flag - (flaga startowa, wskazanie gdzię znajduję się program ładujący,ta opcja zostaje włączona,poniważ jest to partycja rozruchowa jak już wspomniałem);
+-Delete the partition (Usunięcie partycji);
+-Done setting up the partition (Wybieramy tą opcję,co skonfigurowanie ustawień partycji i powrót do ustawień partycjonowania);
+
+Utworzyliśmy partycję podstawową.Teraz zajmiemy się tworzeniem partycji logicznej w celu ćwiczeń.
+Partycja zamontowana będzie w /home, partycja zamontowana w tym katalogu przechowuje katalogi domowe zwykłych użytkowników (w katalogach tych użytkownicy przechowują swoje dane).
+ 
+-Wybieramy znowu FREE SPACE;
+-Create a new partition;
+-Ustawiamy rozmiar partycji (Ustawienie tego typu partycji pwinno wynosić około 2/3 przestrzeni dyskowej lub po prostu jak najwięcej)
+-Ustawiamy Logical (ponieważ będzie to partycja logiczna);
+-flaga startowa (Wyłączamy tę opcję)
+-zapisujemy zmiany i tworzymy jeszcze jedną partycje logiczną tym raze swap (Oddzielna partycja nie zamontowana w żadnym katalogu. Służy do tymczasowego przechowywania danych w sytuacji gdy brakuje wolnej pamięci RAM.);
+-tak jak poprzednio FREE SPACE 
+-Create a new partition
+-Rozmiar partycji (Kiedyś zalecane było tworzenie partycji wymiany dwukrotnie większej od rozmiaru pamięci RAM, ale w obecnych czasach ta zasada nie jest do końca prawidłowa.)
+-Puntk montowania (Brak dal tego typu partycji)
+-Flaga (Wylączona)
+
+Wyskakuję nam okienko, klikamy "Use as:", w którym wyskakują nam następujące opcję:
+
+-Ext4 journaling file system (Następca ext3. Obecnie najpopularniejszy system plików dla systemów Linuxa uznany za stabilny, więc nadaje się do serwerów);
+-Ext3 journaling file system (System plików oparty na ext2. Domyślny dla większości systemów Linux.Dodany mechanizm księgowania,czyli dokładnego zapisu na dysku,który w razie awarii
+						 umożliwia szybsze przywrócenie spójności systemu plików niż w przypadku ext2);
+-Ext2 file system (drugi rozszerzony system plików dla systemu Linux. Rozpoznanie uszkoczeń systemu następuje podczas startu, zawiera mechanizm zapobiegający znacznej fragmentacji danych); 
+-btrfs journaling file system (system plików copy-to-copy w stylu logowania. Zamiast zapisywać od razu w bloku są one najpierw tworzone w nowej lokalizacji, a następnie łączy się je.
+						 Możliwości jakie nam daje to między innymi: kopiowanie przy zapisie, możliwość zmianu partycji online czy dodawanie/usuwanie urządzeń blokowych w locie);
+-JFS journaling file system (64bitowy system plików z księgowaniem opracowany przez IBM. Jest wykorzystywany w systemach AIX, );  
+-XFS journaling file system (64bitowy system plików z księgowaniem przeznaczony głównie do systemu IRIX. Pozwala na obsługę dużych dysków twardych. System ten też obsługuje takie technologie jak:
+						pliki rzadkie, rozszerzone atrybuty plików, listy dostępu, etykiety bezpieczeństwa i limitowane przydziały);
+-FAT16 file system (System plików posługujący się 16-bitowym adresowaniem. Pierwsze komputery działąjące na systemie DOS miały architekturę 16 bitową. Ten system jest stosowany w systemach 
+				operacyjnych Microsoftu od windowsa 95);
+-FAT32 file system (System plików użyty pierwszy raz w windows 95. Ten System jest obsługiwany przez systemy uniksowe, jednak jego budowa nie pozwala na wykorzystywanie go w głównych partycjach systemowych );
+-swap area - obszar wymiany (Jest to tzw. fałszywa pamięć ram. która znajduje się na dysku.)
+-physical volume for encryption (Fizyczny wolumin do szyfrowania);
+-physical volume for RAID (Fizyczny wolumin dla Raida);
+-physical volume for LVM  (Fizyczny wolumin dla LVM);
+-do not use the partition (Nie używaj partycji);
+ 
+Wybieramy opcję "swap area",następnie zapisujemy wszystkie zmiany.
+
+Trwa instalacja systemu podstawowego, następnie wyskakuję nam okienko z informacją dotyczącą skanowania innych nośników(Wciskamy nie,ponieważ używamy tylko jednego nośnika);
+
+Wyskakuję okienko, instalator pyta z jakiego serwera kopii lustrzanych chcemy skorzystać. Wybieramy (Poland);
+a następnie serwer, z którego chcemy pobrać, czyli(ftp.task.gda.pl, ponieważ jest to serwer zlokalizowany najbliżej, zatem łącze będzie odpowiednio sprawne i szybkie);
+wyskakują ustawienia serwera proxy (serwer proxy, czyli serwer pośredniczący podczas łączenia z internetem. Oznacza to, że wszelkie żądania (zapytania), które generuje użytkownik podczas otwierania strony internetowej trafiają najpierw do serwera proxy,
+							  który to w naszym imieniu (ale anonimowo) żąda wyświetlenia strony. Takie rozwiązanie ma pewne zalety np: Zwięszka bezpieczeństwo ponieważ niejako stajemy się bardziej anonimowi,
+							  ale też może mieć wpływ na porpawe łącza internetowego. Ja w swoim sytemie nie będę korzystał z internetu więc po prostu nic nie wpisuję);
+po krótkiej konfiguracji wyskakuje okienko odnośnie ankiety, zaznaczając tak nasz system będzie przesyłał anonimow informacje o najczęsciej używanych przez nas pakietach.
+Te informacje będą miały wpływ na to jakie pakiety zostaną zainstalowane na pierwszej płycie instalacyjnej. 
+
+w następnym okienku tasksel, wyskakują nam opcje dotyczące oprogramowania, które dodatkowo chcemy zainstalować.
+
+-GNOME (Graficzne środowisko użytkownika oparte na systemie X Window System.);
+	<>Zalety:
+		-Nowoczesny i prosty w użyciu;
+		-Można zwiększyć funkcjonalność dzięki rozszerzeniom GNOME Shell Extensions;
+		-Możliwość łatwego dostosowania wyglądu;
+	<>Wady:
+		-Duże zużycie zasobów systemowych;
+		-Zarządzanie rozserzeniami nie jest najlepsze;
+
+-Xfce (Środowisko graficzne dla systemów uniksowych, początkowo wzorowane na CDE.Został zaprojektowany jako szybkie środowisko pulpitu,
+	  które nie wymaga dużego wykorzystania zasobów systemowych, nie dorównuje on jednak LXDE, który jest nieco bardziej wydajny, a jednocześnie wygląda nieco nowocześniej);
+	<>Zalety:
+		-Małe zużycie zasobów systemowych;
+		-Lekki i przyjazny dla starszego sprzętu;
+		-Łatwy w obsłudze;
+	<>Wady:
+		-Interfejs może się wizualnie wydawać zbyt stary;
+  		-Ograniczone możliwości konfiguracj;
+		
+-Gnome Flashback (To wolne środowisko graficzne typu open source dla systemów operacyjnych Linux.);
+
+-KDE Plasma (Środowisko graficzne zrealizowane jako wolne oprogramowanie dla systemów operacyjnych Unix i GNU/Linux.  KDE to najbardziej konfigurowalne i elastyczne środowisko pulpitu dostępne na rynku. 
+		    Wszystkich modyfikacji można dokonać z poziomu ustawień systemowych i nie potrzeba do tego dodatkowego oprogramowania czy pluginów.);
+	<>Zalety:
+		-Nowoczesny i dopracowany interfejs użytkownika;
+		-Najbardziej zaawansowane i wydajne środowisko graficzne;
+		-Duże możliwości dostosowania wyglądu;
+		-Nadaje się dla słabszych i starszych komputerów;
+	<>Wady:
+		-Średnie zużycie zasobów systemowych;
+		-Niektóre komponenty i aplikacje mogą wydawać się zbyt skomplikowane w użyciu dla początkujących;
+
+-Cinnamon (Zanana powłoka z tego, że jest podobna do Windowsa zatem nowym użytkownikom linuxa łatwiej będzie się zaadaptować.
+		 Cinnamon zawiera różne konfigurowalne elementy, takie jak panel, motywy, aplety i rozszerzenia.);
+	<>Zalety:
+		-Elegancki i dopracowany wygląd;
+		-Łatwy i przyjazny w użytkowaniu, szczególnie dla użytkowników Windows;
+		-Duże możliwości dostosowania konfiguracji;
+	<>Wady:
+		-Duże zużycie zasobów systemowych;
+		-Może przez różne błędy być niestabilny;
+
+-MATE (Środowisko które powstało po krytyce na środowisko Gnome. Jego zaletami jest to, że działa w trybie 2D oraz posiada mniejsze sprzętowe wymagania.);
+	<>Zalety:
+		-Średnie zużycie zasobów systemowych, zatem wydajność w miare na poziomie;
+		-Intuicyjne i łatwe w obsłudze;
+		-Duże możliwości dostowsowanai wyglądu;
+		-Nadaje się dla słabszych i starszych komputerów;
+	<>Wady:
+		-Interfejs może się wizualnie wydawać zbyt stary
+
+-LXDE (Lightweight X11 Desktop Environment, Środowisko dla systemów operacyjnych Linux. Niezwykle szybkie i energooszczędne środowisko graficzne.
+	  Został zaprjektowany jako lekki i łatwy w opbsłudze, przy jednoczesnym niskim zużycu zasobów);
+	<>Zalety:
+		-Małe zużycie zasobów systemowych;
+		-Niezwykle wydajne i lekkie środowisko graficzne, idealne dla starszego sprzętu;
+		-Wspiera prawie wszystkie dystrybucje Linuksa;
+	<>Wady:
+		-Brak animacji i innych fajerwerków graficznych na rzecz wydajności;
+
+-LXQt (Środowisko połączone z dwóch projektów.(LXDE-QT i Razor-qt).Rozwiązanie to jest obecnie rozwijane i ma pozostać lekkim, modułowym, 
+	  niesamowicie szybkim i łatwym w obsłudze środowiskiem graficznym. Na ten moment jest on już dostępny w wielu dystrybucjach Linuksa,
+	  jako domyślne środowisko pulpitu między innymi w Lubuntu.);
+
+	System zalet i wad podobny jak wyżej;
+
+-web server (Oprogramowanie umożliwiające nam postawienie serwera internetowego na naszej wirtualnej maszynie.);
+-SSH server (Instalacja protokołu komunikacyjnego służącego w Sieciach TCP/IP. Służy między innymi do zdalnego łączenia się terminalowego z komputerami.);
+standard system utilities- (Instalacja standardowych narzędzi systemowych.Czyli pakiet programów, które umożliwają/ułatwiają korzystanie z naszego systemu);
+
+Narzędzie i pakiety jakie są tu zainstalowane: 
+### apt-listchanges, lsof ,mlocate, w3m, at, libswitch-perl, xz-utils, telnet, dc, bsd-mailx, file ,exim4-config      	### 
+### m4, bc, dnsutils, exim4, python2.7, openssh-client, aptitude, bash-completion, python, host, install-info, bzip2 	###
+### reportbug, krb5-locales, bind9-host, time, info, liblockfile-bin, whois, aptitude-common, patch, ncurses-term		###
+### mutt, mime-support, exim4-daemon-light, ftp, nfs-common, python-reportbug, rpcbind, texinfo. python-minimal 		###
+### procmail, libclass-isa-perl, python-apt, python-support, exim4-base, debian-faq, doc-debian						###
+
+Jeżeli chodzi o zaznaczenie ostatniej opcji, jeżeli nie zainstalujemy stadnardowcyh narzedzi systemowych w praktyce system nie będzie zdatny do użycia, ale istnieje opcja doinstalowania tych
+pakietów (apt instal).
+
+Jeżeli chodzi o wybór środowiska graficznego to jest uzależnione od potrzeb użytkownika wydajność/wygląd, jeżeli nie wybierzemy żadnego środowiska graficznego to nasz system po prostu będzie działał
+na zasadzie tekstu/terminalu, więc wybór takiego środowiska nie jest konieczny, ba nawet zwiększy to wydajność, ponieważ komputer nie będzie marnował zasobów do generwoania grafiki. Istnieje 
+możliwość zainstalowania paru środowisk graficznych. System będzie uruchamiał środowisko, które jest ustawione jako domyślne, ale w ystawieniach będziemy mogli przełączać się między środowiskami.
+
+Po wybraniu naszego oprogramowania wyskakuje nam okienko z pytaniem.Czy chcemy na głównej partycji zainstalować GRUB boot loader.
+(GRUB boot loader -Program rozruchowy służy do uruchamiania różnych systemów operacyjnych,
+ np. Linux, FreeBSD, Windows, DOS i potrafi odczytać wiele rodzajów systemów plików, np. ext2, ext3, ext4, MINIX, FAT, NTFS, FFS, ReiserFS, XFS i JFS.)
+Klikamy tak, następnie program pyta nas na jakim dysku Grub ma być zainstalowany.
+
+**********************************************************************************************************************************************************************************************
+***																																							***
+*** Kilka informacji na temat GRUB-a:																																***
+*** Istnieje możliwość nie instalowania go, ponieważ istnieje parę alternatyw dla tego programy np:Chimera. Ale ważną rzeczą jest to, żeby jakikolwiek bootloader był zainstalowany, 		***
+*** ponieważ bez takiego programu nasz system po prostu się nie uruchomi. GRUB powinien byc instalowany na tej samej partycji, gdzie jest zainstalowany nasz system, natomiast w przypadku	***
+*** kiedy mamy dwa systemy powinniśmy wydzielić partycję /boot i tam go umieścić. Instalacja GRUB-a nie jest wskazana wtedy kiedy, chcemy załadować Linuxa przy użyciu programu ładującego	***
+*** innego systemu operacyjnego. 																																	***
+***																																							***
+**********************************************************************************************************************************************************************************************
+
+Finalnie wyskakuje nam okno z informacją o zakończonej instalacji, maszyna jest gotowa do użytkowania. 
+
+Krótkie streszczenie tego co możemy znaleść na stronie (https://www.debian.org/distrib/)
+
+Są tam różne sposoby pozyskania naszego systemu Debian:
+
+1. Możemy po prostu pobrać plik iso na dwa sposoby:
+	-Mały plik obrazu: może być pobrany szybko i powinien być nagrany na dysku wymiennym. 
+	 Aby z niego skorzystać potrzebujesz maszyny z połączeniem internetowym.
+	-Większy kompletny plik obrazu : zawiera więcej pakietów, ułatwiając instalację na maszynie bez połączenia internetowego.
+
+2. Możemy kupić zestaw płyt Cd lub dvd od jednego z dystrybutorów płyt z debianem, mamy wtedy fizyczną kopie systemu.
+	
+	Oto podstawowe zalety zestawu płyty:
+	 -Można zainstalować z nich system na maszynach nie podłączonych do internetu.
+	 -Można zainstalować Debiana na dowolnej liczbie maszyn bez potrzeby pobierania pakietów z internetu.
+	 -Płyta CD może przydać się do ratowania systemu w razie jego uszkodzenia.
+	 -Płyta może się przydać kiedy nie mamy dostępu do interntu.
+	
+3.Kupienie komputera z preinstalowanym Debian. 
+	he?... 
+4.Można użyć obrazu Debiana dla chmury.
+	Oficjalny obraz do użycia w chmurze, zbudowany przez zespół ds. chmury, może być użyty z:
+	 -Dostawcą OpenStack w formacie qcow2 lub raw.
+	 -Amazon EC2, zarówno jako obraz maszyny oraz przez AWS Marketplace.
+	 -Microsoft Azure, Azure Marketplace.
+5.Debian live.
+ 	Możesz wypróbować Debiana uruchamiając system live z płyty CD, DVD lub napędu USB, bez instalowania żadnych plików w komputerze. 
+	Jeśli się zdecydujesz, możesz uruchomić zawarty instalator. 

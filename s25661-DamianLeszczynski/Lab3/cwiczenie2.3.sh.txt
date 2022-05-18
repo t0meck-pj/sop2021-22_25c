@@ -1,0 +1,12 @@
+#!/bin/bash                                                                                                                                                                                                                                   
+
+#Napisz skrypt, ktory wypisze liste plikow i katalogow biezacego katalogu poprzedajac kazda nazwe pliku tekstem: Patrzcie Panstwo, oto plik                                                                                                   
+
+ls -p | grep -v / | while IFS= read line; do echo Patrzcie panstwo oto plik: $line; done        #za pomocą komendy ls -p, ktora dodaje do katalogu / i grep usuwam z listy katalogi                                                           
+                                                                                                #za pomocą petli do while i IFS drukuje nazwy plikow dodajac przed nimi napis                                                                 
+ls --hide=*.* | while IFS= read line ;do echo $line; done                                       #w tej linijce za pomoca ls --hide=*.* ukrywam i tak jakby drukuje jeszcze raz wszystko z bierzacego katalogu                                 
+                                                                                                #ale bez plikow, robie to po to zeby przed katalogami nie widnial napis oto plik bo to nie bylaby prawda                                      
+                                                                                                #w glebi ducha czuje, ze zle zrobilem to zadanie i nie o to Panu chodzilo, ale nie myli sie ten co nic nie robi                               
+                                                                                                #a finalnie wychodzi, ze efekt jest raczej dobry zatem co bedzie to bedzie haha                                                               
+
+#Rezultat jest taki, ze wyswietli mi w bierzacym katalogu pliki z napisem oto plik, i wyswietli rowniez katalogi, ale bez napisu    

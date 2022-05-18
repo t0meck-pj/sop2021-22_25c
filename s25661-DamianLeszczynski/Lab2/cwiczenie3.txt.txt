@@ -1,0 +1,33 @@
+Ćwiczenie 3
+
+------------------------------------------------------------------------------------------------------------------------
+Zobacz co przechowują zmienne i opisz jak rozumiesz uzyskany wynik. Do czego on jest i kiedy może się wg Ciebie przydać:
+
+PATH
+RANDOM
+PWD
+PS1
+USER
+HOSTNAME
+OSTYPE
+
+------------------------------------------------------------------------------------------------------------------------
+*echo $PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+	-(Ta zmienna zawiera scieżki do katalogów,gdzie są zlokalizowanie. Użyteczna opcja, ponieważ zaoszczędza nam mnóstwo czasu na wypisywanie ścieżki.) 
+
+*echo $RANDOM = 24909
+	-(Generator losowych liczb, nie najlepszy (mały zakres), ale jest. Taka funckja może mieć dużo zastosowań, ale nic konkretnego mi nie przychodzi do głowy.)
+
+*echo $PWD = /home/ubuntu
+	-(Wyświetla aktualną scieżkę, w której się znajdujemy.Przydatne kiedy chcemy w skrypcie określić w jakim katalogu się znajdujemy.)
+
+*echo $USER = ubuntu
+	-(Wyświetla nasz login.)
+
+*echo $HOSTNAME = bss-ubu1804
+	-(Wyświetla nazwę hosta.)
+
+*echo $OSTYPE = linux-gnu
+	-(Wyświetla nazwę systemu operacyjnego.Przydatne, kiedy piszemy skrypt pod dany system operacji. Ta funkcja odrazu wykryje, czy aktualny system jest prawidłowy.)
+
+

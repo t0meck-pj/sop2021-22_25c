@@ -1,0 +1,19 @@
+#!/bin/bash                                                                                                                                                                                                                                   
+
+#Napisz skrypt,ktory                                                                                                                                                                                                                          
+#-sprawdzi, czy w biezacym katalogu jest wiecej niz 5 plikow.                                                                                                                                                                                 
+#-Jesli tak,to wypisze odpowiedni komunikat z informacja ze tak jest.                                                                                                                                                                         
+
+x=$(ls  -p | grep -cv /)        #Do zmiennej x przypisujemy wartosc z komend ls i grep. ls komenda, ktora wypisuje zawartosc katalogu po dodaniu parametru -p ls dodaje do katalogu /                                                         
+                                #/ przyda sie przy komendzie grep, ktora wypisuje wiersze pasujace do wzorca za pomoca parametru v i wpisaniu / grep odrzuca wszystkie rzeczy zaczynajace sie od /                                            
+                                #natomiast parametr c wylacza normalne wyjscie, zamiast niego, dla kazdego pliku wejsciowego, wypisuje liczbe pasujacych wierszy                                                                              
+
+if [[ "$x" > "5" ]]; then       #Jezeli plikow jest wiecej niz 5 wypisuje dany komuniak i tak dalej...                                                                                                                                        
+        echo W bierzacym katalogu jest wiecej niz 5 katalogow
+elif [[ "$x" = "5" ]]; then
+        echo W bierzacym katalogu jest  5 plikow
+else [[ "$x" < "5" ]]
+        echo W bierzacym katalogu jest mniej niz 5 plikow
+fi
+
+#Rezultat jest taki, ze jezeli w danym katalogu jest mniej, wiecj, lub 5 plikow skryp wypisze odpowiedni komunikat    
