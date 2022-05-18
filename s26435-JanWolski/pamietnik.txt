@@ -1,0 +1,46 @@
+Sprawozdanie 
+Maszyna virtual box
+Podczas tworzenia virtualnej maszyny najpierw wybieramy ilość ramu maszyny. Potem wybieramy jedna z 3 opcji dysku wirtualnego:
+- VDI - najlepsza dla naszych podszeb stwozona do virtual boxa
+- VHD - uzywana do hyperV
+-VMPK - Viewere
+I wybieramy czy jest on dynamiczny czy prealokowany(dynamiczny zajmuje mnie jmiejsca na dysku fizycznym ale potrzebuje wiecej czasu)
+
+3 opcje przy starcie maszyny:
+1. zwykły start
+2. bezzałohgowy start(maszyna działa w tle)
+3. oddzielny start( maszyna działa w okienku ale przy zamknięciu nadal działe w tle)
+
+Bootujemy system Host + R  + F12 przy starcie systemu.
+
+Temporary boot device :
+F) floppy disc - bootowanie z dyskietki
+C) cd-rom bootowanie z płyty cd
+l) lan bootwoanie z lanu
+
+Debian Linux:
+Graficzna instalacja - dla dzieci do lat 6
+instal - normalna tekstowa instalacja
+advanced options - także bezużyteczne bo graficzne
+help - pomoc
+instal with speach synthesis - to co napisane
+
+Podczas instalacji systemu w wiekszosci przypadków szystko zaznaczamy w angielskiej wersji jezykowej
+
+Partitioning method - guided - use entire disc(standardowo)
+
+Doker - wirtualna maszynaobsługująca jeden proces
+
+Rite - łączenie dysków
+
+LVM - softwere implementacja Rite
+
+Partycje podstawowe i logiczne 
+
+Tworzenie nowej tablicy partycji
+
+Getting debian
+
+Task shell - polecenie do zobaczenia procesów w debianie
+
+
