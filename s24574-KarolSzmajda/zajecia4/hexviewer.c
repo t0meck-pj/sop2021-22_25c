@@ -1,6 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>
+#include <errno.h>
+#include<string.h>
+
+extern int errno;
 
 int main(int argc, char* argv[])
 {
@@ -18,7 +22,7 @@ int main(int argc, char* argv[])
 		printf("	./hex filename\n\n");
 
 		/* Zwracamy błąd na stderr */
-		return 1;
+		return EXIT_FAILURE;
 	}
 
 	filename = argv[1];
@@ -26,6 +30,12 @@ int main(int argc, char* argv[])
 	printf("Loading file: %s\n", filename);
 
 	handle = fopen(filename, "r");
+	if (handle == NULL) 
+	{
+		fprintf(stderr, "Error opening %s file: %s\n", filename, strerror(errno));
+		
+		return EXIT_FAILURE;
+	}
 	
 	/* Czytamy 32 linijki po 16 bajtów z pliku */
 	for(; o < 32; o++)
@@ -59,5 +69,5 @@ int main(int argc, char* argv[])
 	fclose(handle);
 
 	/* Zwracamy kod 0, Success */
-	return 0;
+	return EXIT_SUCCESS;
 }

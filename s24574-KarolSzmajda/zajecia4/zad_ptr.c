@@ -42,7 +42,7 @@ int main(int argc, char* argv[])
 	if (!fscanf(stdin, "%d", &functionId))
 	{
 		printf("Niepoprawny znak\n");
-		return 1;
+		return EXIT_FAILURE;
 	}
 
 
@@ -52,19 +52,24 @@ int main(int argc, char* argv[])
 	if (!fscanf(stdin, "%d", &elementCount))
 	{
 		printf("Niepoprawny znak\n");
-		return 1;
+		return EXIT_FAILURE;
 	}
 
 	TablicaLiczb = (int*)malloc(sizeof(int) * elementCount);
+	if (TablicaLiczb == NULL) 
+	{
+		perror("malloc failed");
+		
+		return EXIT_FAILURE;
+	}
 
-	
 	for (; i < elementCount; i++)
 	{
 		printf("element[%d]: ", i);
 		if (!fscanf(stdin, "%d", &number))
 		{
 			printf("Niepoprawny znak\n");
-			return 1;
+			return EXIT_FAILURE;
 		}
 
 		*(TablicaLiczb + i) = number;
@@ -72,6 +77,8 @@ int main(int argc, char* argv[])
 
 
 	printf("Wynik: %d\n", forAll(TablicaLiczb, elementCount, TablicaFunkcji[functionId]));
+
+	free(TablicaLiczb);
 
 	return EXIT_SUCCESS;
 }

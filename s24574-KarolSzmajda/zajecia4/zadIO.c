@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/stat.h>
+#include <errno.h>
+#include<string.h>
+
+extern int errno;
 
 void usage()
 {
@@ -12,7 +16,7 @@ void usage()
 int main(int argc, char* argv[])
 {
 	/* Alokujemy zmienną przechowująca ścieżke do pliku */
-	char* Filename = (char*)malloc(sizeof(char) * 260);
+	char filename[260];
 	struct stat sb;
 	FILE* handle;
 	char* line;
@@ -25,38 +29,54 @@ int main(int argc, char* argv[])
 	if (argc < 2)
 	{
 		printf("Podaj nazwe pliku: ");
-		if (!fscanf(stdin, "%s", Filename))
+		
+		if (!fscanf(stdin, "%s", (char*)&filename))
 		{
-			printf("Wystąpił bład\n");
+			fprintf(stderr, "Wystąpił bład\n");
+			
+			return EXIT_FAILURE;
 		}
 	}
 
 	/* Jeżeli jest podany argument (ścieżka do pliku) zapisujemy go do zmiennej */
 	else if (argc == 2)
 	{
-		Filename = argv[1];
+		strcpy(filename, argv[1]);
 	}
 
 	/* W innym wypadku wyświetlamy jak korzystać z appki */
 	else {
 		usage();
 
-		return 1;
+		return EXIT_FAILURE;
 	}
 
 	/* Uchwyt do czytanego pliku */
-	handle = fopen(Filename, "r");
+	handle = fopen(filename, "r");
+	if (handle == NULL) 
+	{
+		fprintf(stderr, "Error opening %s file: %s\n", filename, strerror(errno));
+		
+		return EXIT_FAILURE;
+	}
 
 
 	/* Pobieramy informacje o pliku, w tym przypadku sb.st_size - wielkość pliku w bajtach */
-	if (stat(Filename, &sb) == -1)
+	if (stat(filename, &sb) == -1)
 	{
 		perror("error");
+
 		return EXIT_FAILURE;
 	}
 
 	/* Alokujemy zmienną, która ma taki sam rozmiar co czytany plik */
 	line = (char*)malloc(sb.st_size);
+	if (line == NULL) 
+	{
+		perror("malloc failed");
+		
+		return EXIT_FAILURE;
+	}
 
 	/* Czytamy pierwszą linijkę */
 	if (fscanf(handle, "%[^\n] ", line) != EOF)
@@ -67,13 +87,21 @@ int main(int argc, char* argv[])
 		/*Jeżeli liczba jest 0 - oznacza to że wysątpił błąd przy konwersji atoi */
 		if (size == 0)
 		{
-			printf("Cannot convert line to number\n");
+			fprintf(stderr, "Cannot convert line to number\n");
+			
+			free(line);
 			return EXIT_FAILURE;
 		}
 
 		/* Alokujemy dynamicznie ilość int'ów podanych w pliku (w pierwszej linijce) */
-		table = (int*)malloc(sizeof(int)* size);
-		
+		table = (int*)malloc(sizeof(int) * size);
+		if (table == NULL) 
+		{
+			perror("malloc failed");
+			
+			free(line);
+			return EXIT_FAILURE;
+		}
 
 		/* Czytamy kolejne linijki określoną ilość razy */
 		i = 0;
@@ -85,7 +113,10 @@ int main(int argc, char* argv[])
 				number = atoi(line);
 				if (number == 0)
 				{
-					printf("Cannot convert line to number\n");
+					fprintf(stderr, "Cannot convert line to number\n");
+					
+					free(table);
+					free(line);
 					return EXIT_FAILURE;
 				}
 
@@ -102,11 +133,10 @@ int main(int argc, char* argv[])
 			printf("%d\n", *(table+i));
 		}
 
-		if (table != NULL)
-		{
-			free(table);
-		}
+		free(table);
 	}
+	
+	free(line);
 
 	/* Zamykamy plik */
 	if (handle != NULL)

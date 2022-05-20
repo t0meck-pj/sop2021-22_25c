@@ -24,7 +24,7 @@ static int childFunc(void* arg)
 	int end = start + NUMBER_PER_CHILD - 1; /* końcowy zakres sumowania */
 
 	/* Alokuje segment współdzielonej pamięci */
-	shm_id = shmget (shm_key, shm_size, IPC_CREAT | S_IRUSR | S_IWUSR);
+	shm_id = shmget (shm_key, shm_size, S_IRUSR | S_IWUSR);
 
 	/* Dołączam segment współdzielonej pamięci */
 	shmaddr = (int*) shmat (shm_id, 0, 0);
@@ -32,6 +32,9 @@ static int childFunc(void* arg)
 	/* Zmodyfikowałem wzór, wynik zapisuje do współdzielonej pamięci między procesami */
 	/* https://pl.wikipedia.org/wiki/Liczba_tr%C3%B3jk%C4%85tna */
 	*(shmaddr+i) = ((end * end + end) - (start * start - start)) / 2;
+	
+	/* Odłączenie segmentu współdzielonej pamięci*/
+	shmdt(shmaddr);
 	
 	return 0;
 }
@@ -74,6 +77,12 @@ int main(int argc, char *argv[])
 	}
 
 	printf ("Suma: %d\n", sum);
+	
+	/* Odłączenie segmentu współdzielonej pamięci*/
+	shmdt(shmaddr);
+	shmctl(shm_id, IPC_RMID, NULL); /* Oznaczenie o możliwości usuniecia pamieci */
+	
+	free(stack);
 	
 	return 0;
 }
