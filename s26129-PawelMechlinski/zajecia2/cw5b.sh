@@ -7,4 +7,10 @@ Length=$(($Length-1))
 
 echo "Ostatni znak argumentu to: ${1:$Length}"
 
-echo -e "\e[32m$1\e[0m"
+output=$(echo $1 | sed 's/SOP/\\e[32mSOP\\e[0m/g')
+
+
+
+
+
+echo -e $output
