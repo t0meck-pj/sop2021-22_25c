@@ -17,7 +17,7 @@ Dzisiaj na zajeciach nauczylem sie:
 
 I jeszcze powtórzyłem sobie regex'y, ale mam wrażenie, że przez samą dość skomplikowaną składnie będę potrzebował jeszcze trochę przećwiczyć je, żeby płynnie z nich korzystać - choć już z sed'em idzie mi chyba całkiem nieźle. 
 
-Zaskakuje mnie (pozytywnie) logika i elegancja zaprojektowania GNU/Linux, gdzie zagadnienia drzewa procesów, powłok, parametrów powłokiłączą się ze sobą w jasny sposób - przynajmniej jak już się zrozumie "co z czym się je".
+Zaskakuje mnie (pozytywnie) logika i elegancja zaprojektowania GNU/Linux, gdzie zagadnienia drzewa procesów, powłok, parametrów powłoki łączą się ze sobą w jasny sposób - przynajmniej jak już się zrozumie "co z czym się je".
 
 Na pewno chciałbym jeszcze lepiej zrozumieć jak funkcjonuje kernel i proces boot'owania systemu oraz jak przekłada się to na takie wysokopoziomowe funkcje systemu jak renderowanie grafiki czy niskopoziomowe jak budowa sterowników od drukarki czy innych urządzeń peryferyjnych.
 

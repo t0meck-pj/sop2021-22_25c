@@ -15,4 +15,4 @@ $X
 
 i otrzymam taki sam wynik, jakbym wpisywał całą komendę 'ls -l'. Jest to więc metoda zbliżona do ustalania aliasu.
 
-
+[EDIT: Wynika to z faktu, że bash to interpreter i powłoka terminala]

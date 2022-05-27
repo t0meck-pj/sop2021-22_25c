@@ -15,6 +15,8 @@ Wartość PATH jest zbudowana w taki sposób, że każda następna lokalizacja 
 
 Możliwe jest, żeby wykorzystać zmienną PATH do dodania nowej lokalizacji z dostępnymi komendami, np. stworzonymi własnoręcznie. Można to zrobić edytując plik '.bashrc'. Nie spowoduje to bezpośredniego nadpisania PATH, jednak nowa lokalizacja będzie dodawana za każdym uruchomieniem powłoki bash dla tego użytkownika tak długo jak sam blik bashrc nie ulegnie zmianie.
 
+[EDIT: Można tutaj także wykorzystać komendę 'set']
+
 Ciekawostka: PATH jest tylko jedną z wielu zmiennych środowiskowych powłoki bash, a wszystkie można obejrzeć z zastosowaniem komendy 'env'.
 
 RANDOM - To zmienna wykorzystywana do generowania losowych liczb typu integer.
@@ -37,12 +39,25 @@ R=$(($(($RANDOM%$RANGE))+X))
 gdzie Y to górny limit, a X to dolny limit.
 
 PWD - Zmienna ta jest podobna zarówno w nazwie, jak i w zastosowaniu do komendy 'pwd', która normalnie wyświetla obecną lokalizację na drzewie katalogów. Którą lepiej stosować w skryptach?
+[EDIT:
+	P: Czy jak wewnątrz skryptu wywołasz polecenie 'cd' i zmienisz aktualny katalog to zmienna PWS zostanie zaktualizowana czy nie?
+	O: W większości przypadków pwd i echo $PWD dają ekwiwalentny wynik. Funkcja wbudowana pwd wyświetla wartość zmiennej środowiskowej $PWD o ile nie jest używana z parametrem -P, wówczas wyświetla fizyczną lokalizację z pominięciem symlinków. 
+	Binarka 'pwd' ('/bin/pwd') wykorzystuje zawołanie systemowe getcwd(3), które wyświetla wartość 'readlink -f /proc/self/cwd' W tym wypadku będzie wyświetlona lokalizacja z pominięciem symlinków.
+	Zatem funkcjonalnie:
+	pwd == echo $PWD
+	pwd -P == /bin/pwd
+
+	Jeśli chodzi o efektywność kodu to warto zauważyć, że używanie $PWD omija konieczność forkowania na subkomendzie, co poprawia wydajność programu i program tracing.]
+
+
 $PWD nie zadziała, jeśli zmienna nie jest ustalona, jednak prawie zawsze jest.
 Z kolei $(pwd) może nie zadziałać, jeśli konstrukcja $() nie jest wspierana przez daną powłokę, co z reguły będzie miało miejsce częściej. Dodatkowo, konstrukcja $() będzie uruchamiać nowy subproces (nową powłokę), co dodatkowo powoduje pogorszenie wydajności, podczas gdy PWD będąc zmienną powłoki jej wartość jest odzyskiwana niemal natychmiast. Istnieją pewne niuanse w zastosowaniu obu (jak choćby możliwość używania pwd z flagą '-P'), jednak generalnie można przyjąć, że w większości przypadków lepiej jest używać w skryptach $PWD.
 
 PS1 - To zmienna, która przechowuje string zachęty (? Prompt ?). Domyślna struktura to:
 \u@\h \W\\$
 Co oznacza tyle, co nazwa użytkownika (\u), znak małpy, nazwa hosta (\h) i lokalizacja robocza (\W), wraz ze znakiem '$', czyli tradycyjnie właściwym znakiem zachęty. Wartości domyślne są do zmiany w znanym już nam pliku /etc/bashrc.
+
+[EDIT: Uwaga, niewskazane jest edytowanie konfiguracji poprzez plik /etc/bashrc, ponieważ edytuje to konfigurację globalną - chyba, że taki jest cel. Dla potrzeby usera lepiej jest nadpisywać $HOME/.bashrc przez polecenie 'export'.]
 
 Ciekawostka:
 Istnieją także zmienne o numeracji PS{2..4}, oznaczające kolejno:
