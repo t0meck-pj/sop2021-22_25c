@@ -1,0 +1,12 @@
+2022-02-28
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem instalowac debiana na writualnej maszynie.
+
+2022-03-19
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem sie podstawowych operacji w pisaniu skryptow Bash
+Dowiedzialem sie o tym jak dzialaja powloki, zmienne (oraz ich dziedziczenie). Poznalem kilka zmiennych srodowiskowych.
+
+2022-03-19
+Moj kochany pamietniczku niestety nie moglem pojawic sie na dzisiejszych zajeciach. Bralem udzial w Hackathlonie organizowanym przez KGHM.
+Przegladajac strone www Pana Tomka, dowiedzialem sie jak tworzyc petle, warunki oraz tablice w Bash'u. 
+
+

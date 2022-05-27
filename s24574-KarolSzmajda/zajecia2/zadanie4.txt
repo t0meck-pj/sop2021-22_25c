@@ -1,0 +1,9 @@
+﻿#!/bin/bash
+X=$(ls -la)
+
+echo "Opcja bez cytatu pominie nowe linie"
+echo $X
+echo " "
+
+echo "Opcja cytowania zapobiegnie usunieciu nowych linii"
+echo "$X"

@@ -1,0 +1,36 @@
+#!/bin/bash
+echo "[PATH]"
+echo "Zmienna środowiskowa, zawierająca zestaw katalogów, w którym znajdują sie zazwyczaj programy użytkowe."
+echo "Przykład wartości: $PATH"
+echo ""
+
+echo "[RANDOM]"
+echo "Jest to wewnetrzna funkcja Bash, która zwraca pseudolosową liczbe typu ushort (0 - 32767)"
+echo "Przykład wartości: $RANDOM"
+echo ""
+
+echo "[PWD]"
+echo "Zmienna środowiskowa, zawierająca scieżke absolutną katalogu w którym sie znajdujemy"
+echo "Przykład wartości: $PWD"
+echo ""
+
+echo "[PS1]"
+echo "Zmienna środowiskowa, zawierająca znak zachęty"
+echo "Przykład wartości: $PS1"
+echo ""
+
+echo "[USER]"
+echo "Zmienna środowiskowa, zawierająca nazwe aktualnie zalogowanego uzytkownika"
+echo "Przykład wartości: $USER"
+echo ""
+
+echo "[HOSTNAME]"
+echo "Zmienna środowiskowa, zawierająca nazwe hosta"
+echo "Przykład wartości: $HOSTNAME"
+echo ""
+
+echo "[OSTYPE]"
+echo "Zmienna środowiskowa, zawierająca typ systemu operacyjnego uruchomionego na maszynie"
+echo "Przykład wartości: $OSTYPE"
+echo ""
+
