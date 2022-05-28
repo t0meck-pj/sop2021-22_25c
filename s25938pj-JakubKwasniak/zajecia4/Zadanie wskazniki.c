@@ -1,21 +1,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int maksimum(int a, int b)
+int max(int p1, int p2)
 {
-    return (a > b) ? a : b;
-}
-int minimum(int a, int b)
-{
-    return (a < b) ? a : b;
+    return (p1 > p2) ? p1 : p2;
 }
 
-int suma(int a, int b)
+int min(int p1, int p2)
 {
-    return a + b;
+    return (p1 < p2) ? p1 : p2;
 }
 
-int dlaWszystkich(int *tablica, int liczbaElementow, int (*Funkcja)(int, int))
+int sum(int p1, int p2)
+{
+    return p1 + p2;
+}
+
+
+int dlaWszystkich(int* tablica, int liczbaElementow, int (*Funkcja)(int, int))
 {
     int v = *(tablica);
     int i;
@@ -27,34 +29,34 @@ int dlaWszystkich(int *tablica, int liczbaElementow, int (*Funkcja)(int, int))
     return v;
 }
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
     int functionId = 0;
+    int* Tablica;
     int liczbaElementow = 0;
-    int *TablicaLiczb;
     int i = 0;
     int number = 0;
     int (*TablicaFunkcji[3])(int, int);
-    TablicaFunkcji[0] = maksimum;
-    TablicaFunkcji[1] = minimum;
-    TablicaFunkcji[2] = suma;
+    TablicaFunkcji[0] = max;
+    TablicaFunkcji[1] = min;
+    TablicaFunkcji[2] = sum;
 
     printf("functionId: ");
-    if (!fscanf(stdin, "%d", &functionId))
+    if (!scanf( "%d", &functionId))
     {
         printf("Niepoprawny znak\n");
-        return EXIT_FAILURE;
+        return 1;
     }
 
     printf("Liczba elementow: ");
-    if (!fscanf(stdin, "%d", &liczbaElementow))
+    if (!scanf( "%d", &liczbaElementow))
     {
         printf("Niepoprawny znak\n");
         return 0;
     }
 
-    TablicaLiczb = (int *)malloc(sizeof(int) * liczbaElementow);
-    if (TablicaLiczb == NULL)
+    Tablica = (int*)malloc(sizeof(int) * liczbaElementow);
+    if (Tablica == NULL)
     {
         printf("Błąd podczas rezerwacji pamięci fukcją malloc");
 
@@ -70,12 +72,11 @@ int main(int argc, char *argv[])
             return 0;
         }
 
-        *(TablicaLiczb + i) = number;
+        *(Tablica + i) = number;
     }
 
-    printf("Wynik: %d\n", dlaWszystkich(TablicaLiczb, liczbaElementow, TablicaFunkcji[functionId]));
-
-    free(TablicaLiczb);
+    printf("Wynik: %d\n", dlaWszystkich(Tablica, liczbaElementow, TablicaFunkcji[functionId]));
+    free(Tablica);
 
     return 0;
 }

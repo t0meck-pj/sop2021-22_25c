@@ -5,30 +5,32 @@
 
 int main(int argc, char *argv)
 {
-    char nazwaPLiku[260];
-    struct stat abc; // wyjaśnić co to
-    FILE *uchwyt;
+    char nazwaPLiku[260];//Maksymalny rozmiar sciezki do pliku - 260(max_path)
     char *pojedynczaLinia;
-    int rozmiar;
-    int *tabela;
-    int i;
-    int liczba;
+    FILE *uchwyt;   //można dzięki temu otworzyć plik i jest on zablokowany dla innych procesów
+    struct stat abc; // Zmienna przechowujaca informacje na temat rozmiaru pliku(w bajtach)
+    int *tabela; //przechowuje wartość liczbową z danej linijki
+    int rozmiar; //Zmienna przechowująca liczbe lini w pliku
+    int liczba; //Zmienna reprezentująca element liczby każdej linijki pliku
+    int i;  //Zmienna do iteracji
+  
     // Instrukcja warunkowa gdy nie wykrywamy argumentów (pliku)
-    if (argv < 2)
+    if (argc >= 1)
     {
         printf("Nie wykrylismy zadnego pliku\n Podaj prosze jego pelna nazwe");
-        if (!fscanf(stdin, "%s", (char *)&nazwaPLiku))
-            ;
+        if (!scanf( "%s", (char *)&nazwaPLiku));
+            
         {
-            fprintf(stderr, "Wystąpił błąd");
+            printf("Wystąpił błąd");
             return 0;
         }
     }
-    else if (argv == 2)
+    else if (argc == 2)
     {
+        //Kopiowanie między łańcuchami znaków, z argumentu do zmiennej nazwaPliku
         strcpy(nazwaPLiku, argv[1]);
     }
-    // Czytanie pliku
+    // Otwieranie pliku z atrybutem r(read/odczyt pliku)
     uchwyt = fopen(nazwaPLiku, "r");
     if (uchwyt == NULL)
     {
@@ -36,15 +38,16 @@ int main(int argc, char *argv)
         return 0;
     }
     // dynamiczna alokacja pamięci dla pojedynczej linii
-    pojedynczaLinia = (char *)malloc(abc.st_size); // Wyjasnic z Karolem
+    pojedynczaLinia = (char *)malloc(abc.st_size); //Alokuje pamięć do rozmiaru całego pliku wiedząc że linijka tego pliku nie wyniesie więcej niż rozmiar pliku
     // Instrukcja waunkowa która wykrywa błąd rezerwacji pamięci funkcją malloc
     if (pojedynczaLinia = NULL)
     {
         printf("Błąd rezerwacji pamięci funkcją malloc");
         return 0;
     }
-    // Czytane od 1 lini
-    if (fscanf(uchwyt, "[^\n] ", pojedynczaLinia) != EOF)
+    // Czytanie od 1 lini
+    //Szukanie całych linijek do momentu gdy linia się zakończy (stąd na końcu EOF)
+    if (fscanf(uchwyt, "%[^\n] ", pojedynczaLinia) != EOF) //EOF - End of file/Koniec Pliku
     {
         // Pojedyncza linia na liczbe
         rozmiar = atoi(pojedynczaLinia);
@@ -70,7 +73,7 @@ int main(int argc, char *argv)
         // pętla czytająca linijki taką ilość razy, jaką wartość posiada zmienna rozmiar
         for (i = 0; i < rozmiar; i++)
         {
-            if (fscanf(uchwyt,"[^\n] ", pojedynczaLinia) !=EOF)
+            if (fscanf(uchwyt,"%[^\n] ", pojedynczaLinia) !=EOF)
             {
                 //Zamiania lini na liczbe funkcją atoi
                 liczba=atoi(pojedynczaLinia);
