@@ -1,0 +1,41 @@
+#1
+#! /bin/bash
+for ((i = 10; i > 0; i-=2)) do
+echo $i
+done
+
+#2
+#! /bin/bash
+i=1
+while [ i <= $# ]; do
+echo ${$i}
+i++
+done
+
+#3
+#! /bin/bash
+ls -p | grep -v / | while IFS= read line; do echo Patrzcie panstwo oto plik: $line; done                                                                 
+ls --hide=*.* | while IFS= read line ;do echo $line; done
+
+#4
+#! /bin/bash
+katalog=$(ls -p | grep -v /)
+for katalog in *.c                                                                                                                                   
+do
+$(cc "$katalog" -o "$katalog | sed 's/\.[^\.]*$//'")                                              
+done
+
+#5
+wyliczanka=$(ls -p | grep -v /)                                                                                                                                       
+x=$(ls -p | grep -cv /)                                                                                                                                 
+tab=($wyliczanka)                                                                                                   
+for wyliczanka in *                                                                                     
+do
+echo $wyliczanka
+done
+for (( i=($x-1); i >= 0;i--)); do 
+echo ${tab[i]}; 
+done
+
+
+

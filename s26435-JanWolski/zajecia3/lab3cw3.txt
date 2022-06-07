@@ -1,0 +1,50 @@
+#1
+napis=$1                                                                                    
+kol=$2                                                                                                                                                                                
+function kolor {                                                                                                        
+        if [[ $kol == "Red" || $kol == "red" || $kol == "RED" ]]; then                                               
+                echo -e "\e[31m$napis\e[0m"                                                                                                           
+        elif [[ $kol == "Black" || $kol == "black" || $kol == "BLACK" ]]; then                                                       
+                echo -e "\e[30m$napis\e[0m"
+        elif [[ $kol == "Green" || $kol == "green" || $kol == "GREEN" ]]; then
+                echo -e "\e[32m$napis\e[0m"
+        elif [[ $kol == "Brown" || $kol == "brown" || $kol == "BROWN" ]]; then
+                echo -e "\e[33m$napis\e[0m"
+        elif [[ $kol == "Blue" || $kol == "blue" || $kol == "BLUE" ]]; then
+                echo -e "\e[34m$napis\e[0m"
+        elif [[ $kol == "Magneta" || $kol == "magneta" || $kol == "MAGNETA" ]]; then
+                echo -e "\e[35m$napis\e[0m"
+        elif [[ $kol == "Cyan" || $kol == "cyan" || $kol == "CYAN" ]]; then
+                echo -e "\e[36m$napis\e[0m"
+        elif [[ $kol == "White" || $kol == "white" || $kol == "WHITE" ]]; then
+                echo -e "\e[37m$napis\e[0m"
+        else
+                echo Blad
+        fi
+}
+echo Twoj tekst przed kolorowaniem:                                                                                                                                                       
+echo $1
+echo Twoj tekst po kolorowaniu:
+kolor
+
+#2
+function fib {
+        x=0                                                                                                                            
+        y=1
+
+        if [[ $n == 1 || $n == 0 ]]; then                                                                                                                                              
+        echo "$n"
+        elif [ $n > 2 ]; then                                                                                   
+                for (( i=2; i <= $n; i++ ))                                                                                                                              
+                do
+                z=$[y+x]                                                                                                                                       
+                x=$y                                                                                                                    
+                y=$z                                                                                                                                                       
+                done
+                fi
+        echo "Fib($n)=$z"                                                                                                                  
+}
+
+echo "Podaj argument Fib(n):"                                                    
+read -s n                                                                                                                                           
+fib

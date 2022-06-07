@@ -1,0 +1,12 @@
+1.
+#include <studio.h>
+
+int main(){
+int napis[4];
+int suma = 0;
+int i;
+for(i=0;i<4;i++) scanf("%i",&napis[i]);
+for((i=0;i<4;i++) suma+=napis[i];
+printf("Suma: %i\n",suma);
+return suma;
+}
