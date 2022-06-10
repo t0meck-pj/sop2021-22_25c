@@ -1,0 +1,15 @@
+#!/bin/bash
+echo "Podpunkt a"
+A=Ala
+echo "$A ma kota, a kot ma" ${A/Ala/Alę}
+echo "Podaj imię:"
+read K
+echo "$K ma kota, a kot ma" $K | sed s/a$/ę/g | sed 's/\([^ę]\)$/\1a/g'
+
+echo "Podpunkt b, wpisz tekst:"
+
+read X
+Z=${#X}
+echo ${X:0:1}
+echo ${X:Z-1:1}
+ 

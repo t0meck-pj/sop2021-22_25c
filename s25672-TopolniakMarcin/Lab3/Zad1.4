@@ -1,0 +1,7 @@
+#!/bin/sh
+X=$(ls -lp | sed /^total/d | egrep -v /$ | wc -1)
+if [[ X -gt 5 ]]; then
+	echo "Jest więcej niż 5 plików"
+else
+	echo "Jest mniej niż 5 plików"
+fi

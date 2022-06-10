@@ -1,0 +1,6 @@
+#!/bin/bash
+X=$(ls -la)
+echo "Bez cydzosłowia pomija nowe linie"
+echo $X
+echo "Z cudzysłowiem nie pomija nowych liń"
+echo "$X"

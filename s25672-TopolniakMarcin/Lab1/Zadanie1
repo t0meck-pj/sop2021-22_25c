@@ -1,0 +1,40 @@
+W ustawieniach wirtualnej maszyny wybrałem folder docelowy dla zapisów konfiguracji oraz obrazy dysków twardych
+w danej maszynie. Następnie przy konfiguracji nadaję nazwę maszynię, wybieram rodzaj systemu operacyjnego, określam
+ilość pamięci RAM dla maszyny a na koniec wybieram rodzaj dysku, z trzech dostępnych opcji:
+VDI - jest to standardowy dysk VirtualBoxa
+VHD - dysk od Microsoftu
+VMDK - dysk od VMware
+Po wyborze rodzaju decyduje o sposobie zapisu na dysku:
+- Dynamiczny Rozmiar - rozmiar rozszerza się do ustalonej wartości
+- Stały rozmiar - rozmiar dysku zostanie od razu ustalony na podaną wartość
+Skończyłem konfigurację wirtualnej maszyny i przy uruchomieniu dostaję do wyboru jedną z trzech opcji:
+- Zwykły start - czyli maszyna staruje domyślnie
+- Bezgłowy start - maszyna uruchamia się w tle bez okna
+- Oddzielny start - maszyna uruchamia się w tle wraz z oknem, które można zamknąć nie ingerując w zatrzymanie maszyny
+
+Wirtualna maszyna startuje i po uruchomieniu boot menu wybieram plik docelowy na którym znajduje się inst Debiana.
+Rozpoczyna się instalacja opragromowania.
+Jako pierwszy następuje wybór języka, decyduje się na polski ze względu na wygodę użytkowania.
+Następnie jest wybór lokalizacji, który jest prosty - Polska.
+Kolejny krok to układ klawiatury i znowu wybieram opcję polską.
+Teraz pojawia się okienko do wpisania nazwy hosta. Decyduje sie na imie oraz nazwisko.
+Nastpęnie nazwa domeny. Jako że żadnej nie mam to pole zostawiam puste i przechodzę dalej.
+Kolejny krok to ustalenie hasła administratora.
+Potem dodajemy nowego użytkownika, w moim przypadku nazwałem go "test", a następnie ustalamy dla niego hasło.
+Teraz pojawia się opcja partycjacji dysków. Z racji iż jest to testowa instalacja decyduje się na pierwszą opcję 
+czyli "Przewodnik - cały dysk".
+Następnie należy wybrać dysk który będziemy partycjonować. Opcję mam jedną, ze względu na ilość miejsca wydzielonego
+dla wirtualnej maszyny.
+Teraz wybieram ile ma być partycji. Zaznaczam że wszystko ma być na jednej.
+Pojawia się podsumowanie. Jako że wszystko jest okej to wybieram "Zakończ partycjonowanie i zapisz zmiany na dysku".
+Po chwili kończymy partycjonowanie potwierdzając zmiany na dyskach.
+Następnie wybieramy kraj dla serwera lustrzanego debiana. Wybieram oczywiście Polskę.
+Po wyborze pojawia się lista serwerów z archiwum Debiana. Jako że jest to instalacja testowa to wybieram opcje nr1.
+Teraz mam podać dane serwera pośredniczącego. Ja takieko nie mam więc zostawiam puste pole i przechodzę dalej.
+Pojawia się informacja o konkursie na najpopularniejszy pakiet. Nie decyduje się na branie w nim udziału.
+Podstawowa wersja Debiana jest już zainstalowana. Można teraz wybrać dodadtkowe oprogramowania do zainstalowania,
+między innymi serwery druku/WWW/SSH, środowiska GNOME, KDE, LKDE. Nic dodatkowego nie instaluje.
+Kolejne okno to instalacja programu rozruchowego GRUB na dysku twardym. Potwierdzam chęć zainstalowania.
+Następnie mam wybrać partycję docelową dla sektora rozruchowego. Jako że mam tylko jedną to ją wybieram.
+Instalacja w pełni dobiega końca i Debian jest gotowy do pracy.
+
