@@ -1,0 +1,15 @@
+#include <stdio.h>
+File *file;
+int n, suma, i;
+
+int main(){
+int line[80];
+file = fopen("text.txt","r");
+while(fgets(line,80,file)!=NULL) sscanf("%i",line);
+fclose(file);
+n = line[0];
+suma = 0;
+for(i = 1; i < n; i++) suma+=linie[i];
+printf("%i",suma);
+return 0;
+}

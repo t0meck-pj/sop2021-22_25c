@@ -1,0 +1,21 @@
+#include<stdio.h>
+#include<sys/types.h>
+#include<unistd.h>
+#include<sys/wait.h>
+
+int main(){
+pid_t mainPID;
+pid_t ppid;
+if(fork()==0)
+{
+mainPID = getpid();
+ppid = getppid();
+printf(Child PID: %i Child PPID: %i\n", mainPID, ppid);
+}else{
+mainPID = getpid();
+ppid = getppid();
+printf(Parent PID: %i Parent PPID: %i\n", mainPID, ppid);
+wait(NULL);
+}
+return 0;
+}

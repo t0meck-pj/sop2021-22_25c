@@ -1,0 +1,42 @@
+# 1
+#! /bin/bash
+if [ $# > 1 ]; then                                                                                                                                           
+        echo $1                                                                                                                                                                                       
+else
+        echo "Nie podano zadnych parametrow"                                                                                                                                                   
+fi
+
+#2
+#!/bin/bash
+sciezka=$PWD                                                                                                          
+if [ -e $sciezka/config.cfg ];then                                                                                                                             
+$sciezka/config.cfg                                                                                                                                                            
+elif [ $# != 0 ] && [ -e $sciezka/$1 ]; then                                                                                                                                                                                                                                                                                 
+$sciezka/$1                                                                                                                                                        
+else
+        echo "Blad"                                                                                                                                          
+fi
+
+#3
+#! /bin/bash
+nazwaPliku=$0                                    
+rozszerzenie="${nazwaPliku##*.}"                                                                    
+
+if [ "${rozszerzenie}" != "sh"  ]; then                                                                                                    
+        echo "Rozszerzenie sh nie znaleziono."                                                                                   
+        mv $0 ${0}.sh                                                                                                         
+else
+        echo "Plik posiada roszerzenie .sh"                                                                                                                    
+fi
+
+#4
+#! /bin/bash
+x=$(ls  -p | grep -cv /)
+if [[ "$x" > "5" ]]; then                                                                                                                                              
+        echo W bierzacym katalogu jest wiecej niz 5 katalogow
+elif [[ "$x" = "5" ]]; then
+        echo W bierzacym katalogu jest  5 plikow
+else
+        echo W bierzacym katalogu jest mniej niz 5 plikow
+fi
+
