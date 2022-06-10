@@ -1,0 +1,17 @@
+1. Polskie imię:
+	- Z wielkiej litery
+	- Polskie znaki
+	- Bez cyfr i znaków specjalnych
+
+2. Kod pocztowy:
+	- Same cyfry i ew. myślnik, bez liter i innych znaków specjalnych.
+	- Zaczyna się kończy od cyfry.
+3. E-mail:
+	- Cyfry, litery i znaki specjalne.
+	- Bez polskich znaków.
+	- Wyłącznie jedna małpa oraz dodatkowo:
+		> Przynajmniej jedna litera/znak przed małpą.
+		> Przynajmniej jedna litera/znak po małpie.
+	- Po małpie przynajmniej jedna kropka, w odległości co najmniej jednego znaku ( [...]@*.* ) oraz dodatkowo:
+		> Przynajmniej jeden znak po kropce, znajdującej się po małpie.
+	
