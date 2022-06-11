@@ -1,0 +1,15 @@
+X=tekst // do zmiennej X przypisujemy wartość tekst
+echo $X // wyswietlamy zmienna X
+bash // otwieramy nową powłokę
+echo $X // zmienna X nie istnieje w nowootwartej powłoce
+
+X=Tekst dłuższy // by zapisać dłuższy tekst, zawierający spacje, musimy zapisać w cudzysłowiach
+echo $X
+
+X="Tekst 1"
+Y="tekst:$X"
+echo "$Y"
+Y='tekst:$X'
+echo "$Y"
+Y=tekst:$X
+echo "$Y"  // jesli chcemy używać zmiennych musimy stosować znak ", a jeśli nie to '  

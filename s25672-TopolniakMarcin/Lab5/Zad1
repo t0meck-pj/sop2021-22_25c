@@ -1,0 +1,13 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+int main()
+{
+	int liczba = 0;
+	printf("PID: %d\n", getpid());
+	printf("PPID: %d\n", getppid());
+	printf("Podaj liczbę: ");
+	fscanf(stdin, "%d", &number);
+	printf("%d XOR 777 = %d\n", liczba, liczba ^ 777);
+	return EXIT_SUCCES;
+}
