@@ -1,130 +1,75 @@
 #include<stdio.h>
 #include<stdlib.h>
+#define getName(var) #var
 
-///* Zadanie: wskaźniki do funkcji II
+///* Zadanie Domowe I
 /*
-    Korzystając z wiedzy z poprzedniego zadania, napisz funkcję, która będzie przetwarzała tablicę za pomocą uniwersalnej funkcji podanej jako argument funkcji.
-Na przykład:
-
-int wynik = forAll(tablica, liczbaElementow, maksimum); // maksimum to nazwa funkcji porownojacej dwie wartosci
+    Napisz program implementujący listę jednostronnie wiązaną.
 */
 
+struct Node {
+    int x; // W zależności od potrzeb może tu być umieszczony inny typ zmiennej lub więcej zmiennych;
+    struct Node* nastepny; // Wskaźnik do węzła następującego po danym - w przypadku list jednostronnych nie potrzeba nam znać potrzebnego.
 
+ //   char name[20]; // Dla potrzeb przykładu może przydać sie zmienna dla nazwy węzła.
+ //   char* getName() { return Node.name; }
+};
 
-    int maksimum(int a, int b);
-    int minimum(int a, int b);
-    int suma(int a, int b);
+//Funkcja do wypisywania zawartości x w następnych node'ach:
 
-    ///
-int main () {
-    int (*fun_ptr_arr[3])(int, int);
-    fun_ptr_arr[0] = maksimum;
-    fun_ptr_arr[1] = minimum;
-    fun_ptr_arr[2] = suma;
-
-/*
-
-    // Pobierz function ID
-    int functionId = -1;
-
-
-        while (functionId < 1 || functionId > 3)
-        {
-            printf("Napisz, jaką funkcję chcesz użyć:\n1)Maksimum\n2)Minimum\n3)Suma\nWybierz [0], żeby zakończyć.");
-            scanf("%i", &functionId);
-            // if (functionId < 1 || functionId > 3) { printf("Podano nieprawidłowy parametr! Wybierz liczbę w zakresie od 1 do 3."); continue; };
-            printf("Wybrano funkcje nr %i!\n", functionId);
-            // break;
-        };
-
-        //Pobierz elementCount
-        int elementCount = 0;
-        while (elementCount < 1)
-        {
-            printf("Napisz, ile elementów chcesz pobrać:\n");
-            scanf("%i", &elementCount);
-            // if (elementCount < 1) { printf("Podano nieprawidłowy parametr! Wybierz liczbę większą od zera"); continue; };
-            printf("Wybrano: %i\n", elementCount);
-            // break;
-        }; */
-
-      /*  int doOnArray (int a, int b, int functionId, int (*fun_ptr_arr[])(int, int))
-        {
-        return (*fun_ptr_arr[functionId](a, b));
-        } */
-
-        /*
-        int v;
-        int tmp;
-        int i=1;
-
-        printf("\nPodaj 1. element ciągu: ");
-        scanf("%i", &v);
-        printf("Wybrano: %i\n", v);
-        i++;
-
-        while (i <= elementCount)
-        {
-            int tmp2;
-            // if (i == elementCount) { printf("\nPodaj ostatni element ciągu: "); break; } // Miało nie byc ifów :D
-            printf("\nPodaj %i. element ciągu: ", i);
-            scanf("%i", &tmp);
-            printf("Wybrano: %i\n", tmp);
-            i++;
-            v = fun_ptr_arr[functionId-1](v, tmp);
-        };
-
-    printf("Wynik: %i", v);
-*/
-    int tablica[10] = { 0, 0, 33, 4, 55, 6, 7, 8, 9, -100};
-    int liczbaElementow = sizeof tablica / sizeof tablica[0];
-
-
-    int forAll(int tablica[], int liczbaElementow, int *fun_ptr_arr(int, int))
+void printNodesX(struct Node* n)
+{
+    while (n != NULL)
     {
-        printf("tablica[0]= %i", tablica[0]);
-        int result = tablica[0];
-        int i = 1;
-        printf(" liczbaElementów = %i\n", liczbaElementow);
-        while (i < liczbaElementow)
-        {
-        printf("Tablica[%i]: %i ", i, tablica[i]);
-        result = fun_ptr_arr(result, tablica[i]);
-        printf("Result: %i '\n", result);
-            i++;
-        }
-        return result;
+        printf(" %i ", n->x);
+        n = n->nastepny;
     }
-    printf("Maksimum:\n");
-    int wynik = forAll(tablica, liczbaElementow, maksimum);
-    printf("Wynik: %i\n\n", wynik);
-
-    printf("Maksimum:\n");
-    wynik = forAll(tablica, liczbaElementow, minimum);
-    printf("Wynik: %i\n\n", wynik);
-
-    printf("Maksimum:\n");
-    wynik = forAll(tablica, liczbaElementow, suma);
-    printf("Wynik: %i\n\n", wynik);
-    return 0;
-
 }
 
-    // Wersja z ifami, bo nie byłem pewny, czy chodzi tylko o to, żeby pobierać wskaźnik funkcji jako argument czy w ogóle bawić się w max z przesuwania bitów i takie tam bajery.
-    // Inicjalizacja funkcji:
-    int maksimum(int a,int b)
+///
+int main()
+{
+    // Zadeklarowanie punktorów węzłów.
+    struct Node* glowa = NULL;
+    struct Node* tulow = NULL;
+    struct Node* ogon = NULL;
+
+    // Alokacja pamięci na stosie:
+    glowa = (struct Node*)malloc(sizeof(struct Node));
+    tulow = (struct Node*)malloc(sizeof(struct Node));
+    ogon = (struct Node*)malloc(sizeof(struct Node));
+
+    glowa->x=1;
+    glowa->nastepny=tulow;
+
+    tulow->x=2;
+    tulow->nastepny=ogon;
+
+    ogon->x=3;
+    ogon->nastepny=NULL;
+
+
+    // Testy:
+    printf("Value of X from tułów: %i\n", tulow->x);
+    // printf("After Glowa comes: %s", glowa->nastepny.getName());
+    printf("Wartości node'ów po kolei to: ");
+    printNodesX(glowa);
+    printf("\n");
+
+    // Przyda się jeszcze funkcja do podróżowania po node'ach:
+
+    struct Node* nastepnyNode(struct Node* n)
     {
-    if (a >= b) return a;
-    else return b;
+    struct Node* result = n->nastepny;
+    return result;
     }
 
-    int minimum(int a,int b)
-    {
-    if (a <= b) return a;
-    else return b;
-    }
+    int nastepny = nastepnyNode(glowa)->x;
+    printf("Węzeł po węźle głowa ma wartość x równą: %i", nastepny);
+//{
+//    return Node->nastepny;
+//}
 
-    int suma(int a,int b)
-    {
-    return a + b;
-    }
+
+    return 0;
+}
