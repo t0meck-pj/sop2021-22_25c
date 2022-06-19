@@ -1,0 +1,17 @@
+Moja notatka:
+1. Algorytm komunikacji klient-serwer:
+    I. Klient - długosc_nazwy_pliku -> Serwer.
+    II. Klient - nazwa_pliku -> Serwer.
+    III. Serwer - wielkosc_pliku -> Klient
+    IV. Serwer - zawartość pliku(? prawdopodobnie w pakietach) -> Klient
+    V. Obaj: zamknij połączenie.
+    VI. Klient: Zakończ działanie, ew. wyświetl zawartość pliku.
+    VII. Serwer: Bądź gotowy na kolejne połączenie.
+2. Dodatkowe wymagania:
+    I. Serwer niech wysyła wielkość pliku '-1' jeśli nie udało się go otworzyć (+ klient powinien to handlować).
+    II. Serwer kończy prace w momencie naciśnięcia Ctrl+C z zamknięciem gniazda nasłuchowego.
+    III. Serwer działa w pętli, wyłącza się dopiero, gdy dostanie sygnał.
+    IV. Serwer zapisuje logi - info ma zawierać co najmniej:
+        - Kto się podłączył: IP + port.
+        - o jaki plik poprosił (nazwa pliku).
+        - (dopisek mój) dobrze by pasował jeszcze timestamp.
