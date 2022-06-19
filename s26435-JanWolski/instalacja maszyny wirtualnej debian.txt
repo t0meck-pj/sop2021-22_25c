@@ -1,0 +1,36 @@
+Podczas tworzenia virtualnej maszyny najpierw wybieramy ilość ramu maszyny. Potem wybieramy folder w ktorym bedzie się znjadował jeden z 3 opcji dysku wirtualnego:
+- VDI - najlepsza dla naszych podszeb stwozona do virtual boxa
+- VHD - uzywana do hyperV
+-VMPK - Viewere
+Spsób zapisu na dysku twardy:
+- Dynamiczny Rozmiar - rozmiar będzie się rozszerzał do ustalonego progu
+- Stały Rozmiar - Rozmiar dysku zostanie natychmiast zaalokowany i nie da się go dynamicznie zmieniać
+Podczas konfiguracji wirtualnej maszyny przechodzimy przez kreator oraz uzupełniamy szereg opcji, w tym:
+- definiujemy nazwę maszyny,  
+- określamy rodzaj systemu operacyjnego
+- definiujemy dostępną ilość pamięci RAM dla wirtualnej maszyny, 
+Po zakończeniu konfiguracji wirtualnej maszyny mamy dostępnych kilka opcji uruchomienia:
+- Zwykły start - Maszyna startuje domyślnie
+- Bezgłowy start - Maszyna uruchamia się w tle bez okna
+- Oddzielny start - Maszyna uruchamia się w tle wraz z oknem, które można zamknąć nie ingerując w zatrzymanie maszyny
+Po uruchomieniu wirtualnej maszyny uruchamiamy boot menu (nie jest to zawsze konieczne) i wybieramy urządzenie na którym jest interesujące nas oprogramowanie
+Bootujemy system Host + R  + F12 przy starcie systemu.
+Temporary boot device do wyboru:
+F) floppy disc - bootowanie z dyskietki
+C) cd-rom bootowanie z płyty cd
+l) lan bootwoanie z lanu
+Podczas instalacji ustawiamy:
+- Język instalacji - zazwyczaj jest to angielski
+- Lokalizację
+- System kodowania znaków - UTF-8
+- Układ klawiatury - tez zazwyczaj jest to angielski
+- Nazwę naszego hosta
+- Hasło do root'a
+- Imię i nazwisko nowego użytkownika
+- Login i hasło nowego użytkownika
+- Partcycje dysku
+Po zanstalowaniu systemu możemy dodatkowo zainstalować oprogramowanie Task sel. Zawiera środowiska graficzne, serwery i ine standardowe narzędzia systemowe.
+Po wybraniu mamy możliwość instalacji Boot loader'a (GRUB) na głównej partycji.
+Po wybraniu naszego oprogragmowania wyskakuje nam okno chcemy na naszej głównej partycji zainstalować GRUB boot loader
+Na stronie debian.org/distrib/ mamy możliwosc wybrania różne rodzaje obrazów z uwzględnieniem aritektury procesora. Można tam znaleźć także wersje chmurowe. Istnieje mozliwosc zemuwienia urządzenia z 
+zainstalowanym juz wcześniej systemem.
