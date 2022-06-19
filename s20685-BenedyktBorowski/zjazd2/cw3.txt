@@ -1,0 +1,24 @@
+PATH - jest to zmienna środowiskowa. Pokazuje ona domyśle przetrzymywane lokalizacje w systemie
+jakimi są: 
+/usr/bin
+/usr/sbin
+/usr/local/bin
+/usr/local/sbin
+/bin
+/sbin
+
+Zmienna $PATH jest tak zaprogramowana żeby wyświetlała lokalizacje odzielone znakiem ":"
+Można dodać nową lokalizacje za pomocą dostępnych komend np "set" lub edytujac plik "bashrc"
+
+RANDOM - Generuje ona losową liczbę typu integer.
+
+PWD - Wyswietla aktualną lokalizacje w katalogach. 
+
+PS1 - Jest to zmienna któa przechowuje string zachęty. 
+Można zmienić domyślny string w pliku "bashrc"
+
+USER - Służy ona do przechowania nazwy użytkownika powłoki bash. 
+
+HOSTNAME - zamiera warotść nazwy hosta. 
+
+OSTYPE - Przechowuje typ systemu na którym się poruszamy 

@@ -1,0 +1,145 @@
+2022-03-05
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem sie:
+Działania programu Virtual Box
+Tworzenia Maszyny Wirtualnej
+Gdy tworzymy maszyne wiertualną musimy wybrać ilość ramu, nastepnie jedną z 3 opcji dysku wirtualnego
+- VDI - najlepsza dla naszych podszeb stwozona do virtual boxa
+- VHD - uzywana do hyperV
+-VMPK - Viewere
+I wybieramy czy jest on dynamiczny czy prealokowany(dynamiczny zajmuje mnie jmiejsca na dysku fizycznym ale potrzebuje wiecej czasu)
+
+Mamy 3 opcje by wystartować maszynę:
+1. zwykły start
+2. bezzałohgowy start(maszyna działa w tle)
+3. oddzielny start( maszyna działa w okienku ale przy zamknięciu nadal działe w tle)
+
+Bootujemy system Host + R  + F12 przy starcie systemu.
+
+Temporary boot device :
+F) floppy disc - bootowanie z dyskietki
+C) cd-rom bootowanie z płyty cd
+l) lan bootwoanie z lanu
+
+Debian Linux:
+Graficzna instalacja - dla dzieci do lat 6
+instal - normalna tekstowa instalacja
+advanced options - także bezużyteczne bo graficzne
+help - pomoc
+instal with speach synthesis - to co napisane
+
+Podczsa instalacji systemu wieksząść opcji wybieramy w wersji angielskiej.
+
+Partitioning method - guided - use entire disc(standardowo)
+
+Doker - wirtualna maszynaobsługująca jeden proces
+
+Rite - łączenie dysków
+
+LVM - softwere implementacja Rite
+
+Partycje podstawowe i logiczne 
+
+Tworzenie nowej tablicy partycji
+
+Getting debian
+
+Task shell - polecenie do zobaczenia procesów w debianie
+
+2022-03-19
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem sie:
+
+Bash to powłoka systemowa oraz język skryptów dla systemów z rodziny Linux.
+
+Skrypt powłoki - plik zawierający po kolei komendy do zitrerpretowania przez powłokę systemową. 
+w windows z rozszeżeniem .bat lub .vbs
+w linux jest to .sh
+
+W pierwszej linijce umieszczamy:
+#!/bin/bash co moiw powloce w jakim jezyku jest napisany skrypt
+
+komentarze w pliku zaczynamy od '#'
+
+Żeby przypisac/zainicjować zmienną wraz z przypisaniem do nie jwartości piszemy:
+NAZWA_ZMIENNEJ = wartosc
+NAZWA_ZMIENNEJ = "cudzyslowia kiedy ma kilka wyrazow"
+NAZWA_ZMIENNEJ = 'w apostrofach aby przekazac dowolny ciąg znakow bez apostrofów'
+
+Aby zmienna lokalna byla widoczna w podpowlokach wystarczy napisać
+export ZMIENNA
+
+Aby usunąć zmienną środowiskową używamy komendy:
+unset ZMIENNA
+export -n ZMIENNA
+
+Wyłuskanie zmiennej:
+$ZMIENNA
+${ZMIENNA}
+Nawiasy są konieczne kiedy w nazwie zmiennej wystepują liczby lub jest to tablica lub przy konkatenacji
+
+Predefiniowane zmienne:
+$*
+$@ - wszystkie argumenty skryptu
+$0 - ścieżka i sposób uruchomienia skryptu
+$x - gdzie x to numer kolejnego argumentu skryptu
+$# - ilośc argumentów
+$? - kod ostatniego polecenia
+$$ - PID procesu powłkoki
+$! - PID ostatniego procesu w tle
+
+Inne zmienne:
+PATH - zmianna zawierająca liczbe scieżek do katalogu
+RANDOM - przechowuje losową liczbe
+PWD - wyświetla aktualną scieżke w której sie znajdujemy
+USER - nazwe uzytkownika
+HOSTNAME - nazwe hosta
+OSTYPE - przechowuje nazwe systemu operacyjnego
+
+Przypisywanie standardowego wyjścia do zmiennej
+ZM = $(ls -la) (bezpieczniejszy)
+ZM = `ls -la` 	(krótszy)
+
+${#TEKST} - długość ciągu znaków
+${TEKST:p} - podciąg rozpoczynający się od znaku o indeksie p
+${TEKST:p:l} - podciąg rozpoczynający się od znaku o indeksie p, a długości l
+${TEKST/w/z} - zamienia tekst pasujący do "w" na tekst "z"
+
+Do obsługi wyrażeni regularnych używamy programu SED.
+\[…\] - w miejsce … wchodzi lista znaków które mogą wystąpić na danym miejscu
+() - zbiór opcji
+^ - początek ciągu znaków (jeśli nie występuje wewnątrz nawiasów kwadratowych)
+[^] - wewnątrz nawiasów kwadratowych to negacja tego co w nawiasie
+$ - koniec ciągu znaków
+* - wzorzec tuż przed tym znakiem ma się powtarzać dowolną liczbę razy (od 0 do nieskończoności)
++ - wzorzec tuż przed tym znakiem ma się powtarzać co najmniej raz
+. - dowolny jeden znak
+…-… - zakres znaków np. [a-z]
+\ - znak modyfikacji (escape character)
+
+W bash mozemy stosowac wyrażenia regularne w samiej składni skryptu.
+
+2022-04-02
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem sie:
+Jak używać warunku if oraz pętli i tablic kończąc na funkcjach:
+
+1. if warunek
+then
+...
+elif warunek
+then
+....
+else 
+....
+fi
+2.petle
+
+for i in a b c 1 2 3; do
+...
+done
+3.Tablica
+TABLICA=(element1 "element 2" element\ 3)
+
+4. Funkcje
+function funkcja{
+....
+return 0
+}

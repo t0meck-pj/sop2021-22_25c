@@ -1,0 +1,244 @@
+                Instalacja Systemu Operacyjnego Debian na maszynie wirtualnej VirtualBox   
+
+Należy włączyć maszynę wirtualną wczesniej pobraną i zainstalowaną z zaufanego źródła
+producenta Oracle.
+Znajdujemy i wchodzimy  w globalne ustawienia oraz ustawiamy lokalizacje gdzie mają się
+znajdować zainstalowane przez nas maszyny.
+Musimy klinkąć opcje "New", która odpowiada za utworzenie nowej maszyny. 
+Nadajemy nazwe naszej maszyny (Jeżeli nazwiemy maszyne nazwą systemu, system ustawi się sam).
+Przydzielamy ilość ram do naszej maszyny. 1024 MB w zupełności wystarczą do użytku prywatnego
+lecz jeżeli mamy ochotę możemy bez problemu ustawić 2048 MB lub więcej.
+Następna opcja to "Hard Disk", mamy w niej trzy możliwości wyboru:
+
+1. "Do not add a virutal hard disk" - Do maszyny nie zostanie dodany żaden dysk twardy więc,
+    nie będziemy mogli na nim zapisywać danych "Na później".
+2. "Create a virtual hard disk now" - Zostanie utwożony wirtualny dysk zajmujący przestrzeń
+    dysku twardego naszego komputera, zostanie na nim zalokowana przestrzeń do użytku maszyny
+    wirtualnej. Nastepnie przejdziemy konfiguracje takiego dysku.
+3. "Use an existing virtual hard disk file" - Ta opcja służy do wybrania już istniejącego
+    zalokowanego dysku maszyny wirtualnej.
+
+Gdy wybierzemy opcje numer 2, czyli - "Create a virtual hard disk now" ukażą się nam trzy opcje
+
+1. "VDI" - Jest to standardowe natywne rozwiązanie dyskowe programu VirtualBox
+2. "VHD" - Jest to rozwiązanie firmy Microsoft, która jest przeznaczona do maszyn HyperV
+3. "VMDK" - Rozwiązanie firmy VMware, które jest przeznaczone do pracowania z maszynami
+            VMware WorkStation Player
+
+Naturalnie wybieramy opcje standardowego rozwiązanie firmy Oracle do działania z programem
+VirtualBox. Pojawią się nam dwie opcje. 
+
+1. "Dynamic allocated" - Ta opcja ustawia nam maksymalny rozmiar do któego będzie rósł dysk
+    maszyny wirtualnej.
+2. "Fixed size" - Predefiniowany rozmiar dysku który odrazu zostanie zalokowany na dysku twardym
+    dla naszej maszyny wirtualnej. 
+
+Po wybraniu rozmiaru dysku predefiniowanego klikamy "Create", i nasza maszyna wirtualna jest
+dodana do programu VirtualBox.
+Gdy najedziemy i klikniemy na strzałke skierowaną w dół obok przycisku "Start" ukażą się nam 3 opcje
+
+1. "Normal Start" - Nasza maszyna wirtualna wystartuje domyślnie tzn. W tle razem z oknem
+    a po zamknięciu okna maszyna również się zatrzyma i wyłączy
+2. "Headless Start" - Maszyna właczy się w tle ale nie właczy się żadne okno w którym możemy
+    działać i korzystać z maszyny.
+3. "Detachable Start" - Maszyna wirtualna włączy się w tle jak i w oknie, lecz po zamknięciu okna
+    nasza maszyna będzie działąć dalej w tle.
+
+Przed kliknięciem przycisku "Start" lub wybraniem jednej z powyższych opcji należy abyśmy
+weszli w Ustawienia maszyny wirtualnej i właśnie to robimy klikając przycisk "Settings".
+
+W zakładce "General" nic nie zmieniamy i pozostawiamy ją tak jak jest.
+W zakładce "System" w opcji "Boor Order" odznaczamy opcje "Floopy".
+Zakładka "Display" pozostaje bez zmian.
+Musimy wejśc w zakładke "Storage" oraz dodać napęd optyczny. Robimy to po przez kliknięcie
+płytki w opcji "Attribute". Następnie wybranie opcji "Choose/Create a virtual optical disk".
+Gdy to zrobimy wybieramy opcje "Add" oraz wybieramy nasz wcześniej pobrany ze strony Debian.Org 
+obraz debiena.
+W zakładce "Audio" wyłączamy wyjście audio po przez odznaczenie "Enable Audio Output"
+Pozostałem zakładki zostawiamy bez zmian. Klikamy "Ok". 
+
+Odpalamy maszynę, naklikujemy na okno by wyskoczyło powiadomienie o przechwytywaniu myszy.
+Zaznaczamy opcje "Do not show again" oraz potwierdzamy.
+By móc się pruszać naszą myszką poza oknem maszyny wirtualnej należy klinknąć Prawy CTRL. 
+Wracamy do maszyny oraz klikamy Pracy CTRL + R (nasza maszyna ulegnie zresetowaniu), w dalszym 
+kroku jak najszybciej klikamy F12. Pojawi nam się opcja "VirtualBox temporary boot device selection"
+
+Gdy zbootujemy nasz Plik Iso pojawi się 6 opcji.
+
+1. "Graphical install" - Jest to opcja z szatą graficzną, opcja ta jest uznawana za opcje
+    dla 6 latków i my z niej nie korzystamy. 
+2. "Instal" - Instalacja tekstowa
+3. "Advanced Option" - Po kliknięciu w tą opcje pojawi się menu opcji zaawansowanych. A w nim
+    kolejno opcje: 
+                - "Graphical expert Instal" - Graficzna instalacja za ekspertów jak sama nazwa wskazuje
+                - "Graphical rescue mode" - Tryb odzyskiwania z szatą graficzną.
+                - "Graphical automated install" - Instalacja automatyczna z szatą graficzną.
+                - "Expert install" - Instalacja tekstowa dla ekspertów.
+                - "Rescue mode" - Tekstowy tryb odzyskiwania systemu.
+                - "Automated Install" - Zautomatyzowana instalacja tekstowa.
+                - "Speech-enable advanced option" - Ustawienia zaawansowane z syntezatorem mowy w którym
+                    pojawiają się kolejno 3 opcje:
+                                                - "Expert speech install" - Instalacja dla ekspertów
+                                                - "Rescue speech mode" - Odzyskiwanie systemu.
+                                                - "Rescue speech install" - Instalacja podstawowa.
+                                                Wszystkie te opcje wykorzystują syntezator mowy by instalować
+                                                system
+4. "Accesible dark contrast installer menu" - Instaluje menu ciemnego kontrastu.
+5. "Help" - Wyświetla pomoc do ekranu instalacji.
+6. "Install with speech synthesis" - Instalacja przebiega z syntezatorem mowy.
+
+Wybieramy opcje "Install" po przez nakierowującą strzałkami góra/dół oraz potwierdzenie enterem.
+Wybieramy język instalacji.
+Następnie naszą lokalizacje w której sie znajdujemy, by wybrać lokalizacje Polski:
+    -Wchodzimy w opcje "other"
+    -Nastepnie Europe
+    -Wybieramy "Poland"
+Musimy także wybrać tryb kodowania znaków, w naszym przypadku "United States".
+Nastepnie wybieramy mapę klawiszy których będziemy używać, Tu wybieramy "Polish".
+
+Nasz system pobrał potrzebne biblioteki i okazało się nam okno instalacji. 
+    1. Nadajemy nazwę naszego komputera/maszyny która będzie widoczna w sieci. 
+    2. Ustawiamy nazwe domeny, mozemy to zostawić pustę lecz jeżeli chcemy by maszyna działała jako serwer.
+        musimy ustawić nazwę.
+    3. Musimy teraz ustawić hasło użytkownika root (nalezy ustawić taki które na 1000% zapamiętamy).
+    4. Potwierdzamy wybrane hasło.
+    5. Ustawiamy Imię i Nazwisko Nowego Użytkownika. 
+    6. Ustawiamy nazwę nowego użytkownika.
+    7. Ustawiamy hasło do nowego użytkownika po przez wpisanie go oraz potwierdzenie.
+
+Po przez instalacje ustawiliśmy użytkownia, nazwę domeny oraz jak bedzie widoczna maszyna w sieci.
+Następnie przejdziemy do partycjonowania dysków, które wyskoczyło po zakończeniu wcześniejszego 
+etapu. Gdy to nastąpiło ukazały się 4 opcje:
+    1. "Guided-use entire disk" - Ta opcja przypisuje 1 partycje na całym dysku, czyli nie ma podziału na mniejsze.
+    2. "Guided-use entire disk and set up LVM" - Opcja 2 przypisuje 1 partecje na całym dysku i ustawienie LVM
+        * "LVM" to w pełnej nazwie "Logical Volumes Manager". Ta opcja odpowiada za zarządzanie wolumenami w czasie rzeczywistym.
+    3. "Guided-use entire disk and set up encrypted LVM" - Opcja ta przypisuje jedną partycje na cały dysk i ustawia zaszyfrowany LVM
+    4. "Manual" - Ustawiamy partycje dyskowe manualnie.
+Nam zależy by partycje były ustawione tak jak my chcemy więc wybieramy opcje nr 4 "Manual".
+Pojawia się 5 opcji:
+    1. "Guided partitioning" - ustawianie partycji dysków z tzw. "Przewodnikiem".
+    2. "Configure ISCII volumes" - Opcja konfiguracji woluminów ISCII. 
+    3. "SCSI2" - Wyskakują partycje dysków.
+    4. "Undo canges to partitions" - Cofa zmiany partycjowania.
+    5. "Finish partiotioning and write changes to disk" - Zakończenie partycjonowania i zapisywanie zmian na dysku.
+
+Wybieramy opcje 3 "SCSI2", wyskakuje nam okienko czy chcemy utworzyć pustą partycje. Potwierdzamy.
+
+Pojawią się 3 nowę opcje:
+    1. "Configure software RAID" - Opcja ta pozwala nam skonfigurować RAID.
+    2. "Configure the Logical Volume Menager" - To pozwala nam na skonfigurowanie "LVM" czyli Menedżera wolumenów Logicznych.
+    3. "Configure encrypted volumes" - Opcja ta pozwala na skonfigurowanie menedżera szyfrowania.
+
+Nas interesuje opcja z wolnym miejscem na naszej utworzonej partycji więc wybieramy opcje "pri/log 21.5 GB".
+Gdy wybierzemy opcje podaną wyżej pojawi się okienko z 3 nowymi opcjami wyboru:
+    1. "Create a new partiotion" - Opcja która tworzy nową partycje.
+    2. "Automatically partition the free space" - Opcja która automatycznie rozdziela wolne miejsce na partycje.
+    3. "Show Cylinder/Head/Sector information" - Pokazuje wszelkie informacje na temat dysków. 
+
+Wybieramy opcje 1-"Create a new partiotion" i ustawiamy partycje podstawową o wielkości 8 GB miejnieej niż pokazuje nam początkowa wielkość. W moim wypadku jest to 21.5 GB więc ustawie 13.5 GB.
+Wybieramy by to była partycja podstawowa czyli wybieramy opcje "Primary" a nie "Logical".
+Musimy powiedzieć systemowi że to ma być partycja początkowa. Wybieramy więc Opcje "Beginning".
+
+Po wyborze opcji "Beginning" Pojawiają się nowe możliwości ustawień partycji. Mianowicie:
+    1. "Use as" - używaj jako, i tutaj pojawia się możliwość wyboru:
+            1. "Ext4 journaling file system" - Jest to następca ext3. W tym momencie najpopularniejszy system plików dla Linuxa.
+            2. "Ext3 journaling file system" - System plików oparty na ext2. Domyślny dla większości systemów linux.
+            3. "Ext2 file system" - Drugi rozszerzony system plików dla systemu Linux, zastąpił on system plików ext. Rozpznaje on uszkodzenia systemu podczas startu.
+            4. "btrfs journaling file system" - System plików copy-to-copy w stylu logowania. Zamiast zapisywać od razu w bloku są one najpierw tworzone w nowej lokalizacji, a następnie łączy się je.
+            5. "JFS journaling file system" - 64-bitowy system plików z księgowaniem.
+            6. "XFS journaling file system" - 64-bitowy system plików z przeznaczeniem do użycia w systemie IRIX, aktualnie udostępniona implemetacja dla systemu Linux
+                rozwijanego przez SGI na licencji wolnego oprogramowania. 
+            7. "FAT16 file system" - Odmiana systemu plików FAT, posługująca się 16-bitowym adresowaniem przy dostępie do plików. "FAT16" Został opracowany na zamiennik "FAT12".
+                Poprzednia odmiana była nie wystarczająca dla dysków twardych.
+            8. "FAT32 file system" - Odmiana systemu plików FAT, posługująca się 32-bitowym adresowaniem przy dostępie do plików. "FAT32" Został opracowany na zamiennik "FAT16".
+                Poprzednia odmiana była nie wystarczająca dla dysków twardych.
+            9. "swap area" - System plików używany jako pamięć w momencie kiedy skończy się użytkowa pamięć RAM. 
+            10. "physical volume for encrypting" - Wolumen fizyczny uzywany do enkryptowania .
+            11. "physical volume for RAID" - Wolumen fizyczny używany do dysków postawionych w RAID.
+            12. "physical volume for LVM" -  Wolumen fizyczny uzywany LVM.
+            13. "do not use the partiotion" - Ustawienie wyłączające dysk użytku.
+    2. "Mount point" - Miejsce w którym ma być zamotowana nasza partycja. Jako iz chcemy by to była partycja początkowa zostawiamy ustawienie "/"
+    3. "Mount options: - Opcje montowania.
+    4. Label - Etykieta partycji. 
+    5. Reserved blockes- Zarezerwowane bloki.
+    6. Typical usage - typowe zastosowanie.
+    7. Bootable flag: flaga startowa.
+    8. Delete the partiion - Usuwa partycje.
+    9. Done setting up the partition - Potrwierdza wykonanie ustawień partycji i je zapisuje.
+My zostawiamy opcje ustawione domyślnie i zapisujemy partycje.
+
+Wytwarzamy drugą partycje o pojemości 8 GB lecz tym razem logiczną.
+Wszystkie ustawienia pozostawiamy tak jak są domyśle oprócz zakładki "Use As". Wchodzimy w tą opcje i wybieramy
+wczeniej opisaną opcje swap area.
+Część opcji nam zniknęła ale my się nie przejmujemy i zapisujemy partycje.
+
+Zakańczamy partycjonowanie wybierająć opcje "Finish partitioning and write changes to disk".
+
+Wyskakuje okno potwierdzające partycjonowanie. Proszę się nie zdziwić że partycja pierwsza ma numerek #1 a druga #5. To ze względu na to ze pierwsze 4 są zarezerwowane dla partycji podstawowych.
+
+Pokazuje nam się zapytanie czy chcemy przeskanować inne nośniki instalacyjne. My wybieramy opcje "No"
+Następnie wybieramy z jakich serwerów (Dokładnie z serwerów jakiego kraju) chcemy pobrać lustrzaną kopię debiana. Wybieramy Poland a następnie serwer FTP. Tu należy wybrać ftp.task.gda.pl.
+Ustawiamy serwer proxy.
+Pokazuje się zapytanie o udział w ankiecie.
+
+Następnie wyskakuje tzw "TASK SEL". Wybieramy w nim jakie oprogramowanie chcemy dodatkowo zainstalować. Opcje jakie wyskakują to :
+
+1. GNOME
+2. Xfce - środowisko graficzne dla systemów uniksowych
+3. Gnome Flashback - Kolejne środowisko graficzne dla użytkowników którzy nie lubią unity.
+4. KDE Plasma - Środowisko graficzne dla systemów operacyjnych Linux. Posiada dużą gamme bibliotek do tworzenia aplikacji graficznych.
+5. Cinnamon - Środowisko graficzne oparte na bibliotece GTK+3
+6. MATE - Po krytyce na środowisko GNOME zostało utwożone środowisko Cinnamon. Zaletą jego jest to że posiada mniejse wymagania sprzętowe oraz działa w trybi 2D.
+7. LXDE - (Lightweight X11 Desktop Environment) - Środowisko dla systemów operacyjnych Linux
+8. LXQt - Środowisko połączone z dwóch projektów (LXDE-QT i Razor-qt)
+9. web server - Jest to Oprogramowanie umożliwające postawienie na naszej maszynie wirtualnej serwera internetowego.
+10. SSH server - Protokół komunikacyjny służący w sieciach TCP/IP. Dzięki niemu można się połączyć zdalnie z terminala na innym komputerze.
+11. standard systemu utilities - Standardowe narzędzia systemowe.
+
+Po wybraniu czego potrzebujemy w oprogramowaniu pokazuje się okno czy chcemy zainstalować GRUB boot loader.
+GRUB boot loader jest to program program rozruchowy mający na celu utworzenie wolnego i kompletnego systemu uniksopodobnego. Wybieramy tutaj opcje "yes".
+Teraz należy wybrać na 
+akim dysku chcemy zainstalować GRUB boot loader.
+
+Pokazuje się nam okno o zakończeniu instalacji. Wybieramy Continue, po tym nasza maszyna ulegnie restartowi, gdy się włączy możemy się cieszyć nowiutkim system Linux Debian.
+
+
+
+Zalecaną strukturą partycji w naszym systemie jest:
+
+/home
+/var
+/boot
+/swap
+/user
+
+Rodzaje Raid:
+
+RAID0 - W tym rodzaju dane są zapisywanie na dwóch dyskach naprzemiennie co daje nam szybszy odczyt i zapis. Niestety w przypadku awarii utracamy wszystkie dane. 
+RAID1 - Jest to rodzaj który działa na zasadzie dwóch dysków. NA jednym posiadamy dane a na drugim jest zapisywany ich backup. Nie utracimy danych chyba że padną dwa dyski jednocześnie. Jednakże posiadamy pamięć tylko jednego dysku.
+RAID10 - Ten rodzaj to połaczenie dwóch wczesniejszych rodzajów. RAID0 oraz RAID1. Dane są zapisywane na dwóch dyskach naprzemiennie a na dwóch pozostałych jest robony ich backup. Stracimy dane jeżeli ulegnie uszkodzeniu dysk na którym zapisywane są dane i ich backup.
+RAID4 - Dane są zapisywane na kilku dyskach, a na osobnym są umieszczane sumy kontrolne, które w przypadku uszkodzenia danych dają nam możliwość odtworzenia danych poprzez wykonanie operacji matematycznych.
+RAID5 - Działa na takiej samej zasadzie jak RAID4, natomiast sumy kontrolne nie są rozmieszczone na osobnym dysku, ale na są rozłożone na wszystkie dysku. Jego słabe strony, to że po awari macierz musi odbudować
+sumy kontrolne, co obciąża mocno syste, a w przypadku gdy chcemy dodać dodatkowy dysk to cała macierz musi zostać przebudowana 
+RAID DP - Raid opatentowany przez firmę NetApp. Charakteryzuje się odpornością na awarię 2 dysków (Działa na zasadzie RAID4, natomiast różni się tym, że sumy kontrolne są rozmieszczone na 2 dyskach)
+
+Docker - Mała maszyna wirtualna z 1 procesem mająca niski narzut.
+
+Co możemy znaleźć na podstronie "Jak zdobyć Debiana" (https://www.debian.org/distrib/)
+Mamy tam różne rozwiązania jak możemy zdobyć i zainstalować nasz system
+
+Pierwsza opcja to pobranie zwykłego pliku ISO (mamy szeroką listę architektur dla procesorów)
+Jest to podzielone na mały plik obrazu który zajmuje mniej miejsca i jest bardziej okrojony (Potrzebne jest połączenie z internetem)
+Druga opcja to kompletny plik obrazu, co daje nam więcej pakietów i możliwość instalacji bez połączenia internetowego
+
+Druga opcja to "Użyj obrazu Debiana dla chmury". Jest to rozwiązanie pozwalające zainstalować nasz system w chmurach u takich dostawców jak:
+Amazon EC2, Microsoft Azure, OpenStack lub zwykła maszyna wirtualna
+
+Trzecia opcja pozwala nam kupić płyty z systemem Debian od różnych sprzedawców. Po kliknięciu w odnośnik przenosimy się na pełną listę z wypisanymi
+Sprzedawcami z różnych krajów (Na stronie nie zauważymy żadnego sprzedawcy z Polski)
+
+Czwarta opjca daje nan możliwość pobrania i zainstalowania systemu w wersji "portable". Wystarczy zainstalować go na dowolnym pendrive/przenośnym dysku 
+i odpalić go na każdym urządzeniu . Wystarczy podłączyć pendrive i zbootować go w boot menu
+
+Ostatnia opcja to kupno komputera z już zainstalowanym Debianem. Minusem tego rozwiązania jest to, że płacimy za system który jest tak naprawdę darmowy.
+Plusem natomiast jest wstępna konfiguracja systemu która jest dopasowana do naszego sprzętu oraz sprzedawca może nam zaoferować pomoc techniczną.
