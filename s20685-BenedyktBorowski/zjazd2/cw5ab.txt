@@ -1,0 +1,6 @@
+Będzie to możliwe tylko i wyłączenie dla prostych imion. Żeby wykonać to potrzebna by była instrukcja warunkowa if która,
+zmieniała by działała w następujący sposób:
+
+1. Sprawdź imię.
+2. Jeżeli(IF) ostatnia litera imienia to "a", zamień ją na "ę"
+3. Inaczej dodaj na końcu imienia "a".

@@ -1,0 +1,15 @@
+#include<stdio.h>
+#include<sys/types.h>
+#include<unistd.h>
+#include<sys/wait.h>
+
+int main(){
+pid_t myID;
+pid_t parentID;
+myID = getpid();
+printf("My PID: %i", myID);
+parentID = getppid();
+printf("Parent PID: %i"\n, parentID);
+getchar();
+return 0;
+}
