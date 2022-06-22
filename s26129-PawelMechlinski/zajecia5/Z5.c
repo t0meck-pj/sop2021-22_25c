@@ -4,7 +4,7 @@
 #include<stdlib.h>
 #include<sys/wait.h>
 
-///* Zajęcia 4: Zadanie 4
+///* Zajęcia 5: Zadanie 5
 /*
 Napisz program, który uruchomi 100 procesów potomnych w taki sposób, że będzie jeden rodzic i 100 potomków.
 Proces główny niech oczekuje na zakończenie wszystkich procesów potomnych.

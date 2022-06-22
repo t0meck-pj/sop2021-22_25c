@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-///* Zajęcia 4: Zadanie 1
+///* Zajęcia 5: Zadanie 1
 /*
 Napisz program, który
 

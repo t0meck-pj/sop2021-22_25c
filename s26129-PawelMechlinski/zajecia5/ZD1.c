@@ -1,24 +1,97 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-///* Zajęcia 4: Zadanie 1
+///* Zajęcia 5: Zadanie Domowe - podstawowe.
 /*
-Napisz program, który
+Napisz program, który wygeneruje drzewko procesów wyglądające tak (oczywiście procesy nie będą się nazywały A, B, ...):
 
-    A. przedstawi swój numer PID, oraz PPID
-    B. po wypisaniu, będzie czekał na standardowym wejściu na dane od użytkownika.
-    C. Uruchom program - nic nie podawaj na wejściu (program powinien czekać w nieskończoność).
-    Uruchom nowy terminal. W nim za pomocą komendy kill zamknij ten program korzystając z PID wypisanego przez niego na początku.
+A \
+
+  |\B \
+
+  |   |\D
+
+  |    \E
+
+   \C \
+
+      |\F
+
+       \G
+
+A jest rodzicem 2 procesów - B oraz C, a te są odpowiednio rodzicami D i E, oraz F i G.
 */
 
 ///
 int main()
 {
-    printf("PID=%i\n", getpid());
-    printf("PPID=%i", getppid());
+    int pidA = 1;
+    int pidB;
+    int pidC;
+    int pidD;
+    int pidE;
+    int pidF;
+    int pidG;
+
+    int status;
+
+    printf("Proces pierwszy rodzic A: PID=%i\n", getpid());
+    pidB = fork();
+    if (pidB == 0)
+    {
+        printf("Proces B z PID=%i i PPID=%i\n", getpid(), getppid());
+        pidD = fork();
+        if (pidD == 0)
+        {
+            printf("Proces D z PID=%i i PPID=%i\n", getpid(), getppid());
+            pidE = fork();
+
+            if (pidE == 0)
+            {
+            printf("Proces E z PID=%i i PPID=%i\n", getpid(), getppid());
+            }
+        }
+    }
+    else
+    {
+        if (pidB > 0)
+        {
+        pidC = fork();
+        if (pidC == 0)
+        {
+            printf("Proces C z PID=%i i PPID=%i\n", getpid(), getppid());
+            pidF = fork();
+
+            if (pidF == 0)
+            {
+                printf("Proces F z PID=%i i PPID=%i\n", getpid(), getppid());
+                pidG = fork();
+
+                if (pidG == 0)
+                {
+                    printf("Proces G z PID=%i i PPID=%i\n", getpid(), getppid());
+                }
+            }
+        }
+
+        }
+    }
+
+   // pidC = fork();
+
+   /* fork();
+    if (pid == 0)
+    {
+    printf("Proces\n POTOMEK: PID=%i\n", getpid());
     getchar();
+    exit(EXIT_SUCCESS);
+    }
 
+    waitpid(pid, &status, 0);
+
+    printf("Jeśli to czytasz to znaczy, że POTOMEK exitował.");
+*/
+    getchar();
     return 0;
-}
 
-// Cóż, program zakończył się po skillowaniu... :)
+}

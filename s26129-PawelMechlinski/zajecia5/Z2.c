@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
-///* Zajęcia 4: Zadanie 2
+///* Zajęcia 5: Zadanie 2
 /*
 Napisz program, który uruchomi podproces za pomocą komendy fork. Niech proces rodzica oczekuje na proces potomka. Oba procesy powinny wypisać swój PID oraz PPID.
 */

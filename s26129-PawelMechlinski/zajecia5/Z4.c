@@ -4,7 +4,7 @@
 #include<stdlib.h>
 #include<sys/wait.h>
 
-///* Zajęcia 4: Zadanie 4
+///* Zajęcia 5: Zadanie 4
 /*
 Napisz program, który uruchomi 100 procesów w taki sposób, że każdy kolejny potomek stworzy potomka.
 Niech każdy proces poczeka na zakończenie procesu potomka.

@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
-///* Zajęcia 4: Zadanie 3
+///* Zajęcia 5: Zadanie 3
 /*
 Napisz program, który będzie pobierał jeden argument z wiersza poleceń  i będzie obliczał w 2 procesach:
 A. Proces rodzica: Wartość sumy liczb od 0 do wartości zadanej jako pierwszy argument wykonania programu.
@@ -45,7 +45,7 @@ int main()
 
     waitpid(pid, &status, 0);
 
-    printf("\nRODZIC-SUMO (PID=%i):\nSuma liczb od 0 do %i wynosi: %i\n\n***", getpid(), n, suma(n));
+    printf("\nRODZIC-SUMO (PID=%i):\nSuma liczb od 0 do %i wynosi: %i\n\n***\n", getpid(), n, suma(n));
 
     return 0;
 
