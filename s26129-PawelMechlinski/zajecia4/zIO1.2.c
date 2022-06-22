@@ -62,7 +62,7 @@ int main (int argc, char *argv[]) {
         printf("%s, ", buf[i] );
     }
 
-    printf("Tymczasem z odwróconej kolejności kolejne liczby ciągu wynoszą:\n");
+    printf("Tymczasem w odwróconej kolejności kolejne liczby ciągu wynoszą:\n");
 
     for (int i=counter-1; i >= 0; i--)
     {

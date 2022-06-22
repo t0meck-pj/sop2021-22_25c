@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-///* Zadanie: wskaźniki do funkcji
+///* Zadanie: wskaźniki do funkcji I
 /*
     Napisz program z 3 funkcjami, każda funkcja niech będzie miała taką sygnaturkę:
      int (*f)(int,int)
@@ -52,7 +52,7 @@ int main () {
         {
             printf("Napisz, jaką funkcję chcesz użyć:\n1)Maksimum\n2)Minimum\n3)Suma\nWybierz [0], żeby zakończyć.");
             scanf("%i", &functionId);
-            // if (functionId < 1 || functionId > 3) { printf("Podano nieprawidłowy parametr! Wybierz liczbę w zakresie od 1 do 3."); continue; };
+            // if (functionId < 1 || functionId > 3) { printf("Podano nieprawidłowy parametr! Wybierz liczbę w zakresie od 1 do 3."); continue; }; // Testy zawierają ify, więc je zakomentowałem.
             printf("Wybrano funkcje nr %i!\n", functionId);
             // break;
         };
@@ -63,7 +63,7 @@ int main () {
         {
             printf("Napisz, ile elementów chcesz pobrać:\n");
             scanf("%i", &elementCount);
-            // if (elementCount < 1) { printf("Podano nieprawidłowy parametr! Wybierz liczbę większą od zera"); continue; };
+            // if (elementCount < 1) { printf("Podano nieprawidłowy parametr! Wybierz liczbę większą od zera.\n"); continue; }; // Testy zawierają ify, więc je zakomentowałem.
             printf("Wybrano: %i\n", elementCount);
             // break;
         };
@@ -77,7 +77,7 @@ int main () {
         int tmp;
         int i=1;
 
-        printf("\nPodaj 1. element ciągu: ");
+        printf("\nPodaj 1. element ciągu. Uwaga! Program w obecnej wersji działa tylko dla liczb całkowitych.");
         scanf("%i", &v);
         printf("Wybrano: %i\n", v);
         i++;
@@ -85,7 +85,7 @@ int main () {
         while (i <= elementCount)
         {
             int tmp2;
-            // if (i == elementCount) { printf("\nPodaj ostatni element ciągu: "); break; } // Miało nie byc ifów :D
+            // if (i == elementCount) { printf("\nPodaj ostatni element ciągu: "); break; } // Testy zawierają ify, więc je zakomentowałem.
             printf("\nPodaj %i. element ciągu: ", i);
             scanf("%i", &tmp);
             printf("Wybrano: %i\n", tmp);
@@ -99,7 +99,7 @@ int main () {
 
 }
 
-    // Wersja z ifami, bo nie byłem pewny, czy chodzi tylko o to, żeby pobierać wskaźnik funkcji jako argument czy w ogóle bawić się w max z przesuwania bitów i takie tam bajery.
+    // Zrobiłem wersję z ifami, bo nie byłem pewny, czy chodzi tylko o to, żeby pobierać wskaźnik funkcji jako argument czy w ogóle bawić się w max z przesuwania bitów i takie tam bajery.
     // Inicjalizacja funkcji:
     int maksimum(int a,int b)
     {
