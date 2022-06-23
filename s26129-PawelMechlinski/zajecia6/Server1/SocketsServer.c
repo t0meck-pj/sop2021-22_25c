@@ -44,6 +44,8 @@ Moja notatka:
         - (dopisek mój) dobrze by pasował jeszcze timestamp.
 */
 
+// Zarówno w przypadku klienta, jak i serwera, wzorowałem się na tutorialu krok-po-kroku z materiałów.
+
 ///
 
 #include <stdio.h>

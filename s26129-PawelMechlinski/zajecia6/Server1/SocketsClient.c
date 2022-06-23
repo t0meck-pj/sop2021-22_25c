@@ -25,6 +25,8 @@ Serwer powinien działać w pętli.
 4. Niech serwer zapisuje logi do pliku - to znaczy informacje o tym kto się podłączył (jego IP oraz port) oraz o jaki plik poprosił.
 */
 
+// Zarówno w przypadku klienta, jak i serwera, wzorowałem się na tutorialu krok-po-kroku z materiałów.
+
 ///
 #include <stdio.h>
 #include <netdb.h>

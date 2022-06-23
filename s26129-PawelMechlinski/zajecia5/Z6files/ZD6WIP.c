@@ -24,6 +24,7 @@ Program ma następujące funkcje:
 5. Zakończ sesję.
 
 */
+///Ten program powstał jako moje pierwsze podejście do implementacji, niestety poległem na jego odrobaczeniu. Jest też napisany bez używania fork, zostawiam jako ciekawostkę (?).
 
 ///
 
@@ -350,20 +351,21 @@ int main()
         printf("\nAktualni użytkownicy czatu to:\n");
         getAllUsers(username);
 
-        char option[128];
+        char contact[128];
 
         // Pętla wyboru osoby do czatowania:
         int valid = 1;
         while (valid != 0)
         {
             printf("\nNapisz EXIT jeśli chcesz wyjść lub napisz nick użytkownika, z którym czat chcesz otworzyć:\n");
+            //printf("TEST"); getchar();
+            scanf("%127s", &contact);
+            if (strcmp(contact, "EXIT") == 0) exit(0);
+            printf("Szukam użytkownika o nicku: %s", contact);
 
-            scanf("%s", &option);
-printf("Szukam użytkownika o nicku: %s", option);
 
-            if (strcmp(option, "EXIT") == 0) exit(0);
 
-            valid = checkUsername(option);
+            valid = checkUsername(contact);
             if (valid != 0)
             {
             printf("Nie znalazłem użytkownika o takim nicku!");
@@ -372,15 +374,15 @@ printf("Szukam użytkownika o nicku: %s", option);
             else valid = 0;
         }
 
-        printf("Wybrano użytkownika: %s", option);
-        showChatHistory(option);
+        printf("Wybrano użytkownika: %s", contact);
+        showChatHistory(contact);
         while (1 == 1)
         {
         printf("\n***\n");
         char tresc[128];
         scanf("%s", &tresc);
         if (strcmp(tresc, "EXIT")) exit(0);
-        post(username, option, tresc);
+        post(username, contact, tresc);
         }
 
     }
