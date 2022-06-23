@@ -82,7 +82,7 @@ int main(int argc, char *argv[])
 // Obsługa write:
     int filesizeInt = 0;
     size_t size;
-    char eof[256] = {1};
+    char eof[254] = {1};
 
 // Obsługa timestamps
     time_t rawtime;
@@ -102,7 +102,14 @@ int main(int argc, char *argv[])
 {
     printf("\n[0]Dostałem sygnał. Do widzenia.\n");
     close(sockfd);
+    printf("[0]Zamknięto gniazdo.\n");
     exit(0);
+}
+
+    void killhandler(int signum)
+{
+        close(sockfd);
+        exit(0);
 }
     signal(SIGINT, my_handler);
 
@@ -191,7 +198,8 @@ int main(int argc, char *argv[])
         int port = cli_addr.sin_port;
         int addr = cli_addr.sin_addr.s_addr;
 
-        fprintf(logfile, "[ %s ] IP: %i Port: %i Nazwa pliku: %s\n", asctime(timeinfo), addr, port, filename  );
+        fprintf(logfile, " %s\tIP: %i Port: %i Nazwa pliku: %s\n", asctime(timeinfo), addr, port, filename  );
+        printf("\n%s\tIP: %i Port: %i Nazwa pliku: %s\n", asctime(timeinfo), addr, port, filename  );
         fclose(logfile);
 
         // Spróbuj otworzyć plik.
@@ -243,19 +251,20 @@ int main(int argc, char *argv[])
 
         while(fgets(buffer, 256, fp) != NULL)
         {
-            if (send(newsockfd, buffer, size, 0) == -1)
+            if (write(newsockfd, buffer, size-1) == -1)
             {
                 perror("[-]Błąd w trakcie wysyłania pliku!\n");
                 fclose(fp);
                 close(sockfd);
                 exit(1);
             }
-
+        printf("[0]Wysłano pakiet danych do klienta: %s\n", buffer);
+        bzero(buffer,256);
         }
 
-
-        send(newsockfd, eof, size, 0);
-        printf("[+]Udało się przesłać plik do klienta!\n");
+        printf("[+]Udało się przesłać cały plik do klienta!\n");
+        write(newsockfd, eof, size-1);
+        printf("[0]Wysłano sygnał zamknięcia do klienta.\n");
         bzero(buffer,256);
         close(newsockfd);
     }

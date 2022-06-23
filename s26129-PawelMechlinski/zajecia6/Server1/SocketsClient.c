@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
     char buffer[256];
     char c;
     int filesizeCheck = 0;
-    char eof[256] = {1};
+    char eof[254] = {1};
 
     // Obecnie nazwa i długość pliku zostaną zahardcodowane do zmiennych dla wygodn(iejsz)ego testowania.
     FILE *fp;
@@ -189,29 +189,31 @@ int main(int argc, char *argv[])
         close(sockfd);
         exit(0);
     }
-    printf("[+]Poprawnie otworzono plik wyjściowy (1).\n");
+    printf("[+]Poprawnie otworzono plik wyjściowy (1).\n================================\n");
 
 
 
     bzero(buffer,256);
-
+    size = sizeof(buffer);
     //for (int i = 0; i <= wielkosc_pliku; i += 256)
     while (1)
     {
 
-        n = recv(sockfd, buffer, 256, 0);
+        n = read(sockfd, buffer, size-1);
+        fprintf(fp, "%s", buffer);
         //printf("Pobrano: %i\n", i);
         printf("[256] Tekst: %s\n", buffer);
-        if (strcmp(buffer, eof ) == 0) break;
+        fprintf(fp, "%s", buffer);
+
+        if (strcmp(buffer, eof ) == 0) {printf("\n[0]Odebrano oznaczenie EOF, kończę odbieranie.\n"); break; }
         if (n <= 0)
         {
             perror("[!]Błąd podczas odczytywania pliku!\n");
             close(sockfd);
             fclose(fp);
-            break;
+            exit(0);
         }
-            fprintf(fp, "%s", buffer);
-            bzero(buffer,256);
+        bzero(buffer,256);
     }
 
     close(sockfd);

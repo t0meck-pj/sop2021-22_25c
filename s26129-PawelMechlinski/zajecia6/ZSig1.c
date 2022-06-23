@@ -15,7 +15,7 @@ Przygotuj prosty programik, który:
 
 void my_handler(int signum)
 {
-    printf("Dostałem sygnał. Do widzenia.\n");
+    printf("\nDostałem sygnał. Do widzenia.\n");
     exit(0);
 }
 
