@@ -163,4 +163,133 @@ wersja live-wersja której nie trzeba instalować, można uruchomić ją z nośn
 Komputer z debianem-można zamówić komputer z zainstalowanym debianem korzyściami jest to że dostajemy stację skonfigurowaną i gotową do pracy, do tego sprzedawca obiecuje nam pomoc techniczną. W momencie pisania tej pracy istnieją 2 miejsca w Polsce gdzie można kupić taki komputer.
 Ponadto na stronie Debiana umieszczona jest pełna instrukcja.
 
+Sprawozdanie z zajęc 2. 19 marzec 2022
+Drogi pamiętniczku dzisiaj nauczyłem się:
+
+skrypt-program napisany w języku skryptowym służącym do automatyzowania wykonywania zadańktóre normalnie mogłyby być wykonywane po koleji przez użytkowinika (takie jak uruchamianie kolejnych komend bądź nawet instalacji programów)
+
+dlaczego skrypty pisać?- Pisanie skryptów pozwala na automatyzację czynności które wykonujemy wielokrotnie
+
+dlaczego nie-żle napisany skrypt może zawiesić bądź uszkodzić komputer powodując utratę danych
+
+dowiedziełem się tez że po "#" nie wykonuj się komendy-pozwala zapisywać komentarze ale linijka: 
+
+#!/bin/bash -shebang linijka mowiąca w którym interpreterze uruchomić skrypt
+
+się już uruchamia i dzieki takiemu zapisowi bash uruchamia skrypt w procesie basha 
+
+połaczenie do szuflandii s25866@szuflandia.pjwstk.edu.pl
+
+source-używamy tylko kiedy chcemy "doładować" funkcje, dodać do niej zmienne 
+
+nie należy tego używać na codzień ponieważ takie doodawanie fukcji może uszkodzić nasz programi jak i system
+
+unset (zmienna)-usuwa zmienną
+
+"$" dodaję kiedy interesuje mnie wartość, która jest w zmiennej, bez dolara dostaję samą zmienną 
+zm=qwerty
+echo zm (wyświetla nam "zm")
+echo $zm (wyświetli nam "qwerty)
+echo \$zm(wywietli nam "zm" jednak będzie to już jako nazwa zmiennej a nie zwykły tekst)
+
+dziedziczenie:
+posiadając zmienną nie jest ona dostępna w podbashach
+
+żeby dodac zmienną należy dodać przed zmienną "export" (export zmienna)
+
+przy zmianie wartości przechodzi wartość w dół
+aby "odeksportować zmienną" należy napisać "export -n Zmienna"
+usuwane są wtedy wszytkie wartości "w dół"  czyli jeśłi uruchamimy te funkcę na 2 z 5 warstw to na warstwach 5, 4, 3 i 2 ta zmienna zostanie usunięta
+
+odwoływani się do wartości= $zmienna lub ${zmienna}-używana w prypadku konkatenacji
+
+sptree-drukuje drzewko procesów
+ & przed procesem ukrywa proces, można go pokazać za pomoca komendy "jobs"
+sleep x -zatrzymuje działanie procesu na x sekund 
+ctrl i Z -zatrzymuje proces
+jobs -pokazuje listę procesów które sa zatrzymane, żeby wznowić wpisuję bg %(numer procesu)
+ jobs pokazuje również działające procesy
+ ps-listowanie procesów
+ grep-filtrowanie
+ komenta (np sleep 2000) z dodanym "&" uruchamia ukryty program
+ $*- pokazuje wszytko w jednym argumencie
+ $@-literowanie po argumentach (podać trzeba w "")
+ pwd-polecenie do pokazywania ściezki 
+ 
+
+
+
+
+
+
+16.04.2022
+Moj kochany pamietniczku na oststnich zajeciach nauczylem sie:
+if-y, pętle i funkcje w bashu
+
+if musi być użyte ze swoją odwrotnością na końcu ("if" i "fi")
+warunek sie zapisuje w nawiasie a nastęnie czynność się pisze po słówku "then", więc inaczej niż dotychczas się uczyliśmy jak np w C++ lub javie.
+żeby tworzyć wiele warunków używa się "elif"(warunek) i w następnej lini "then"
+jeśłi nie utworzymy polecenie po "then" to bash mogą się pojawiac błędy, wsytaczy tak naprawdę sam średnik ";"
+warunek wpisuje się w podwójne nawiasy kwadratowe, w ten sposób bash wywołuje polecenie "test"-są do niego aliasem
+
+Polecenie "test" sprawdza wyrażenie i jesli warunek jest spełniony do zwraca wartość 0(true) a jeśli jest fałszywy to wartość 1(fałsz), wynik działania fukccji test jest umieszczana w zmiennej "$?"
+między nawiasmi a treścią warunku musza być spacje, jełśi porównujemy łańcuchy znaków to musza być one w cudzysłowiach
+używając "test" możemy również testować pliki
+wesług opcji "man test":
+-b spadzwanie czy plik istnieje i czy jest blokowym plikiem specjalnym
+-c czy istnieje i jest plikiem znakowym
+-d czy isnieje katalog
+-e czy plik istnieje
+-f czy plik istnieje i jest zwykłym plikiem
+-h czy istnieje i czy jest plikiem symbolicznym
+-r czy można plik czytać
+-w czy można plik zapisywać
+-x czy plik można wykonywać
+plik 1 -nt plik2 czy plik1 jest nowszy od plik2
+plik 1 -ot plik2 czy plik1 jest starszy od plik2
+
+
+Jeśłi chodzi o testy na liczbach to używa się opowiednio:
+-eq równy
+-ne różny
+-lt mniejszy niż
+-le mniejszy lub równy
+-gt większy niż
+-ge większy lub równy
+
+W przypadku sprawdzania łańcuchów znaków używa się sympoli
+= równy
+!= różny
+< pierwszy tekst jest przed drugim
+> pierwszy tekst jest za drugim
+-n długość wyrażenie jest większa niż 0
+-z wyrażenie jest puste/ma zerową długość
+
+można zapisac komendę "[ warunek ] && echo ok" w takim wypadku jeśli część w nawiasie się wykona to kolejne polecenia (w naszym wypadku "echo ok") również sie wukonają
+negację zapisujemy w formie "[ ! true ]" spacje pomiędzy "!" i "warunkiem"
+
+
+
+24.04.2022
+Moj kochany pamietniczku na ostanich zajeciach nauczyłem się:
+komendy do ręcznej kompilacji pliku c i cpp do finalnego pliku binarnego
+gcc -Wall --ansi --pedantic -o nazwa_pliku_wyjściowego plik_źródłowy.c
+
+g++ -Wall --ansi --pedantic -o nazwa_pliku_wyjściowego plik_źródłowy.cpp
+-o dzieki temu określamy nazwę pliku wyjściowego
+-Wall (warning all) komenda karząca wypisać wszystkie błędy które ujawnią się podczas kompilacji
+--ansi wymusza zgodnośc z ansi c89
+--pedantic wymusza zwiększoną dokładność sprawdzania podczas kompilawania jeśli chodzi on standard pisania
+do tego nauczyłęm się że mimo iż niekiedy używanie konsoli do kompilowania jest bardziej czasochłonne to dzięki temu bardziej ogarniam co się dzieje a zcytanie takich błędów wcale nie jest takie trudne. a no i lepiej to działa niż dodatkowy program nawet na słabym sprzęcie
+
+
+14.05.2022
+Moj kochany pamietniczku na ostanich zajeciach nauczyłem się:
+czym jest funkcja fork i jak ją używać
+kilku ciekawych i ważnych informacji o procechach np o ich ID (process ID)
+że kążdy proces ma swojego rodzica-nadrzędny proces
+
+tworzenie ososbnych porcesów używa się chociązby w tworzeniu serwerów. działa to tak że serwer słucha czy ktoś chce sięn połączyć z nim i jkiedy to nasąpi to tworzy proces potomny który obsługuje połaczenie a proces główny nadal słucha kolejnych połaczeń
+oraz że każdy proces może sprawdzić swój PPID(Parent PID)
+Istnieje coś takiego jak porces zombie-proces który nie ma swojeg parenta. zabija je(o ile zabić można coś co nie żyje) jądro systemowe
 
