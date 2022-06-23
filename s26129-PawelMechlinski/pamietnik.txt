@@ -1,4 +1,7 @@
-2022-02-28
+<<<2022-02-28>>>
+Zajęcia 1. 
+Temat: System Operacyjny.
+
 Moj kochany pamietniczku, na tych zajeciach mnie nie bylo, ale podczas robienia zadan samodzielnie w domu nauczylem sie:
 - Ze warto rozwazyc instalowanie Linuksa z poziomu komendy polecen, a nie GUI, bo dzieki temu mozna latwiej debugowac pojawiajace sie bledy.
 - Ze podane w dokumentacji ilosci zasobow nawet jesli nazywaja sie "rekomendowane" to i tak moga byc niewystarczajace do zainstalowania wszystkich narzedzi, jesli instalujemy z mysla o stacji roboczej, a nie o serwerze, gdzie np. nie uzywa sie GUI.
@@ -7,7 +10,10 @@ Zajęcia dotyczyły instalacji systemu GNU/Linux i tutaj w sumie po wykonaniu je
 
 Samo zadanie bardzo fajne, mam wrażenie, że zmusza do dokładniejszego przyjrzenia się problemowi.
 
-2022-03-14
+<<<2022-03-14>>>
+Zajęcia 2.
+Temat: Bash I.
+
 Dzisiaj na zajeciach nauczylem sie:
 - Niuansów wykorzystywania zmiennych powłoki, np. kiedy są, a kiedy nie są dostępne, jak je eksportować etc.
 - Parę nowych zmiennych środowiskowych, jak $*/$@, $#, $?
@@ -21,4 +27,77 @@ Zaskakuje mnie (pozytywnie) logika i elegancja zaprojektowania GNU/Linux, gdzie 
 
 Na pewno chciałbym jeszcze lepiej zrozumieć jak funkcjonuje kernel i proces boot'owania systemu oraz jak przekłada się to na takie wysokopoziomowe funkcje systemu jak renderowanie grafiki czy niskopoziomowe jak budowa sterowników od drukarki czy innych urządzeń peryferyjnych.
 
+<<<2022-04-02>>>
+Zajecia 3.
+Temat: Bash II.
 
+Na dzisiejszych zajęciach poznawaliśmy bardziej zaawansowane funkcje bash'a.
+- Nie korzystałem do tej pory z tradycyjnego przedstawiania warunków w podwójnych nawiasach kwadratowych [[ ]].
+- Podobnie w przypadku pętli nie znałem do tej pory bashowego sposobu na pętlę for, który przypomina pythonowe rozwiązania, mianowicie: for i in a b c; do. 
+- A także skróconego syntaksu do pętli z krokiem danej długości: for i in $(seq 1 1 10); do
+i 
+for i in {1..10..3}; do
+^ opcja bez wywoływania dodatkowego programu,
+
+a nawet poza znanym mi auto-wyliczaniu {1..10} opcję na literach:
+{a..g} i {a..g..2}.
+
+- Tablice również znałem i używałem, ale nie korzystałem do tej pory z dodatkowych dostępnych dla tej struktury parametrów.
+Według dokumentacji tablice w bashu nie mają maksymalnego limitu rozmiaru, ani też nie muszą być indeksowane po kolei. Tablice indeksowane domyślnie nie mogą zawierać indeksów mniejszych nod zero.
+Tablica jest tworzona automatycznie z przyporządkowaniem do niej pary indeks-wartość:
+name[subscript]=value
+można ją także zadeklarować tak:
+declare -a name
+
+Tablice asocjacyjne mozna zadeklarować:
+declare -A name
+
+Dodatkowe możliwości odwoływania się do tablic:
+- array[-1] odnosi się do ostatniego elementu na tablicy.
+- do dowolnego elementu tablicy można odnieść się za pomocą ${name[subscript]} - nawiasy wąsiaste są potrzebne dla uniknięcia konfliktów z operatorami rozszerzenia nazwy pliku w powłoce (?).
+- podanie jako indeks '@' lub '*' rozszerza się do wszystkich elementów w danej tablicy. Jedyna różnica występuje przy elementach tablicy w cudzysłowach " " - wówczas ${name[*]} rozszerza się do pojedynczego słowa z wartością każdego elementu tablicy oddzieloną wartością zmiennej IFS, podczas gdy ${name[@]} rozszerza każdy element tablicy name do pojedynczego słowa.
+- ${!name[@]} i ${!name[*]} rozszerzają się do indeksów przydzielonych w zmiennej tablicowej 'name', przy czym w przypadku użycia cudzysłowów efekt jest podobny jak przy używaniu samych parametrów '@' i '*' w cudzysłowach.
+
+Podsumowując zajęcia to fajnie dowiedzieć się o takich smaczkach korzystania z basha. Jak widać ma on nawet bez wywoływania dodatkowych narzędzi duże możliwości.
+
+<<<2022-04-23>>>
+Zajęcia 4.
+Temat: C/C++ Wstęp
+- Miałem okazję zapoznać się bliżej ze strukturami union i struct: znałem wcześniej podstawy języka C, ale nie zajmowałem się do tej pory tymi strukturami danych w tym języku.
+- Poznałem zasady kompilacji w terminalu, ponieważ do tej pory używałem Dev C++.
+( W tym kompilowanie z parametrami -Wall --ansi --pedantic :) )
+ - Wykorzystanie parametrów przekazywanych do funkcji main z argc i argv.
+ - Poznałem rodzinę poleceń [a]to[b], np. atoi.
+ - Zrozumiałem - przynajmniej na miarę swoich możliwości - na czym polega dynamiczna alokacja pamięci i zastosowania wskaźników.
+ - Dowiedziałem się o możliwości tworzenia tablic funkcji, a właściwie wskaźników funkcji.
+ - Pobawiłem się z przetwarzaniem streamu w formacie bajtowym i w przetwarzaniu na hekse: zadanie z hexviewerem
+ było chyba dla mnie najciekawsze z tego tematu. 
+ - Dbanie o właściwe zarządzanie pamięcią w przypadku programów napisanych w C jest kluczowe dla zapewnienia stabilności systemu, w którym uruchamia się program i poprawnego działania samego programu.
+ 
+ Co jest dla mnie niejasne: Czasem myli mi się kolejność argumentów w niektórych funkcjach, np. fprintf vs fputs etc. 
+
+<<<2022-04-14>>>
+Zajęcia 5.
+Temat: C/C++ Procesy
+- Myślę, że najważniejszą rzeczą, jaką wyniosłem z tych zajęć jest trochę lepsza intuicja o tym, jak tworzone jest drzewo procesów w OS i jaki potencjał programistyczny posiada dobre opanowanie tego zagadnienia.
+- Tworzenie skutecznych programów z kontrolą warunkową przy wykorzystaniu fork(), a zwłaszcza przy wielu subprocesach/poziomach subprocesów wymaga dużego namysłu, ale też wydaje się, że może być wykorzystywane do tworzenia ciekawych rozwiązań.
+- Źle napisany czat z przeciekającą pamięcią może wystarczyć do zapchania dysku twardego.
+- Po pobawieniu się z socketami stwierdzam, że dobre zrozumienie i wykorzystanie (sub)procesów jest nie tylko wartościowym dodatkiem, ale może być praktycznie niezbędne do napisania bardziej wymagających implementacji, jak choćby aplikacje serwerowe zdolne do obługi wielu połączeń jednocześnie.
+
+Co jest jeszcze dla mnie niejasne: Czasem buffer overflow/memory leak jest dla mnie w dalszym ciągu zagadką. 
+
+<<<2022-05-28>>>
+Temat: C/C++ Make, Sygnały, Sockety
+- Stary dobry printf pomaga w debugowaniu, ale tylko jeśli zaraz po nim umieści sie getchar() - prawdopodobnie problemy z pamięcią wysypią program szybciej niż wykona się komenda wydruku na terminalu.
+- Istnieje funkcja strstr(), która nadaje się do porównywania stringu z krótszym stringiem, a jej parametry nazywają sie "needle" i "haystack".
+- Można stronę w HTMLu wkleić do pliku serwerowego bezpośrednio w char array i dalej będzie działać.
+- Uzyskiwanie timestampu czy czasu uniwersalnego jest możliwe dość łatwo w C, ale trzeba pamiętać, że dostaje się wskaźnik, a nie string/chararray. Na dobrą
+sprawę przy okazji kombinowania z timestamps chyba wreszcie załapałem dobrze temat wskaźników - można ich używać zamiennie np. w printf(), ale trzeba 
+zwracać uwagę na pamięć (chyba?).
+- Strncmp i strcmp to dwie różne funkcje o podobnym efekcie. Strcmp może zawiesić system jeśli któryś ze stringów nie kończy się null-characterem, czyli \'0'.
+- Da się zrobić stosunkowo łatwo int ze stringa za pomocą atoi, ale już w drugą stronę nie jest tak łatwo i żeby przekształcić int na char array trzeba użyć sprintf/snprintf i obliczyć ile miejsca w pamięci zajmuje dany string (oczywiście najlepiej mając przygotowaną z góry dopasowną pustą char array).
+- size_t to osobny keyword do oznaczania zmiennych, ale faktycznie można go używać jak int'a.
+- W intach również są przechowywane adresy IP i porty używane przy konfigurowaniu sockets ze struct sockaddr_in
+
+Co jest dla mnie niejasne: Właściwie to samo zagadnienie gniazd wydaje mi się z grubsza jasne, natomiast przyznam, że czasem dopasowanie optymalnej ilości 
+przesyłanych bajtów na kolejno buforze, write, read i kolejnym buforze było niezłą łamigłówką do prześledzenia i przepróbowania.
