@@ -1,1 +1,51 @@
-Tu będzie pamiętnik 
+Tu będzie pamiętnik
+2022-03-05
+Mój kochany pamiętniczku, na dzisiejszych zajęciach nauczyłem się instalacji systemu 
+operacyjnego linux, dystrybucja Debian na maszynie wirtualnej.
+Przebieg instalacji zamieściłem w folderze Lab1.
+
+2022-03-19
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się:
+Czym jest skrypt - plik, zawierający kolejne komendy do zinterpretowania przez powłokę systemową.
+Żeby ustalić program interpretujący dany skrypt musimy w pierwszej linijce skryptu
+umieścić znak hash, wykrzyknik, a następnie nazwę programu interpretera.
+Jako że my będziemy skupiać się na powłoce Linuksa, a konkretnie bashu, to u nas będzię to:
+#!/bin/bash
+Znak hash(#) oznacza komentarz
+Następnie uczę się:
+- jak przypisywać zmienne, jakie są róznice pomiędzy zapisem w "", a w ''
+- o funkcjach export i unset
+- jak odczytać zawartość zmiennej
+- jakie są predefiniowane zmienne
+- poznaje kolejne zmienne m.in. PATH czy RANDOM (o nich wiecej w folderze Lab2)
+- jak przypisać standardowe wyjście do zmiennej
+- jakie można przeprowadzić operacje na ciągach znaków
+- czym są wyrażenia regularne oraz zastosowanie programu sed
+
+2022-04-02
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczłem się:
+O if-ach, pętlach i funkcjach:
+- jak wyglądają wyrażenia warunkowe, jak się je tworzy
+- jakie pęlte obsługuje bash - for, while i until
+- czym są tablice - wyglądają one jak zwykłe zmienne, ale nie można ich w zwykły sposób eksportować
+- jak deklaruje się funkcje
+
+2022-04-23
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się:
+Wstęp do C/C++:
+- przypomniałem sobie jak wyglądają ważniejsze struktury
+- jaka jest ręczna kompilacja
+- wstęp z IO (input-output)
+- informacje o wskaźnikach
+- czym jest wskaźnik do funkcji
+
+2022-05-14
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się:
+Procesy w C/C++
+Uczyłem sie jak stosować takie funcję jak fork, wait, waitpid, getpid, getppid
+Również co nieco o narzędziach make 
+
+2022-05-28
+Mój kochany pamiętniczku na dzisiejszych zajęciach nauczyłem się:
+O socketach, sygnałach, opisach -signal oraz -Sigaction   
+ 

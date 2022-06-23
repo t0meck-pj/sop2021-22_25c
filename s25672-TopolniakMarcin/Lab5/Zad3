@@ -1,0 +1,19 @@
+#include<stdio.h>
+#include<sys/types.h>
+#include<unistd.h>
+#include<sys/waith.h>
+
+int main(int argc, char* argv[]){
+int i,x;
+x = atoi(argv[1]);
+if(fork()==0)
+{
+printf("Child: nieparzyste od 1 do %i\n",x);
+for(i=1;i<x;i+=2) printf("%i\n",i);
+}else{
+wait(NULL);
+printf("Child: liczby od 0 do %i\n",x);
+for(i=0;i<x;i++) printf("%i\n",i);
+}
+return 0;
+} 
