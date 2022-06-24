@@ -1,0 +1,295 @@
+2022-03-18
+Moj kochany pamietniczku na dzisiejszych zajeciach nauczylem sie:
+
+Sprawozdanie z 1 zajęć-Debian
+Drogi pamiętniczku, dzisiaj nauczyłem się czym jest
+
+VDI-Rodzaj wirtualizacji kiedy oprogramowanie komputera jak i jego aplikacje(software) są oddzielone od fizycznego urządzenia (hardware). Umożliwia to działanie wielu słabszych jednostek dzięki scentralizowaniu oprogramowania Jednakże wiąże się to z początkowymi większymi kosztami (takimi jak postawienie głównej maszyny, odpowiednie zabezpieczenia oraz odpowiednim dostosowaniem łacza)
+
+VHD-Rodzaj wirtualizacji kiedy wirtualny dysk twardy ma swój fragment na realnym dysku hosta.Zapisywane są w formacie “.vhd”. Rozróżniamy cztery typy takich plików:
+1.Stały obraz dysku - plik o stałej wielkości, równej wirtualnemu dyskowi twardemu,
+2.Dynamiczny obraz dysku - plik ma wielkość równą wielkości plików na wirtualnym dysku plus rozmiar nagłówka pliku,
+3.Przyrostowy obraz dysku - Zawartością pliku są tylko i wyłącznie zmiany w strukturze plików dysku wirtualnego, w odniesieniu do dysku macierzystego (jest to osobny plik, działający tylko w równoczesnej obecności dysku macierzystego),
+4.Linkowany - plik zawierający bezpośrednie odniesienie do fizycznego dysku twardego lub partycji na fizycznym dysku twardym.
+Taki dysk ułatwia wstępne konfigurowanie jednostek do pracy małym nakładem czasu.
+  
+VMDK-Format dysku stworzony przez VMware. Umożliwia dynamiczny przydział pamięci.
+dynamiczny przydział pamięci-Jest to sposób zarządzania pamięcią w której pamięć dynamicznie, w zależności od naszych potrzeb, się zwiększa. Przydatne jest to w sytuacjach kiedy nie wiemy ile ostatecznie może zajmować nasz projekt bądź pliki. Dodatkowo dzięki takiemu sposobowi zarządzania plikami nie zajmujemy niepotrzebnie dysku. Minusem jest że może dojść do znacznej defragmentacji naszych danych co spowolni ich odczyt.
+
+stały rozmiar-Na etapie instalacji deklarujemy wielkość naszego dysku/projektu i rezerwujemy dla niego miejsce na fizycznym dysku. Minusem jest to że zajmujemy wstępnie dysk przez co niewielkie aplikacje/ dyski zajmują realnie dużo miejsca, plusem jest małą defragmentacja danych co zwiększa szybkość odczytu danych.
+
+Fragmentacja dysku-Jest to ,na ogół w dyskach HDD, niekorzystne zjawisko podczas którego dane na dysku znajdują się w różnych miejscach na dysku a część pozostaje wolna. Dysk można zdefragmentować żeby dane ułożyć w sąsiadujących sekcjach na dysku co przyspiesza ich odczyt. Fragmentacja jest korzystnym zjawiskiem na dyskach SSD które posiadają wiele kości przechowujących dane dzięki czemu można naraz odczytywać wiele danych.
+
+defragmentacja dysku-Proces podczas którego ,rozrzucone po dysku, dane ustawiamy w sąsiadujących ze sobą sekcjach co przyspiesza ich odczyt. Sprawdza się to zwłaszcza w dyskach typu HDD ponieważ głowica musi wykonywać mniej ruchów aby odczytać jeden ciąg danych.
+
+domena-sposób określania identyfikacji(przynależności) danej jednostki do  
+ogólnej administracji. składa się przynajmniej z jednej etykiety. Etykietami mogą być oznaczenia krajów (np “.pl”-Polska) bądź instytucji (“.edu”-najważniejsza domena instytucji naukowych)
+
+root-(z ang korzeń- spowodowane jest to strukturą drzewiastą systemów linuxowych) jest to nadrzędny “użytkownik” który ma dostęp do wszystkich opcji naszego systemu. Root ma dostęp do wszystkich komend i plików znajdujących się na komputerze. W systemie widnieje jako użytkownik 0. Taki użytkownik powinien mieć bardzo silne hasło. Żeby uruchomić w terminalu instrukcję jako root należy napisać “su” lub “sudo” a następnie komendę
+
+bootowanie systemu-proces uruchamiania się komputera i ładowanie systemu operacyjnego do pamięci RAM.System bootowany jest przez bootloadera.
+
+boot loader-program uruchamiający się jako pierwszy po sprawdzeniu przez BIOS podstawowych komponentów takich jak procesor, RAM lub karty graficznej.
+
+suma kontrolna-liczba uzyskana według specjalnego algorytmu służąca do zapewnienia integralności danych.
+
+macierz dyskowa-urządzenie zawierające fizyczny zbiór dysków, połączonych systemem RAID, które są widoczne w systemie jako jeden dysk logiczny
+
+RAID-sposób wykorzystania dwóch lub więcej dysków w systemach komputerowych. Dzięki odpowiedniej konfiguracji uzyskujemy możliwości nieosiągalne dla pojedynczych dysków bądź dysków podłączonych jako osobne.
+RAID programowy-mniejsza wydajność spowodowana większym obciążeniem CPU 
+	osobny nośnik przeznaczony tylko do uruchamiania systemu
+	nie wszystkie systemy obsługują RAID
+	większa unifikacja przez co większa liczba systemów może być podłączona do macierzy
+	możliwość podłączenia wielu typów interfejsów dysków do jednej macierzy
+
+RAID sprzętowy-wieksza wydajność ponieważ sprawdzaniem sum kontrolnych zajmuje się dedykowany kontroler
+	start bezpośrednio z macierzy dyskowej
+	większa kompatybilność z systemami operacyjnymi	
+	większa podatność na uszkodzenia kontrolera spowodowane dużymi różnicami protokołów między producentami a nawet modelami jednego producenta
+
+Rodzaje RAID:
+RAID 0-Proste połączenie które łączy dyski fizyczne w jeden dysk logiczny o wielkości 3* wielkość najmniejszego dysku
+RAID 1-tworzenie na dyskach kopii danych, zapewnia duże bezpieczeństwo danych kosztem małej pojemności
+RAID 2-zapisywanie kolejnych bitów na osobnych dyskach na zmianę.korzyścią jest to że jeden uszkodzony dysk może zostać odbudowany przez inne dyski . minusem jest dokładna synchronizacja dysków jak i wolny odczyt
+RAID 6-Macierz podwójnej parzystości. Działa to na zasadzie że na 2 dyskach (z 4 niezbędnych) zapisywane są sumy kontrolne 2 innych dysków. sumy kontrolne są zapisywane na kolejnych dyskach dzięki czemu nawet w wypadku uszkodzeniu 2 dysków możemy odzyskać dane.
+
+GNOME-Graficzne środowisko użytkownika oparte na systemie X Window System, Działa w większości systemów UNIX
+
+UTF-8– system kodowania Unicode, wykorzystujący od 1 do 4 bajtów do zakodowania pojedynczego znaku, w pełni kompatybilny z ASCII. Jest najczęściej wykorzystywany do przechowywania napisów w plikach i komunikacji sieciowej.
+
+ASCII– siedmiobitowy system kodowania znaków, używany we współczesnych komputerach oraz sieciach komputerowych.
+
+partycja (nie mylić z Patrycją)-jest to logiczny (nie fizyczny) podział dysku na części które system widzi jako osobne katalogi. Podzielenie dysku na partycje umożliwia oddzielenie systemu operacyjnego od aplikacji użytkownika chroniąc system przed przypadkowymi ingerencjami.
+
+iSCSI -technika umożliwiająca wykonywanie operacji wejścia-wyjścia na dysku twardym odległej maszyny za pomocą protokołu TCP/IP
+
+partycja primary-partycja fizyczna na dysku, w starych systemach na pierwszej partycji musiały być systemy rozruchu komputera. maksymalna ilość partycji tego typu wynosi 4.
+partycja Logical-przypomina partycje primary jednak można stworzyć ich nielimitowaną ilość
+
+ext(2,3,4)-wersja rozszerzenia systemu plików dla systemów linux kolejne wersje systemu plików ext stworzony przez twórca linuxa.
+
+Btrfs-system plików stworzony dla systemów Linux stworzony przez Firmę Oracle
+
+JFS-64 bitowy system plików z księgowaniem
+
+księgowanie-sposób zapisywania plików najpierw w dzienniku. dzięki takiej kolejności chronimy oryginalne dane przed uszkodzeniem w przypadku zaniku prądu w momencie zapisu
+
+XFS-64 bitowy system plików zaprojektowany przez firmę Silicon Graphic stworzony do używania w systemie IRIX
+
+FAT16- następca systemu FAT 12 zwiększająca rozmiar woluminu do 2 GB.Stworzony do obsługi pierwszych dysków twardych, gdyż jego poprzednik był niewystarczający.
+
+FAT32 -następca systemu FAT16 cechujący się zwiększeniem maksymalnej wielkości woluminu o trzy rzędy wielkości(do 2 TB)
+
+physical volume for encryption-część dysku która będzie zaszyfrowana utrudniając odczytanie danych osobom nieupoważnionym osobom.
+physical volume for RAID-dysk przygotowany do działania w systemie RAID
+
+physical volume for LVM-mechanizm systemu operacyjnego do zarządzania przestrzenią pamięci dysków
+
+swap area-przestrzeń wymiany, przestrzeń na dysku wykorzystywana kiedy pamięć operacyjna jest pełna
+
+mount-ustawienie udostępniania systemu plików z nośników danych dla  systemu operacyjnego.
+
+mount point-określa w jakim miejscu w drzewie zaczyna się udostępnianie 
+
+Reserved blocks- przestrzeń na dysku zarezerwowana na pliki tymczasowe oraz logi systemu
+
+GRUB-program rozruchowy rozwijany w ramach projektu GNU
+
+W systemie Linux w wszelkich konsolach nie pojawiają się hasła przy wpisywaniu (nie pojawiają się żadne “*” bądź inne symbole) jest to ze względu bezpieczeństwa gdyby ktoś ci “zaglądał przez ramię” jak i takie hasła nie są zapisywane do pliku .bash_history
+
+chmura obliczeniowa/przetwarzanie w chmurze-sposób na przetwarzanie danych oparta na usługach dostarczonych przez usługodawcę
+
+Ustawienia VB
+Ogólne-bez zmian
+system-ustawiamy na 4 gb ramu oraz odznaczamy wszystkie opcje w “kolejności bootowania”, można dodać więcej rdzeni procesora do użytku
+Więcej ramu oraz ilość rdzeni sprawi że nasz system będzie sprawniej działał
+Sam Debian potrzebuje 2Gb RAM-Dla odtwarzacza TOTEM(podstawowy odtwarzacz filmów dla systemów gnome)
+ekran-nic nie zmienimy
+pamięć-
+zwięk
+sieć
+
+Rodzaje startu VB
+
+zwykły start-Maszyna wirtualna odpala nam się w standardowy sposób (tak jak zwykły komputer osobisty). Wirtualny ekran pokazuje nam co się dzieje i przy zamknięciu wyłącza nam się cała maszyna. Plusem jest możliwość konfiguracji, minusem stosunkowo duże obciążenie hosta.
+
+bezokienkowy start-Uruchamia nam się jedynie środowisko bez możliwości “zajrzenia” co się dzieje-analogicznie do bezobsługowego serwera który konfigurujemy raz i potem tylko uruchamiamy dla naszych współpracowników
+
+oddzielony start-łączy obydwie poprzednie metody, środowisko odpala się z “wirtualnym monitorem” który po dokonaniu ustawień możemy wyłączyć pozostawiając maszynę dalej działającą.
+
+
+czyności podczas instalacji Debiana:
+F12 w oknie zanim się zacznie ładować system w celu wyboru ustawień jednorazowego bootowania systemu (skąd system ma się załadować)
+Hard disk-dysk komputera(naszej maszyny wirtualnej)
+Floppy-dyskietka
+CD-ROM-płytka <-tą opcję wybieramy
+LAN-przez sieć
+
+
+
+
+
+
+
+
+strona debiana:
+https://www.debian.org/distrib/
+Debian 
+wersja stabilna-Wersja Debiana która działa w sposób zgodny z założeniami autorów. Wersje tej dystrybucji to:
+RTM(and.:Release to manufacture-gotowy do użycia) produkt gotowy do wypuszczenia na rynek, do czasu premiery jest niedostępny
+
+wersja testowa- wersja która zawiera pakiety które znajdą się w wersji stabilnej ale oczekują na przyjęcie. Dodawane są do takiej wersji jedynie poprawki naprawiające krytyczne błędy
+
+wersja niestabilna-seria wydań które skupiają się głównie na dodawaniu nowych możliwości, często zawiera błędy
+
+mały plik instalacyjny-zawiera niezbędne pliki do uruchomienia instalacji, resztę brakujących plików pobranych zostanie z internetu
+kompletny plik obrazu-pełny plik obrazu który nie wymaga połączenia z internetem do instalacji.
+
+openstack-oprogramowanie do chmur obliczeniowych
+
+qcow2-format plików używany przez wirtualnie hostowaną maszynę wirtualną
+
+raw-ogólne określenie zapisu danych bez nagłówków
+
+amazon EC2-Amazon Elastic Compute Cloud (EC2) – serwis WWW dostarczający 
+skalowalną moc obliczeniową w chmurze obliczeniowej.
+
+Microsoft azure-Platforma chmurowa firmy microsoft
+
+Zestawy płyt-możliwe jest zamówienie płyt (swoją drogą bardzo ładnych moim zdaniem) z wgranym na nich obrazem systemu. minusem tego rozwiązania jest koszt oraz szybkie starzenie się takiego produktu
+
+wersja live-wersja której nie trzeba instalować, można uruchomić ją z nośnika np pendrive
+
+Komputer z debianem-można zamówić komputer z zainstalowanym debianem korzyściami jest to że dostajemy stację skonfigurowaną i gotową do pracy, do tego sprzedawca obiecuje nam pomoc techniczną. W momencie pisania tej pracy istnieją 2 miejsca w Polsce gdzie można kupić taki komputer.
+Ponadto na stronie Debiana umieszczona jest pełna instrukcja.
+
+Sprawozdanie z zajęc 2. 19 marzec 2022
+Drogi pamiętniczku dzisiaj nauczyłem się:
+
+skrypt-program napisany w języku skryptowym służącym do automatyzowania wykonywania zadańktóre normalnie mogłyby być wykonywane po koleji przez użytkowinika (takie jak uruchamianie kolejnych komend bądź nawet instalacji programów)
+
+dlaczego skrypty pisać?- Pisanie skryptów pozwala na automatyzację czynności które wykonujemy wielokrotnie
+
+dlaczego nie-żle napisany skrypt może zawiesić bądź uszkodzić komputer powodując utratę danych
+
+dowiedziełem się tez że po "#" nie wykonuj się komendy-pozwala zapisywać komentarze ale linijka: 
+
+#!/bin/bash -shebang linijka mowiąca w którym interpreterze uruchomić skrypt
+
+się już uruchamia i dzieki takiemu zapisowi bash uruchamia skrypt w procesie basha 
+
+połaczenie do szuflandii s25866@szuflandia.pjwstk.edu.pl
+
+source-używamy tylko kiedy chcemy "doładować" funkcje, dodać do niej zmienne 
+
+nie należy tego używać na codzień ponieważ takie doodawanie fukcji może uszkodzić nasz programi jak i system
+
+unset (zmienna)-usuwa zmienną
+
+"$" dodaję kiedy interesuje mnie wartość, która jest w zmiennej, bez dolara dostaję samą zmienną 
+zm=qwerty
+echo zm (wyświetla nam "zm")
+echo $zm (wyświetli nam "qwerty)
+echo \$zm(wywietli nam "zm" jednak będzie to już jako nazwa zmiennej a nie zwykły tekst)
+
+dziedziczenie:
+posiadając zmienną nie jest ona dostępna w podbashach
+
+żeby dodac zmienną należy dodać przed zmienną "export" (export zmienna)
+
+przy zmianie wartości przechodzi wartość w dół
+aby "odeksportować zmienną" należy napisać "export -n Zmienna"
+usuwane są wtedy wszytkie wartości "w dół"  czyli jeśłi uruchamimy te funkcę na 2 z 5 warstw to na warstwach 5, 4, 3 i 2 ta zmienna zostanie usunięta
+
+odwoływani się do wartości= $zmienna lub ${zmienna}-używana w prypadku konkatenacji
+
+sptree-drukuje drzewko procesów
+ & przed procesem ukrywa proces, można go pokazać za pomoca komendy "jobs"
+sleep x -zatrzymuje działanie procesu na x sekund 
+ctrl i Z -zatrzymuje proces
+jobs -pokazuje listę procesów które sa zatrzymane, żeby wznowić wpisuję bg %(numer procesu)
+ jobs pokazuje również działające procesy
+ ps-listowanie procesów
+ grep-filtrowanie
+ komenta (np sleep 2000) z dodanym "&" uruchamia ukryty program
+ $*- pokazuje wszytko w jednym argumencie
+ $@-literowanie po argumentach (podać trzeba w "")
+ pwd-polecenie do pokazywania ściezki 
+ 
+
+
+
+
+
+
+16.04.2022
+Moj kochany pamietniczku na oststnich zajeciach nauczylem sie:
+if-y, pętle i funkcje w bashu
+
+if musi być użyte ze swoją odwrotnością na końcu ("if" i "fi")
+warunek sie zapisuje w nawiasie a nastęnie czynność się pisze po słówku "then", więc inaczej niż dotychczas się uczyliśmy jak np w C++ lub javie.
+żeby tworzyć wiele warunków używa się "elif"(warunek) i w następnej lini "then"
+jeśłi nie utworzymy polecenie po "then" to bash mogą się pojawiac błędy, wsytaczy tak naprawdę sam średnik ";"
+warunek wpisuje się w podwójne nawiasy kwadratowe, w ten sposób bash wywołuje polecenie "test"-są do niego aliasem
+
+Polecenie "test" sprawdza wyrażenie i jesli warunek jest spełniony do zwraca wartość 0(true) a jeśli jest fałszywy to wartość 1(fałsz), wynik działania fukccji test jest umieszczana w zmiennej "$?"
+między nawiasmi a treścią warunku musza być spacje, jełśi porównujemy łańcuchy znaków to musza być one w cudzysłowiach
+używając "test" możemy również testować pliki
+wesług opcji "man test":
+-b spadzwanie czy plik istnieje i czy jest blokowym plikiem specjalnym
+-c czy istnieje i jest plikiem znakowym
+-d czy isnieje katalog
+-e czy plik istnieje
+-f czy plik istnieje i jest zwykłym plikiem
+-h czy istnieje i czy jest plikiem symbolicznym
+-r czy można plik czytać
+-w czy można plik zapisywać
+-x czy plik można wykonywać
+plik 1 -nt plik2 czy plik1 jest nowszy od plik2
+plik 1 -ot plik2 czy plik1 jest starszy od plik2
+
+
+Jeśłi chodzi o testy na liczbach to używa się opowiednio:
+-eq równy
+-ne różny
+-lt mniejszy niż
+-le mniejszy lub równy
+-gt większy niż
+-ge większy lub równy
+
+W przypadku sprawdzania łańcuchów znaków używa się sympoli
+= równy
+!= różny
+< pierwszy tekst jest przed drugim
+> pierwszy tekst jest za drugim
+-n długość wyrażenie jest większa niż 0
+-z wyrażenie jest puste/ma zerową długość
+
+można zapisac komendę "[ warunek ] && echo ok" w takim wypadku jeśli część w nawiasie się wykona to kolejne polecenia (w naszym wypadku "echo ok") również sie wukonają
+negację zapisujemy w formie "[ ! true ]" spacje pomiędzy "!" i "warunkiem"
+
+
+
+24.04.2022
+Moj kochany pamietniczku na ostanich zajeciach nauczyłem się:
+komendy do ręcznej kompilacji pliku c i cpp do finalnego pliku binarnego
+gcc -Wall --ansi --pedantic -o nazwa_pliku_wyjściowego plik_źródłowy.c
+
+g++ -Wall --ansi --pedantic -o nazwa_pliku_wyjściowego plik_źródłowy.cpp
+-o dzieki temu określamy nazwę pliku wyjściowego
+-Wall (warning all) komenda karząca wypisać wszystkie błędy które ujawnią się podczas kompilacji
+--ansi wymusza zgodnośc z ansi c89
+--pedantic wymusza zwiększoną dokładność sprawdzania podczas kompilawania jeśli chodzi on standard pisania
+do tego nauczyłęm się że mimo iż niekiedy używanie konsoli do kompilowania jest bardziej czasochłonne to dzięki temu bardziej ogarniam co się dzieje a zcytanie takich błędów wcale nie jest takie trudne. a no i lepiej to działa niż dodatkowy program nawet na słabym sprzęcie
+
+
+14.05.2022
+Moj kochany pamietniczku na ostanich zajeciach nauczyłem się:
+czym jest funkcja fork i jak ją używać
+kilku ciekawych i ważnych informacji o procechach np o ich ID (process ID)
+że kążdy proces ma swojego rodzica-nadrzędny proces
+
+tworzenie ososbnych porcesów używa się chociązby w tworzeniu serwerów. działa to tak że serwer słucha czy ktoś chce sięn połączyć z nim i jkiedy to nasąpi to tworzy proces potomny który obsługuje połaczenie a proces główny nadal słucha kolejnych połaczeń
+oraz że każdy proces może sprawdzić swój PPID(Parent PID)
+Istnieje coś takiego jak porces zombie-proces który nie ma swojeg parenta. zabija je(o ile zabić można coś co nie żyje) jądro systemowe
+

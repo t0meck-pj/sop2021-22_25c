@@ -1,0 +1,38 @@
+Instalacja Debiana:
+
+Debian GNU/Linux installer menu (BIOS mode):
+Opcje po uruchomieniu bootowania
+Graphic install-instalacja graficzna (NIE WYBIERAMY, “instalacja graficzna jest dla dzieci”)
+Install-standardowa instalacja z opcjami(to wybieramy)
+Advanced options <-tą opcję wybieramy
+Accessible dark contrast installer menu -instalacja z zwiększonym kontrastem napisów dla osób o słabym wzroku
+Help-pomoc
+Install with speech synthesis-instalacja z syntezą mowy
+
+Wybieramy język instalacji który będzie też językiem systemu-English bo cały świat używa ang i jest najbardziej uniwersalny
+
+następnie wybieramy lokalizację (w celu ustawienia strefy czasowej ->other->Europe->Poland
+
+Wybieramy język ponieważ nie zgadza się połączenie ang języka i polski jako lokalizacji ->United States-en_US.UTF-8
+
+Keymap-wybieramy rodzaj klawiatury-English american
+
+ładują się dodatkowe komponenty oraz konfigurowanie internetu
+
+Hostname-Nazwa pod jaką komputer będzie widoczny w sieci 
+
+domain-określa w jakiej domenie będzie znajdować się komputer.-nie wpisujemy nic na ten moment
+password for root-x (powinno być to najsilniejsze hasło)
+ponowne wpisanie hasła-x(dla sprawdzenia poprawności)
+hasła się nie pojawiają na ekranie!
+User account-damian (Nasz login do systemu)
+username for new account-damian(nazwa użytkownika komputera która będzie się wyświetlać w systemie)
+
+hasło-x(hasło można pokazać żeby sprawdzić jego poprawność)
+
+Dzielenie dysku na partycje
+Wybieramy nasz dysk żeby wydzielić z niego określone partycje. Dostajemy informację że aktualna partycja zostanie usunięta w celu umożliwienia nam stworzenia na niej nowej. tworzymy nową partycję, wybieramy jej wielkość, w naszym wypadku używamy formuły 2*RAM. większa ilość może powodować błędy. wybieramy partycję “Primary” następnie sposób użycia zadeklarowanej partycji jako “swap area”.
+Resztę partycji ustawiamy jako partycja Logiczna i przypisujemy jej cały pozostawiony rozmiar jak i zostawiamy 5% “Reserved block”.
+System pyta czy chcemy w ten sposób zadeklarować miejsce na dysku
+W następnym kroku wybieramy kraj z jakiego mają być pobierany pakiety debiana-zaleca się wybierania najbliższej lokalizacji w celu szybszego działania
+Po wybraniu kraju nasz Debian powinien być zainstalowany.
